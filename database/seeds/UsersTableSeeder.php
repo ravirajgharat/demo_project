@@ -18,6 +18,7 @@ class UsersTableSeeder extends Seeder
         //         'password' => Hash::make('password'),
         //     ]);
         // }
+
         // $roles = [
         //     ['firstname' => 'Admin', 'lastname' => 'admin', 'email' => 'admin123@ex.com', 'password' => Hash::make('admin123')],
         // ];

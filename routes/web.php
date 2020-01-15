@@ -15,8 +15,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/admin', 'AdminsController@dashboard')->name('admin');
+Route::get('/admin', 'HomeController@dashboard')->name('admin')->middleware('auth','admin');
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/home', 'HomeController@home')->name('home')->middleware('auth','user');
+
+Route::get('/unauthorized', 'HomeController@unauthorized');
