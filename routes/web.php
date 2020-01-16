@@ -23,4 +23,11 @@ Route::get('/home', 'HomeController@home')->name('home')->middleware('auth','use
 
 Route::get('/unauthorized', 'HomeController@unauthorized');
 
+//User CRUD inside admin
 Route::resource('admin/user', 'Admin\\UserController');
+
+//Configuration CRUD inside admin
+Route::resource('admin/configuration', 'Admin\\ConfigurationController');
+
+//Banner CRUD inside admin
+Route::resource('admin/banner', 'Admin\\BannerController');

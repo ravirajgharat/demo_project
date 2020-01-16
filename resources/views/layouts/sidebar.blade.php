@@ -1,8 +1,8 @@
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
         <!-- Brand Logo -->
-        <a href="index3.html" class="brand-link">
+        <a href="index3.html" class="brand-link pt-3 pb-3">
           <img src="{{ asset('dist/img/AdminLTELogo.png') }}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
-               style="opacity: .8">
+               style="opacity: .5">
           <span class="brand-text font-weight-light">AdminLTE 3</span>
         </a>
     
@@ -34,20 +34,28 @@
               </li>
               <li class="nav-item">
                 <a href="{{ url('/admin/user') }}" class="nav-link">
-                  <i class="nav-icon fas fa-th"></i>
+                  <i class="nav-icon fas fa-user"></i>
                   <p>
                     User
                   </p>
                 </a>
               </li>
               <li class="nav-item">
-                  <a href="{{ url('/admin/user') }}" class="nav-link">
-                    <i class="nav-icon fas fa-th"></i>
+                  <a href="{{ url('/admin/configuration') }}" class="nav-link">
+                    <i class="nav-icon fas fa-wrench"></i>
                     <p>
                       Configuration
                     </p>
                   </a>
-                </li>
+              </li>
+              <li class="nav-item">
+                  <a href="{{ url('/admin/banner') }}" class="nav-link">
+                    <i class="nav-icon fas fa-image"></i>
+                    <p>
+                      Banner
+                    </p>
+                  </a>
+              </li>
               {{-- <li class="nav-item has-treeview">
                 <a href="#" class="nav-link">
                   <i class="nav-icon fas fa-copy"></i>
@@ -528,3 +536,9 @@
         </div>
         
 </aside>
+<style>
+    .nav-item {
+        padding: 5px 0;
+    }
+</style>
+    

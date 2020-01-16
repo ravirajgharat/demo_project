@@ -28,9 +28,7 @@ class UserController extends Controller
                 ->orWhere('lastname', 'LIKE', "%$keyword%")
                 ->orWhere('email', 'LIKE', "%$keyword%")
                 ->orWhere('password', 'LIKE', "%$keyword%")
-                ->orWhere('confirmpassword', 'LIKE', "%$keyword%")
                 ->orWhere('status', 'LIKE', "%$keyword%")
-                ->orWhere('category', 'LIKE', "%$keyword%")
                 ->latest()->paginate($perPage);
         } else {
             $user = User::latest()->paginate($perPage);
@@ -117,7 +115,7 @@ class UserController extends Controller
         $request->validate([
             'firstname' => 'bail|required|string|max:255|min:4',
             'lastname' => 'bail|required|string|max:255|min:4',
-            'email' => 'bail|required|email|unique:users|max:255|min:4',
+            'email' => 'bail|required|email|max:255|min:4|unique:users,email,' . $id,
         ]);
         $role = Role::where('name', $request->category)->first()->id;
         $requestData = $request->all();
