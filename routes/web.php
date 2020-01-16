@@ -22,3 +22,5 @@ Auth::routes();
 Route::get('/home', 'HomeController@home')->name('home')->middleware('auth','user');
 
 Route::get('/unauthorized', 'HomeController@unauthorized');
+
+Route::resource('admin/user', 'Admin\\UserController');
