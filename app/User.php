@@ -8,7 +8,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Kodeine\Acl\Traits\HasRole;
 use App\User;
-
+use App\Events\UserCreatedEvent;
 
 class User extends Authenticatable
 {

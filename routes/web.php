@@ -15,19 +15,28 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+//Admin users
 Route::get('/admin', 'HomeController@dashboard')->name('admin')->middleware('auth','admin');
 
 Auth::routes();
 
+//Customers
 Route::get('/home', 'HomeController@home')->name('home')->middleware('auth','user');
 
+//redirect customers trying to access admin page
 Route::get('/unauthorized', 'HomeController@unauthorized');
 
 //User CRUD inside admin
-Route::resource('admin/user', 'Admin\\UserController');
+Route::group(['middleware' => ['auth', 'admin']], function() {
+    Route::resource('admin/user', 'Admin\\UserController');
+});
 
 //Configuration CRUD inside admin
-Route::resource('admin/configuration', 'Admin\\ConfigurationController');
+Route::group(['middleware' => ['auth', 'admin']], function() {
+    Route::resource('admin/configuration', 'Admin\\ConfigurationController')->middleware('auth','admin');
+});
 
 //Banner CRUD inside admin
-Route::resource('admin/banner', 'Admin\\BannerController');
+Route::group(['middleware' => ['auth', 'admin']], function() {
+    Route::resource('admin/banner', 'Admin\\BannerController')->middleware('auth','admin');
+});

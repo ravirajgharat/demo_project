@@ -59,7 +59,7 @@ class UserController extends Controller
         $request->validate([
             'firstname' => 'bail|required|string|max:255|min:4',
             'lastname' => 'bail|required|string|max:255|min:4',
-            'email' => 'bail|required|email|unique|max:255|min:4',
+            'email' => 'bail|required|email|unique:users|max:255|min:4',
             'password' => 'bail|required|max:255|min:8',
         ]);
 
