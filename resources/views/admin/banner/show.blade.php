@@ -1,6 +1,7 @@
 @extends('layouts.master')
 
 @section('content')
+<div class="content-wrapper">
     <div class="container">
         <div class="row">
            
@@ -24,7 +25,7 @@
                                     <tr>
                                         <th>ID</th><td>{{ $banner->id }}</td>
                                     </tr>
-                                    <tr><th> Banner Name </th><td> {{ $banner->bannername }} </td></tr><tr><th> Banner Image </th><td> {{ $banner->bannerimage }} </td></tr>
+                                    <tr><th> Banner Name </th><td> {{ $banner->bannername }} </td></tr><tr><th> Banner Image </th><td> <img src="{{ url('/storage/' . $banner->bannerimage) }}" alt=""> </td></tr>
                                 </tbody>
                             </table>
                         </div>

@@ -4,9 +4,10 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests;
-
+use Illuminate\Support\Facades\Storage;
 use App\Banner;
 use Illuminate\Http\Request;
+use Illuminate\Http\UploadedFile;
 
 class BannerController extends Controller
 {
@@ -16,9 +17,13 @@ class BannerController extends Controller
      * @return \Illuminate\View\View
      */
     public function index(Request $request)
-    {
+    {   
+
+        // $file = new Filesystem;
+        // $file->cleanDirectory('storage/uploads');
+
         $keyword = $request->get('search');
-        $perPage = 25;
+        $perPage = 5;
 
         if (!empty($keyword)) {
             $banner = Banner::where('bannername', 'LIKE', "%$keyword%")
@@ -50,11 +55,14 @@ class BannerController extends Controller
      */
     public function store(Request $request)
     {
-        
+        $request->validate([
+            'bannername' => 'bail|required|unique:banners|string|max:255|min:4',
+            'bannerimage' => 'bail|required|image|max:2048',
+        ]);
+
         $requestData = $request->all();
-                if ($request->hasFile('bannerimage')) {
-            $requestData['bannerimage'] = $request->file('bannerimage')
-                ->store('uploads', 'public');
+        if ($request->hasFile('bannerimage')) {
+            $requestData['bannerimage'] = $request->file('bannerimage')->store('uploads/banners', 'public');
         }
 
         Banner::create($requestData);
@@ -100,15 +108,25 @@ class BannerController extends Controller
      */
     public function update(Request $request, $id)
     {
-        
-        $requestData = $request->all();
-                if ($request->hasFile('bannerimage')) {
-            $requestData['bannerimage'] = $request->file('bannerimage')
-                ->store('uploads', 'public');
-        }
+        $request->validate([
+            'bannername' => 'bail|required|string|max:255|min:4|unique:banners,bannername,' . $id,
+            'bannerimage' => 'bail|image|max:2048',
+        ]);
 
-        $banner = Banner::findOrFail($id);
-        $banner->update($requestData);
+        $requestData = $request->all();
+        if ($request->hasFile('bannerimage')) {
+            $requestData['bannerimage'] = $request->file('bannerimage')->store('uploads/banners', 'public');
+        }
+        
+        $banner = Banner::findOrFail($id); 
+
+        if ($request->hasFile('bannerimage')) {
+            Storage::delete('public/' . $banner->bannerimage);
+            $banner->update($requestData);
+        } else {           
+            $banner->bannername = $request->bannername;
+            $banner->save();
+        }
 
         return redirect('admin/banner')->with('flash_message', 'Banner updated!');
     }
@@ -122,8 +140,9 @@ class BannerController extends Controller
      */
     public function destroy($id)
     {
+        $banner = Banner::findOrFail($id);
         Banner::destroy($id);
-
+        Storage::delete('public/' . $banner->bannerimage);
         return redirect('admin/banner')->with('flash_message', 'Banner deleted!');
     }
 }
