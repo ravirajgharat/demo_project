@@ -23,7 +23,7 @@ class BannerController extends Controller
         // $file->cleanDirectory('storage/uploads');
 
         $keyword = $request->get('search');
-        $perPage = 5;
+        $perPage = 3;
 
         if (!empty($keyword)) {
             $banner = Banner::where('bannername', 'LIKE', "%$keyword%")
@@ -142,7 +142,7 @@ class BannerController extends Controller
     {
         $banner = Banner::findOrFail($id);
         Banner::destroy($id);
-        Storage::delete('public/' . $banner->bannerimage);
+        //Storage::delete('public/' . $banner->bannerimage);
         return redirect('admin/banner')->with('flash_message', 'Banner deleted!');
     }
 }

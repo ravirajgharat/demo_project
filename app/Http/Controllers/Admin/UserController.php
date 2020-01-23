@@ -34,6 +34,7 @@ class UserController extends Controller
             $user = User::latest()->paginate($perPage);
         }
         //$role = DB::table('user')->getRoles();
+
         return view('admin.user.index', compact('user','role'));
     }
 
@@ -98,7 +99,6 @@ class UserController extends Controller
     public function edit($id)
     {
         $user = User::findOrFail($id);
-
         return view('admin.user.edit', compact('user'));
     }
 

@@ -1,22 +1,22 @@
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
         <!-- Brand Logo -->
-        <a href="index3.html" class="brand-link pt-3 pb-3">
+        <a href="{{ url('/admin') }}" class="brand-link pt-3 pb-3">
           <img src="{{ asset('dist/img/AdminLTELogo.png') }}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
                style="opacity: .5">
-          <span class="brand-text font-weight-light">AdminLTE 3</span>
+          <span class="brand-text font-weight-light">{{ App\Configuration::where('configname','project_name')->first()->configvalue }}</span>
         </a>
     
         <!-- Sidebar -->
         <div class="sidebar">
           <!-- Sidebar user panel (optional) -->
-          <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+          {{-- <div class="user-panel mt-3 pb-3 mb-3 d-flex">
             <div class="image">
               <img src="{{ asset('dist/img/user2-160x160.jpg') }}" class="img-circle elevation-2" alt="User Image">
             </div>
             <div class="info">
               <a href="#" class="d-block">Alexander Pierce</a>
             </div>
-          </div>
+          </div> --}}
     
           <!-- Sidebar Menu -->
           <nav class="mt-2">
@@ -34,12 +34,20 @@
               </li>
               <li class="nav-item">
                 <a href="{{ url('/admin/user') }}" class="nav-link">
-                  <i class="nav-icon fas fa-user"></i>
+                  <i class="nav-icon fas fa-user-ninja"></i>
                   <p>
                     User
                   </p>
                 </a>
               </li>
+              <li class="nav-item">
+                  <a href="{{ url('/admin/role') }}" class="nav-link">
+                    <i class="nav-icon fas fa-tasks"></i>
+                    <p>
+                      Role
+                    </p>
+                  </a>
+                </li>
               <li class="nav-item">
                   <a href="{{ url('/admin/configuration') }}" class="nav-link">
                     <i class="nav-icon fas fa-wrench"></i>
@@ -56,6 +64,14 @@
                     </p>
                   </a>
               </li>
+              <li class="nav-item">
+                <a href="{{ url('/admin/category') }}" class="nav-link">
+                  <i class="nav-icon fas fa-list-alt"></i>
+                  <p>
+                    Category
+                  </p>
+                </a>
+            </li>
               {{-- <li class="nav-item has-treeview">
                 <a href="#" class="nav-link">
                   <i class="nav-icon fas fa-copy"></i>

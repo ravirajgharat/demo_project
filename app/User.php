@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -12,6 +13,8 @@ use App\Events\UserCreatedEvent;
 
 class User extends Authenticatable
 {
+    use SoftDeletes;
+    
     use Notifiable, HasRole;
     /**
      * The database table used by the model.
@@ -51,6 +54,12 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    /**
+     * Date for SoftDeletes.
+     *
+     */
+    protected $dates = ['deleted_at'];
 
     public function roles()
     {

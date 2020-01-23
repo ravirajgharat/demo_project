@@ -27,8 +27,8 @@
                         <br/>
                         <br/>
                         <div class="table-responsive">
-                            <table class="table table-hover">
-                                <thead>
+                            <table class="table table-hover table-bordered table-striped">
+                                <thead class="thead-dark">
                                     <tr>
                                         <th>#</th><th>Configuration Name</th><th>Configuration Value</th><th>Actions</th>
                                     </tr>

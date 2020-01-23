@@ -3,28 +3,23 @@
 @section('content')
 
 <div class="content-wrapper">
-    <div class="container">
-        <div class="row">
+    <div class="fluid-container">
+        
 
-            
-                    
-                    <div class="card-body">
-                        <h2>Create New User</h2>
-                        <hr>
-                        <a href="{{ url('/admin/user') }}" title="Back"><button class="btn btn-warning btn-sm"><i class="fa fa-arrow-left" aria-hidden="true"></i> Back</button></a>
-                        <br />
-                        <br />
+                    <div class="card card-primary">
+                        <div class="card-header alert-primary">
+                          <h3 class="card-title">Create New User</h3>
+                        </div><br>
+                        
+                            <form class="form-horizontal" method="POST" action="{{ url('/admin/user') }}" accept-charset="UTF-8" class="form-horizontal" enctype="multipart/form-data">
+                                {{ csrf_field() }}
 
-                        <form method="POST" action="{{ url('/admin/user') }}" accept-charset="UTF-8" class="form-horizontal" enctype="multipart/form-data">
-                            {{ csrf_field() }}
+                                @include ('admin.user.form', ['formMode' => 'create'])
 
-                            @include ('admin.user.form', ['formMode' => 'create'])
-
-                        </form>
-
+                            </form>    
                     </div>
-            
-        </div>
+
+        
     </div>
 </div>
 

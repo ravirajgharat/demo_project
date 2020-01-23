@@ -12,7 +12,7 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('auth.login');
 });
 
 //Admin users
@@ -26,17 +26,22 @@ Route::get('/home', 'HomeController@home')->name('home')->middleware('auth','use
 //redirect customers trying to access admin page
 Route::get('/unauthorized', 'HomeController@unauthorized');
 
-//User CRUD inside admin
+//Admin access only
 Route::group(['middleware' => ['auth', 'admin']], function() {
+
+    //User CRUD inside admin
     Route::resource('admin/user', 'Admin\\UserController');
-});
 
-//Configuration CRUD inside admin
-Route::group(['middleware' => ['auth', 'admin']], function() {
-    Route::resource('admin/configuration', 'Admin\\ConfigurationController')->middleware('auth','admin');
-});
+    //Configuration CRUD inside admin
+    Route::resource('admin/configuration', 'Admin\\ConfigurationController');
 
-//Banner CRUD inside admin
-Route::group(['middleware' => ['auth', 'admin']], function() {
-    Route::resource('admin/banner', 'Admin\\BannerController')->middleware('auth','admin');
+    //Banner CRUD inside admin
+    Route::resource('admin/banner', 'Admin\\BannerController');
+
+    //Role CRUD inside admin
+    Route::resource('admin/role', 'Admin\\RoleController');
+
+    //Category multilevel CRUD inside admin
+    Route::resource('admin/category', 'Admin\\CategoryController');
+
 });
