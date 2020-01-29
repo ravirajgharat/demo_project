@@ -51,5 +51,6 @@ Route::group(['middleware' => ['auth', 'admin']], function() {
     Route::resource('admin/product_parameter', 'Admin\\Product_parameterController');
 
     //Coupon CRUD inside admin
+    Route::resource('admin/coupon', 'Admin\\CouponController');
     
 });
