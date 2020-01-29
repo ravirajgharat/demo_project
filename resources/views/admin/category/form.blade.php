@@ -3,9 +3,8 @@
         <label for="categoryname" class="col-sm-2 col-form-label">{{ 'Category' }}</label>
         <div class="col-sm-10">
             <input class="form-control" name="categoryname" type="text" id="categoryname" value="{{ isset($category->categoryname) ? $category->categoryname : ''}}" placeholder="Category">
-        
+        </div>
         <strong>{!! $errors->first('categoryname', '<p class="help-block text-danger">:message</p>') !!}</strong>
-    </div>
     </div>
     <div class="form-group row {{ $errors->has('category_id') ? 'has-error' : ''}}">
         <label for="category_id" class="col-sm-2 col-form-label">{{ 'Parent Category' }}</label>

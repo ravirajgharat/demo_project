@@ -44,4 +44,12 @@ Route::group(['middleware' => ['auth', 'admin']], function() {
     //Category multilevel CRUD inside admin
     Route::resource('admin/category', 'Admin\\CategoryController');
 
+    //Product CRUD inside admin
+    Route::resource('admin/product', 'Admin\\ProductController');
+
+    //Product Parameter CRUD inside admin
+    Route::resource('admin/product_parameter', 'Admin\\Product_parameterController');
+
+    //Coupon CRUD inside admin
+    
 });

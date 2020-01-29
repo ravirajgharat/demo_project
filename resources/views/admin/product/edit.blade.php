@@ -8,19 +8,19 @@
                     
                         <div class="card card-primary">
                                 <div class="card-header alert-primary">
-                                    <h3 class="card-title">Edit Configuration #{{ $configuration->id }}</h3>
+                                    <h3 class="card-title">Edit Product #{{ $product->id }}</h3>
                                 </div><br>
 
-                        <form method="POST" action="{{ url('/admin/configuration/' . $configuration->id) }}" accept-charset="UTF-8" class="form-horizontal" enctype="multipart/form-data">
+                        <form method="POST" action="{{ url('/admin/product/' . $product->id) }}" accept-charset="UTF-8" class="form-horizontal" enctype="multipart/form-data">
                             {{ method_field('PATCH') }}
                             {{ csrf_field() }}
 
-                            @include ('admin.configuration.form', ['formMode' => 'edit'])
+                            @include ('admin.product.form', ['formMode' => 'edit'])
 
                         </form>
 
                     </div>
                
+        </div>
     </div>
-</div>
 @endsection

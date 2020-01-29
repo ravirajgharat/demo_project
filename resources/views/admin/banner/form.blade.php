@@ -2,7 +2,7 @@
     <div class="form-group row {{ $errors->has('bannername') ? 'has-error' : ''}}">
         <label for="bannername" class="col-sm-2 col-form-label">{{ 'Banner Name' }}</label>
         <div class="col-sm-10">
-            <input class="form-control" name="bannername" placeholder="Banner Names" type="text" id="bannername" value="{{ isset($banner->bannername) ? $banner->bannername : ''}}" >
+            <input class="form-control" name="bannername" placeholder="Banner Name" type="text" id="bannername" value="{{ isset($banner->bannername) ? $banner->bannername : ''}}" >
         </div>
         <strong>{!! $errors->first('bannername', '<p class="help-block text-danger">:message</p>') !!}</strong>
     </div>
