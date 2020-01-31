@@ -6,9 +6,9 @@
         <div class="fluid-container">
                 
                 <div class="card card-primary">
-                        <div class="card-header alert-primary">
-                          <h3 class="card-title">Create New Banner</h3>
-                        </div><br>
+                        <div class="card-header bg-primary pb-1">
+                            <h3 class="card-title">Create New Banner</h3>
+                        </div>
 
                         <form method="POST" action="{{ url('/admin/banner') }}" accept-charset="UTF-8" class="form-horizontal" enctype="multipart/form-data">
                             {{ csrf_field() }}

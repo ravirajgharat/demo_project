@@ -24,7 +24,7 @@
                             <table class="table table-hover table-striped table-bordered">
                                 <tbody>
                                     <tr>
-                                        <th style="width:25%;" class="text-primary">ID</th><td><strong>{{ $coupon->id }}</strong></td>
+                                        <th style="width:25%;" class="text-primary">ID</th><td style="width:75%;"><strong>{{ $coupon->id }}</strong></td>
                                     </tr>
                                     <tr><th class="text-primary"> Coupon Code </th><td><strong>{{ $coupon->coupon_code }}</strong></td></tr>
                                     <tr><th class="text-primary"> Discount </th><td><strong>@if(!$coupon->format)Rs. @endif {{ $coupon->discount }} @if($coupon->format) % @endif</strong></td></tr>

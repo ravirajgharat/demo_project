@@ -118,7 +118,7 @@ class BannerController extends Controller
             $requestData['bannerimage'] = $request->file('bannerimage')->store('uploads/banners', 'public');
         }
         
-        $banner = Banner::findOrFail($id); 
+        $banner = Banner::findOrFail($id);
 
         if ($request->hasFile('bannerimage')) {
             Storage::delete('public/' . $banner->bannerimage);
@@ -141,8 +141,8 @@ class BannerController extends Controller
     public function destroy($id)
     {
         $banner = Banner::findOrFail($id);
+        Storage::delete('public/' . $banner->bannerimage);
         Banner::destroy($id);
-        //Storage::delete('public/' . $banner->bannerimage);
         return redirect('admin/banner')->with('flash_message', 'Banner deleted!');
     }
 }

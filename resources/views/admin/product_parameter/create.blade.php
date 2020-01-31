@@ -6,7 +6,7 @@
     <div class="fluid-container">
             
             <div class="card card-primary">
-                    <div class="card-header alert-primary">
+                    <div class="card-header bg-primary pb-1">
                       <h3 class="card-title">Create New Parameter</h3>
                     </div><br>
 

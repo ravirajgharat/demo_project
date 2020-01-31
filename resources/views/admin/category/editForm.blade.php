@@ -50,5 +50,5 @@
 
 <div class="card-footer">
     <input class="btn btn-primary" type="submit" value="{{ $formMode === 'edit' ? 'Update' : 'Create' }}">
-    <a href="{{ url('/admin/category') }}" title="Back" class="btn btn-default float-right"><i class="fa fa-arrow-left" aria-hidden="true"></i> Back</a>
+    <a href="{{ url('/admin/category') }}" title="Back" class="btn btn-secondary float-right"><i class="fa fa-arrow-left" aria-hidden="true"></i> Back</a>
 </div>

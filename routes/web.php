@@ -11,7 +11,18 @@
 |
 */
 
-Route::get('/', function () {
+
+
+
+
+/*
+|--------------------------------------------------------------------------
+| Admin Routes
+|--------------------------------------------------------------------------
+*/
+
+
+Route::get('/admin', function () {
     return view('auth.login');
 });
 
@@ -53,4 +64,16 @@ Route::group(['middleware' => ['auth', 'admin']], function() {
     //Coupon CRUD inside admin
     Route::resource('admin/coupon', 'Admin\\CouponController');
     
+});
+
+
+/*
+|--------------------------------------------------------------------------
+| Customer Routes
+|--------------------------------------------------------------------------
+*/
+
+
+Route::get('/user', function () {
+    return view('index');
 });

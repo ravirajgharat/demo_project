@@ -157,11 +157,11 @@
                     </a>
                 @endif
 
-            </p>
+            {{-- </p>
 
-            <p class="mb-0">
+            <p class="mb-0"> --}}
               {{-- <a href="register.html" class="text-center">Register a new membership</a> --}}
-              <a href="{{ route('register') }}">{{ __('Register') }}</a>
+              <a style="float:right" href="{{ route('register') }}">{{ __('Register') }}</a>
             </p>
           </div>
           <!-- /.login-card-body -->

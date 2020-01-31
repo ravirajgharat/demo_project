@@ -7,7 +7,7 @@
                 
                         
                             <div class="card card-primary">
-                                    <div class="card-header alert-primary">
+                                    <div class="card-header bg-primary pb-1">
                                         <h3 class="card-title">Edit Banner #{{ $banner->id }}</h3>
                                     </div><br>
 

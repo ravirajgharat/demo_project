@@ -11,9 +11,7 @@
 
         @include('layouts.navbar')
 
-        @include('layouts.sidebar') 
-        
-        {{-- @include('layouts.flash')  --}}
+        @include('layouts.sidebar')
 
         @yield('content')
     
