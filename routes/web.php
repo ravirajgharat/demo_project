@@ -73,8 +73,6 @@ Route::group(['middleware' => ['auth', 'admin']], function() {
 |--------------------------------------------------------------------------
 */
 
-
-
 Route::get('/', 'Customer\\HomeController@index');
 
 Route::get('/cust', 'Customer\\HomeController@index')->name('cust');

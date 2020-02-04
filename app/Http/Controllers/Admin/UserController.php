@@ -10,6 +10,7 @@ use App\Http\Requests;
 use App\User;
 use App\Role;
 use Illuminate\Http\Request;
+use Mail;
 
 class UserController extends Controller
 {
@@ -85,7 +86,6 @@ class UserController extends Controller
     public function show($id)
     {
         $user = User::findOrFail($id);
-
         return view('admin.user.show', compact('user'));
     }
 
