@@ -39,7 +39,7 @@
                         <li>
                                 @guest
                                 @else
-                                    <a href="{{ url('/cust/address') }}"><i class="fa fa-address-card"></i>My Addresses</a>
+                                    <a href="{{ url('/cust/address') }}"><i class="fa fa-map-marker"></i>My Addresses</a>
                                 @endguest
                         </li>
                         <li>

@@ -32,7 +32,7 @@ class BannerController extends Controller
         } else {
             $banner = Banner::latest()->paginate($perPage);
         }
-
+        dd($banner);
         return view('admin.banner.index', compact('banner'));
     }
 
