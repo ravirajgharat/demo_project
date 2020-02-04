@@ -74,6 +74,11 @@ Route::group(['middleware' => ['auth', 'admin']], function() {
 */
 
 
-Route::get('/user', function () {
-    return view('index');
-});
+
+Route::get('/', 'Customer\\HomeController@index');
+
+Route::get('/cust', 'Customer\\HomeController@index')->name('cust');
+
+//Route::get('/cust/login', 'Customer\\LoginController@loginPage')->name('cust.loginpage')->middleware('user');
+
+Route::get('/cust/shop', 'Customer\\LoginController@shop')->name('cust.shop')->middleware('auth');
