@@ -34,8 +34,9 @@
                                         <th>Product</th>
                                         {{-- <th>Image</th> --}}
                                         <th>Price</th>
-                                        {{-- <th>Categories</th>
-                                        <th>Parameters</th> --}}
+                                        <th>Brand</th>
+                                        <th>Category</th>
+                                        {{-- <th>Parameters</th> --}}
                                         <th>Actions</th>
                                     </tr>
                                 </thead>
@@ -46,6 +47,8 @@
                                         <td>{{ $item->product_name }}</td>
                                         {{-- <td>{{ $item->images->first()->product_image }}</td> --}}
                                         <td>{{ $item->price }}</td>
+                                        <td>{{ $item->product_brand }}</td>
+                                        <td>{{ $item->category->categoryname }}</td>
                                         {{-- <td>
                                             @foreach($item->categories as $cat)
                                             {{ $cat->categoryname }}

@@ -59,7 +59,14 @@ class AddressController extends Controller
      */
     public function store(Request $request)
     {
-        
+        $request->validate([
+            'address' => 'bail|required|string|max:255|min:4',
+            'city' => 'bail|required|string|max:255|min:4',
+            'state' => 'bail|required|string|max:255|min:4',
+            'pin_code' => 'bail|required|integer|max:255|min:8',
+            'landmark' => 'bail|required|string|max:255|min:4',
+        ]);
+
         // $requestData = $request->all();
         // $requestData->user_id = Auth::user()->id;
         // Address::create($requestData);
@@ -114,7 +121,14 @@ class AddressController extends Controller
      */
     public function update(Request $request, $id)
     {
-        
+        $request->validate([
+            'address' => 'bail|required|string|max:255|min:4',
+            'city' => 'bail|required|string|max:255|min:4',
+            'state' => 'bail|required|string|max:255|min:4',
+            'pin_code' => 'bail|required|integer|max:255|min:8',
+            'landmark' => 'bail|required|string|max:255|min:4',
+        ]);
+
         $requestData = $request->all();
         
         $address = Address::findOrFail($id);

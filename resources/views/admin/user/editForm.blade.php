@@ -2,21 +2,21 @@
     
     <div class="form-group row {{ $errors->has('firstname') ? 'has-error' : ''}}">
         <label for="firstname" class="col-sm-2 col-form-label">{{ 'Firstname' }}</label>
-        <div class="col-sm-10">
+        <div class="col-sm-6">
             <input class="form-control" name="firstname" type="text" id="firstname" value="{{ isset($user->firstname) ? $user->firstname : ''}}" >
         </div>
         <strong>{!! $errors->first('firstname', '<p class="help-block text-danger">:message</p>') !!}</strong>
     </div>
     <div class="form-group row {{ $errors->has('lastname') ? 'has-error' : ''}}">
         <label for="lastname" class="col-sm-2 col-form-label">{{ 'Lastname' }}</label>
-        <div class="col-sm-10">
+        <div class="col-sm-6">
             <input class="form-control" name="lastname" type="text" id="lastname" value="{{ isset($user->lastname) ? $user->lastname : ''}}" >
         </div>
         <strong>{!! $errors->first('lastname', '<p class="help-block text-danger">:message</p>') !!}</strong>
     </div>
     <div class="form-group row {{ $errors->has('email') ? 'has-error' : ''}}">
         <label for="email" class="col-sm-2 col-form-label">{{ 'Email' }}</label>
-        <div class="col-sm-10">
+        <div class="col-sm-6">
             <input class="form-control" name="email" type="text" id="email" value="{{ isset($user->email) ? $user->email : ''}}" >
         </div>
         <strong>{!! $errors->first('email', '<p class="help-block text-danger">:message</p>') !!}</strong>
@@ -34,7 +34,7 @@
     
     <div class="form-group row {{ $errors->has('category') ? 'has-error' : ''}}">
         <label for="category" class="col-sm-2 col-form-label">{{ 'Role' }}</label>
-        <div class="col-sm-10">
+        <div class="col-sm-6">
             <select name="category" class="form-control" id="category" >
         @foreach (App\Role::orderBy('id','desc')->get() as $role)
             <option value="{{ $role->name }}" {{ (isset($user->category) && $user->category == $optionKey) ? 'selected' : ''}}>{{ $role->name }}</option>

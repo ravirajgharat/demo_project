@@ -36,13 +36,12 @@
                                     <img style="width:300px;height:150px;" src="{{ url('/storage/' . $product->images->first()->product_image) }}" alt="" />
                                     <h2>Rs. {{ $product->price }}</h2>
                                     <p>{{ $product->product_name }}</p>
-                                    <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-eye"></i>Details</a>
+                                    <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-eye"></i>View</a>
                                 </div>
                                 <div class="product-overlay">
                                     <div class="overlay-content">
                                         <h2>Rs. {{ $product->price }}</h2>
                                         <p>{{ $product->product_name }}</p>
-
                                         <a href="{{ url('cust/product/' . $product->id) }}" class="btn btn-default add-to-cart">
                                             <i class="fa fa-eye"></i>
                                             View
@@ -523,7 +522,7 @@
 
 
 
-
+        
         
         <div class="recommended_items"><!--recommended_items-->
             <h2 class="title text-center">recommended items</h2>

@@ -73,12 +73,28 @@ Route::group(['middleware' => ['auth', 'admin']], function() {
 |--------------------------------------------------------------------------
 */
 
+//Guest Home Page
 Route::get('/', 'Customer\\HomeController@index');
 
 Route::get('/cust', 'Customer\\HomeController@index')->name('cust');
 
-//Route::get('/cust/login', 'Customer\\LoginController@loginPage')->name('cust.loginpage')->middleware('user');
-
+//Home Page for Auth User
 Route::get('/cust/shop', 'Customer\\LoginController@shop')->name('cust.shop')->middleware('auth');
 
-Route::resource('cust/address', 'Customer\\AddressController');
+//Address CRUD for customer
+Route::resource('/cust/address', 'Customer\\AddressController')->middleware('auth');
+
+//Display Product Details
+Route::get('/cust/product/{id}', 'Customer\\ShopController@displayProduct')->middleware('auth');
+
+//Cart Route
+Route::get('/cust/cart', 'Customer\\ShopController@cart')->middleware('auth');
+
+//Add item to cart
+Route::get('/cust/add/{id}', 'Customer\\ShopController@addToCart')->middleware('auth');
+
+//Remove item from cart
+Route::get('/cust/remove/{id}', 'Customer\\ShopController@removeFromCart')->middleware('auth');
+
+//Display Products for Category 
+Route::get('/cust/{cat}/{subcat}', 'Customer\\ShopController@subcategoryProducts')->middleware('auth');

@@ -1,14 +1,14 @@
 <div class="card-body">
     <div class="form-group row {{ $errors->has('categoryname') ? 'has-error' : ''}}">
         <label for="categoryname" class="col-sm-2 col-form-label">{{ 'Category' }}</label>
-        <div class="col-sm-10">
+        <div class="col-sm-6">
             <input class="form-control" name="categoryname" type="text" id="categoryname" value="{{ isset($category->categoryname) ? $category->categoryname : ''}}" placeholder="Category">
         </div>
         <strong>{!! $errors->first('categoryname', '<p class="help-block text-danger">:message</p>') !!}</strong>
     </div>
     <div class="form-group row {{ $errors->has('category_id') ? 'has-error' : ''}}">
         <label for="category_id" class="col-sm-2 col-form-label">{{ 'Parent Category' }}</label>
-        <div class="col-sm-10">
+        <div class="col-sm-6">
             {{-- <input class="form-control" name="category_id" type="number" id="category_id" value="{{ isset($category->category_id) ? $category->category_id : ''}}" > --}}
             <select class="form-control" name="category_id" id="category_id">
                 <option value="">Main Category</option>

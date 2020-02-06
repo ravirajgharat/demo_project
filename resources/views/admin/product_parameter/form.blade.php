@@ -1,7 +1,7 @@
 <div class="card-body">
     <div class="form-group row {{ $errors->has('product_parameter') ? 'has-error' : ''}}">
         <label for="product_parameter" class="col-sm-2 col-form-label">{{ 'Parameter' }}</label>
-        <div class="col-sm-10">
+        <div class="col-sm-6">
             <input class="form-control" name="product_parameter" placeholder="Parameter" type="text" id="product_parameter" value="{{ isset($product_parameter->product_parameter) ? $product_parameter->product_parameter : ''}}" >
         </div>
         <strong>{!! $errors->first('product_parameter', '<p class="help-block text-danger">:message</p>') !!}</strong>

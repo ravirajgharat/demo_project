@@ -1,7 +1,7 @@
 <div class="card-body">
     <div class="form-group row {{ $errors->has('name') ? 'has-error' : ''}}">
         <label for="name" class="col-sm-2 col-form-label">{{ 'Name' }}</label>
-        <div class="col-sm-10">
+        <div class="col-sm-6">
             <input class="form-control" name="name" type="text" id="name"placeholder="Role"  value="{{ isset($role->name) ? $role->name : ''}}" >
         </div>
         <strong>{!! $errors->first('name', '<p class="help-block text-danger">:message</p>') !!}</strong>

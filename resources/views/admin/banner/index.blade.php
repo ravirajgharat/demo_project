@@ -33,14 +33,14 @@
                             <table class="table table-hover table-bordered table-striped">
                                 <thead class="thead-dark">
                                     <tr>
-                                        <th>#</th><th>Banner Name</th><th>Banner Image</th><th>Actions</th>
+                                        <th>#</th><th>Banner Name</th><th style="width:500px">Banner Image</th><th>Actions</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                 @foreach($banner as $item)
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>
-                                        <td>{{ $item->bannername }}</td><td><img style="width:auto; height:100px;" src="{{ url('/storage/' . $item->bannerimage) }}" alt=""></td>
+                                        <td>{{ $item->bannername }}</td><td><img style="max-width:100%; height:auto;" src="{{ url('/storage/' . $item->bannerimage) }}" alt=""></td>
                                         <td>
                                             <a href="{{ url('/admin/banner/' . $item->id) }}" title="View Banner"><button class="btn btn-info btn-sm"><i class="fa fa-eye" aria-hidden="true"></i></button></a>
                                             <a href="{{ url('/admin/banner/' . $item->id . '/edit') }}" title="Edit Banner"><button class="btn btn-primary btn-sm"><i class="fa fa-pencil" aria-hidden="true"></i></button></a>
@@ -63,4 +63,7 @@
         </div>
     </div>
 </div>
+
+
+
 @endsection

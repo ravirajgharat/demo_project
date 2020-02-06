@@ -1,14 +1,14 @@
 <div class="card-body">
     <div class="form-group row {{ $errors->has('coupon_code') ? 'has-error' : ''}}">
         <label for="coupon_code" class="col-sm-2 col-form-label">{{ 'Coupon' }}</label>
-        <div class="col-sm-10">
+        <div class="col-sm-6">
             <input class="form-control" name="coupon_code" type="text" placeholder="Coupon Code" id="coupon_code" value="{{ isset($coupon->coupon_code) ? $coupon->coupon_code : ''}}" >
         </div>
         <strong>{!! $errors->first('coupon_code', '<p class="help-block text-danger">:message</p>') !!}</strong>
     </div>
     <div class="form-group row {{ $errors->has('discount') ? 'has-error' : ''}}">
         <label for="discount" class="col-sm-2 col-form-label">{{ 'Discount' }}</label>
-        <div class="col-sm-10">
+        <div class="col-sm-6">
             <input class="form-control" name="discount" type="number" placeholder="Discount" id="discount" value="{{ isset($coupon->discount) ? $coupon->discount : ''}}" >
         </div>
         <strong>{!! $errors->first('discount', '<p class="help-block text-danger">:message</p>') !!}</strong>

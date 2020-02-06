@@ -3,7 +3,11 @@
         <div class="row">
             <div class="col-sm-4">
                 <div class="logo pull-left">
-                    <a href="{{ url('/') }}"><img src="{{ asset('customer/images/home/logo.png') }}" alt="" /></a>
+                    @if(Auth::check())
+                        <a href="{{ url('/cust/shop') }}"><img src="{{ asset('customer/images/home/logo.png') }}" alt="" /></a>
+                    @else
+                        <a href="{{ url('/') }}"><img src="{{ asset('customer/images/home/logo.png') }}" alt="" /></a>
+                    @endif
                 </div>
                 <div class="btn-group pull-right">
                     <div class="btn-group">
@@ -35,7 +39,7 @@
                         <li><a href="#"><i class="fa fa-user"></i> Account</a></li>
                         <li><a href="#"><i class="fa fa-star"></i> Wishlist</a></li>
                         <li><a href="checkout.html"><i class="fa fa-crosshairs"></i> Checkout</a></li>
-                        <li><a href="cart.html"><i class="fa fa-shopping-cart"></i> Cart</a></li>
+                        <li><a href="{{ url('/cust/cart') }}"><i class="fa fa-shopping-cart"></i> Cart</a></li>
                         <li>
                                 @guest
                                 @else

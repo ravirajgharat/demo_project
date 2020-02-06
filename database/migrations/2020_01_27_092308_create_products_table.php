@@ -16,6 +16,7 @@ class CreateProductsTable extends Migration
             $table->increments('id');
             $table->string('product_name');
             $table->string('product_description');
+            $table->string('product_brand');
             $table->decimal('price')->nullable();
             $table->timestamps();
             $table->softDeletes();
