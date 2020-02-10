@@ -91,10 +91,23 @@ Route::get('/cust/product/{id}', 'Customer\\ShopController@displayProduct')->mid
 Route::get('/cust/cart', 'Customer\\ShopController@cart')->middleware('auth');
 
 //Add item to cart
-Route::get('/cust/add/{id}', 'Customer\\ShopController@addToCart')->middleware('auth');
+Route::get('/cust/cart/add/{id}', 'Customer\\ShopController@addToCart')->middleware('auth');
 
 //Remove item from cart
-Route::get('/cust/remove/{id}', 'Customer\\ShopController@removeFromCart')->middleware('auth');
+Route::get('/cust/cart/remove/{rowId}', 'Customer\\ShopController@removeFromCart')->middleware('auth');
+
+//Increase Quantity
+Route::get('/cust/cart/plus/{rowId}', 'Customer\\ShopController@increaseQuantity')->middleware('auth');
+
+//Decrease Quantity
+Route::get('/cust/cart/minus/{rowId}', 'Customer\\ShopController@decreaseQuantity')->middleware('auth');
+
+//Clear Cart
+Route::get('/cust/cart/clear', 'Customer\\ShopController@clearCart')->middleware('auth');
+
+//Apply coupon
+Route::get('/cust/cart/coupon', 'Customer\\ShopController@applyCoupon')->middleware('auth');
+
 
 //Display Products for Category 
 Route::get('/cust/{cat}/{subcat}', 'Customer\\ShopController@subcategoryProducts')->middleware('auth');

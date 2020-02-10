@@ -5,9 +5,15 @@ namespace App\Http\Controllers\Customer;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App;
+//use Darryldecode\Cart\Cart;
+use Illuminate\Support\Facades\Auth;
+//use Gloudemans\Shoppingcart\Cart;
+use Gloudemans\Shoppingcart\Facades\Cart;
 
 class ShopController extends Controller
 {
+
+    // Display products for subcategory
     public function subcategoryProducts($cat, $subcat)
     {
         $categories = App\Category::whereNull('category_id')->get();
@@ -21,6 +27,7 @@ class ShopController extends Controller
         return view('customer.pages.subcategory', compact('banners', 'ban', 'ship', 'products', 'categories'));
     }
 
+    // Display details of selected product
     public function displayProduct($id)
     {
         $categories = App\Category::whereNull('category_id')->get();
@@ -33,18 +40,130 @@ class ShopController extends Controller
         return view('customer.pages.product_details', compact('banners', 'ban', 'ship', 'product', 'params', 'categories'));
     }
 
+    // Cart Page
     public function cart()
     {
-        return view('customer.pages.cart');
+        $items = Cart::content();
+        $float = floatval(preg_replace('/[^\d\.]/', '', Cart::subtotal()));
+        
+        $tax = $float*5/100;
+        $taxNo = number_format($float*5/100,2);
+
+        if(!isset($coupon_code)) {
+            $coupon_code = "Not Applied";
+            $discount = 0;
+        }
+
+        if($float > 500) {
+            $ship = 0;
+        } else {
+            $ship = 50;
+        }
+
+        $total = number_format($float+$tax+$ship,2);
+        return view('customer.pages.cart', compact('items', 'float', 'taxNo', 'ship', 'total', 'coupon_code', 'discount'));
     }
 
+    
+    /*
+     * Add Selected product to Cart
+     * Param -
+     * $id : id of product
+     */
     public function addToCart($id)
     {
+        $product = App\Product::find($id);
+
+        Cart::add([
+
+            'id' => $product->id, 
+            'name' => $product->product_name, 
+            'qty' => 1, 
+            'price' => $product->price,
+            'weight' => 0
+
+            ])->associate('App\Product');
+
         return $this->displayProduct($id);
     }
 
-    public function removeFromCart($id)
+    /*
+     * Increase Quantity of a product
+     * Param -
+     * $rowId : row id of product
+     */
+    public function increaseQuantity($rowId)
     {
-        return back();
+        $item = Cart::get($rowId);
+        Cart::update($rowId, $item->qty+1);
+
+        return $this->cart();
+    }
+
+    /*
+     * Decrease Quantity of a product
+     * Param -
+     * $rowId : row id of product
+     */
+    public function decreaseQuantity($rowId)
+    {
+        $item = Cart::get($rowId);
+        Cart::update($rowId, $item->qty-1);
+
+        return $this->cart();
+    }
+
+    /*
+     * Remove Product From Cart
+     * Param -
+     * $rowId : row id of product
+     */
+    public function removeFromCart($rowId)
+    {
+        Cart::remove($rowId);
+
+        return $this->cart();
+    }
+
+    // Clear Cart
+    public function clearCart()
+    {
+        Cart::destroy();
+
+        return $this->cart();
+    }
+
+    //Apply Coupon
+    public function applyCoupon(Request $request)
+    {
+        $coupon = App\Coupon::find($request->coupon);
+        $coupon_code = $coupon->coupon_code;
+        $discount = $coupon->discount;
+        $format = $coupon->format;
+
+        $items = Cart::content();
+        $float = floatval(preg_replace('/[^\d\.]/', '', Cart::subtotal()));
+        
+        $tax = $float*5/100;
+        $taxNo = number_format($float*5/100,2);
+
+        $total1 = number_format($float+$tax,2);
+
+        if($float > 500) {
+            $ship = 0;
+        } else {
+            $ship = 50;
+        }
+
+        if($format == 1) {
+            $discount = $float*$discount/100;
+            $totalInDecimal = $float-$discount+$tax+$ship;
+            $total = number_format($totalInDecimal,2);
+        } else {
+            $totalInDecimal = $float-$discount+$tax+$ship;
+            $total = number_format($totalInDecimal,2);
+        }
+
+        return view('customer.pages.cart', compact('items', 'float', 'taxNo', 'total', 'ship', 'coupon_code', 'discount', 'format'));
     }
 }

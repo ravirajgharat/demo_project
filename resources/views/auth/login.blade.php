@@ -187,7 +187,6 @@
                                         <strong class="text-danger">{{ $message }}</strong>
                                     </span>
                                 @enderror
-
                             <span>
                                 <input type="checkbox" class="checkbox" {{ old('remember') ? 'checked' : '' }}> 
                                 Remember Me

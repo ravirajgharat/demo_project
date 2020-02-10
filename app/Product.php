@@ -4,10 +4,21 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Gloudemans\Shoppingcart\Contracts\Buyable;
 
-class Product extends Model
+class Product extends Model implements Buyable
 {
     use SoftDeletes;
+
+    public function getBuyableIdentifier($options = null) {
+        return $this->id;
+    }
+    public function getBuyableDescription($options = null) {
+        return $this->name;
+    }
+    public function getBuyablePrice($options = null) {
+        return $this->price;
+    }
     
     /**
      * The database table used by the model.

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Customer;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App;
+use Darryldecode\Cart\Cart;
 
 class LoginController extends Controller
 {
