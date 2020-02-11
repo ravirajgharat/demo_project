@@ -108,6 +108,17 @@ Route::get('/cust/cart/clear', 'Customer\\ShopController@clearCart')->middleware
 //Apply coupon
 Route::get('/cust/cart/coupon', 'Customer\\ShopController@applyCoupon')->middleware('auth');
 
+//Checkout - Select Address
+Route::get('/cust/checkout/address', 'Customer\\CheckoutController@checkoutAddress')->middleware('auth');
+
+//Checkout - Add Address
+Route::get('/cust/checkout/address/add', 'Customer\\CheckoutController@checkoutAddAddress')->middleware('auth');
+
+//Checkout - Store Address
+Route::get('/cust/checkout/address/store', 'Customer\\CheckoutController@checkoutStoreAddress')->middleware('auth');
+
+//Checkout - Select Payment Method
+Route::get('/cust/checkout/payment', 'Customer\\CheckoutController@checkoutPayment')->middleware('auth');
 
 //Display Products for Category 
 Route::get('/cust/{cat}/{subcat}', 'Customer\\ShopController@subcategoryProducts')->middleware('auth');

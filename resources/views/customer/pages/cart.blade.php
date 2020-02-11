@@ -200,7 +200,7 @@
                             <li>Total <span class="text-warning"><strong>Rs. {{ $total }}</strong></span></li>
                         </ul>
 
-                        <form action="{{ url('/cust/checkout') }}" method="GET">
+                        <form action="{{ url('/cust/checkout/address') }}" method="GET">
                             <input type="hidden" value="{{ $total }}" name="cartTotal">
                             <button class="btn btn-default check_out" style="margin-left:40px;">Check Out</button>
                         </form>
