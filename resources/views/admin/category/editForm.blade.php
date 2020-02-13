@@ -6,17 +6,14 @@
         </div>
         <strong>{!! $errors->first('categoryname', '<p class="help-block text-danger">:message</p>') !!}</strong>
     </div>
-    <div class="form-group row {{ $errors->has('categoryname') ? 'has-error' : ''}}">
-        <label for="categorylevel" class="col-sm-2 col-form-label">{{ 'Parent Category' }}</label>
-        <div class="col-sm-6">
+    
             
             @if(is_object($category->parent))
-                <strong class="form-control">{{ $category->parent->categoryname }}</strong>
+                <?php $pc = $category->parent->categoryname; ?>
             @else
-                <strong class="form-control">Main Category</strong>
+                <?php $pc = 'Main Category'; ?>
             @endif
-        </div>
-    </div>
+      
 
     <div class="form-group row {{ $errors->has('category_id') ? 'has-error' : ''}}">
         <label for="category_id" class="col-sm-2 col-form-label">{{ 'Select Parent Category' }}</label>
@@ -25,15 +22,15 @@
             
             <select class="form-control" name="category_id" id="category_id">
                 <option value="">Main Category</option>
-
                 {{-- @foreach ($categories as $category)
                     <option value="{{ $category->id }}" {{ (old($category->category_id) == $category->category_id ? 'selected' : '') }}>-{{ $category->categoryname }}</option>
                 @endforeach --}}
             
-
                 @foreach ($categories as $category)
-                 
-                    <option value="{{ $category->id }}">{{ $category->categoryname }}</option>
+
+                    <option value="{{ $category->id }}" <?php if($pc == $category->categoryname) { echo ' selected="selected"'; } ?>>
+                        {{ $category->categoryname }}
+                    </option>
            
                     @foreach ($category->childrenCategories as $childCategory)
                         @include('admin.category.parent_category', ['child_category' => $childCategory])

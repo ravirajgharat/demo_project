@@ -19,16 +19,18 @@
                                 <a href="{{ url('/') }}" class="active">Home</a>
                             @endif
                         </li>
+                        @guest
+                        @else
                         <li class="dropdown"><a href="#">Shop<i class="fa fa-angle-down"></i></a>
                             <ul role="menu" class="sub-menu">
-                                <li><a href="shop.html">Products</a></li>
-                                <li><a href="product-details.html">Product Details</a></li> 
-                                <li><a href="checkout.html">Checkout</a></li> 
-                                <li><a href="cart.html">Cart</a></li> 
-                                <li><a href="{{ url('/login') }}">Login</a></li> 
+                                <li><a href="{{-- --}}">Account</a></li>
+                                <li><a href="{{-- --}}">Wishlist</a></li> 
+                                <li><a href="{{ url('/cust/address') }}">Address</a></li> 
+                                <li><a href="{{ url('/cust/cart') }}">Cart</a></li>
                             </ul>
                         </li>
-                        <li><a href="404.html">404</a></li>
+                        @endguest
+                        {{-- <li><a href="404.html">404</a></li> --}}
                         <li><a href="contact-us.html">Contact</a></li>
                     </ul>
                 </div>

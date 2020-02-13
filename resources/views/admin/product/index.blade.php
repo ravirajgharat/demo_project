@@ -42,13 +42,15 @@
                                 </thead>
                                 <tbody>
                                 @foreach($product as $item)
+                                {{--dd($item->category)--}}
+                                {{-- {{dd($item->parameters[0]->id)}} --}}
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>
                                         <td>{{ $item->product_name }}</td>
                                         {{-- <td>{{ $item->images->first()->product_image }}</td> --}}
                                         <td>{{ $item->price }}</td>
                                         <td>{{ $item->product_brand }}</td>
-                                        <td>{{ $item->category->categoryname }}</td>
+                                        <td>@if(is_object($item->category)){{ $item->category->categoryname }}@else Main Category @endif</td>
                                         {{-- <td>
                                             @foreach($item->categories as $cat)
                                             {{ $cat->categoryname }}

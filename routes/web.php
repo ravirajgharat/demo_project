@@ -15,6 +15,10 @@
 
 
 
+
+
+
+
 /*
 |--------------------------------------------------------------------------
 | Admin Routes
@@ -67,6 +71,13 @@ Route::group(['middleware' => ['auth', 'admin']], function() {
 });
 
 
+
+
+
+
+
+
+
 /*
 |--------------------------------------------------------------------------
 | Customer Routes
@@ -80,6 +91,9 @@ Route::get('/cust', 'Customer\\HomeController@index')->name('cust');
 
 //Home Page for Auth User
 Route::get('/cust/shop', 'Customer\\LoginController@shop')->name('cust.shop')->middleware('auth');
+
+//Brand Page
+Route::get('/cust/brand/{brand}', 'Customer\\ShopController@brandPage')->middleware('auth');
 
 //Address CRUD for customer
 Route::resource('/cust/address', 'Customer\\AddressController')->middleware('auth');
@@ -119,6 +133,9 @@ Route::get('/cust/checkout/address/store', 'Customer\\CheckoutController@checkou
 
 //Checkout - Select Payment Method
 Route::get('/cust/checkout/payment', 'Customer\\CheckoutController@checkoutPayment')->middleware('auth');
+
+//Checkout - Success
+Route::get('/cust/checkout/success', 'Customer\\CheckoutController@checkoutSuccess')->middleware('auth');
 
 //Display Products for Category 
 Route::get('/cust/{cat}/{subcat}', 'Customer\\ShopController@subcategoryProducts')->middleware('auth');

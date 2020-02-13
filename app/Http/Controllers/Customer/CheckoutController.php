@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App;
 use Illuminate\Support\Facades\Auth;
+use Gloudemans\Shoppingcart\Facades\Cart;
 
 class CheckoutController extends Controller
 {
@@ -70,8 +71,36 @@ class CheckoutController extends Controller
         $cartTotal = $request->session()->get('cartTotal');
         $user = Auth::User();
 
-        return view('customer.pages.checkout_payment');
+        //////////////////////
+
+        $items = Cart::content();
+        $float = floatval(preg_replace('/[^\d\.]/', '', Cart::subtotal()));
+        
+        $tax = $float*5/100;
+        $taxNo = number_format($float*5/100,2);
+
+        $discount = $request->session()->get('discount');
+        if(!isset($discount)) {
+            $discount = 0;
+        }
+
+        if($float > 500) {
+            $ship = 0;
+        } else {
+            $ship = 50;
+        }
+
+        $total = number_format($float+$tax+$ship-$discount,2);
+        
+        ////////////////////////////
+
+
+        return view('customer.pages.checkout_payment', compact('user', 'address', 'items', 'float', 'taxNo', 'cartTotal', 'ship', 'total', 'coupon_code', 'discount'));
         
     }
 
+    // Checkout Success 
+    public function checkoutSuccess() {
+        return view('customer.pages.success');
+    }
 }

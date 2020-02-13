@@ -15,7 +15,7 @@
 
                         <form method="GET" action="{{ url('/admin/configuration') }}" accept-charset="UTF-8" class="form-inline my-2 my-lg-0 float-right" role="search">
                             <div class="input-group">
-                                <input type="text" class="form-control" name="search" placeholder="Search...">
+                                <input type="text" class="form-control" onkeyup="search()" name="search" placeholder="Search..." id="myInput">
                                 <span class="input-group-append">
                                     <button class="btn btn-secondary" type="submit">
                                         <i class="fa fa-search"></i>
@@ -23,11 +23,12 @@
                                 </span>
                             </div>
                         </form>
+                        
 
                         <br/>
                         <br/>
                         <div class="table-responsive">
-                            <table class="table table-hover table-bordered table-striped">
+                            <table class="table table-hover table-bordered table-striped" id="myTable ">
                                 <thead class="thead-dark">
                                     <tr>
                                         <th>#</th><th>Configuration Name</th><th>Configuration Value</th><th>Actions</th>
@@ -60,4 +61,5 @@
         </div>
     </div>
 </div>
+
 @endsection

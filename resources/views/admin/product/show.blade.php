@@ -26,7 +26,7 @@
                                     <tr><th class="text-primary"> Product </th><td><strong>{{ $product->product_name }}</strong></td></tr>
                                     <tr><th class="text-primary"> Description </th><td> {{ $product->product_description }} </td></tr>
                                     <tr><th class="text-primary"> Price </th><td><strong>{{ $product->price }}</strong></td></tr>
-                                    <tr><th class="text-primary"> Category </th><td><strong>{{ $product->category->categoryname }}</strong></td></tr>
+                                    <tr><th class="text-primary"> Category </th><td><strong>@if(is_object($product->category)){{ $product->category->categoryname }} @else Main Category @endif</strong></td></tr>
                                     <tr>
                                         <th class="text-primary"> Parameters </th>
                                         <td>
@@ -37,8 +37,12 @@
                                     </tr>
                                     <tr>
                                         <th class="text-primary"> Images </th>
-                                        <td> 
-                                            <img src="{{ url('/storage/' . $product->images->first()->product_image) }}" alt="">
+                                        <td>
+                                            @foreach($product->images as $image)
+                                                <div style="float:left;">
+                                                    <img style="width:150px;" src="{{ url('/storage/' . $image->product_image) }}" alt="">
+                                                </div>
+                                            @endforeach
                                         </td>
                                     </tr>
                                 </tbody>

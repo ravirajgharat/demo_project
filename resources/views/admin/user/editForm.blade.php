@@ -37,7 +37,7 @@
         <div class="col-sm-6">
             <select name="category" class="form-control" id="category" >
         @foreach (App\Role::orderBy('id','desc')->get() as $role)
-            <option value="{{ $role->name }}" {{ (isset($user->category) && $user->category == $optionKey) ? 'selected' : ''}}>{{ $role->name }}</option>
+            <option value="{{ $role->name }}" <?php if($user->roles->first()['name'] == $role->name) { echo ' selected="selected"'; } ?>>{{ $role->name }}</option>
         @endforeach
     </select>
         </div>

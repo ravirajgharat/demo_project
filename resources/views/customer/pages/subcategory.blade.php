@@ -216,7 +216,7 @@
             
         </div><!--features_items-->
         
-        <div class="category-tab"><!--category-tab-->
+        {{-- <div class="category-tab"><!--category-tab-->
             <div class="col-sm-12">
                 <ul class="nav nav-tabs">
                     <li class="active"><a href="#tshirt" data-toggle="tab">T-Shirt</a></li>
@@ -619,7 +619,7 @@
                     <i class="fa fa-angle-right"></i>
                   </a>			
             </div>
-        </div><!--/recommended_items-->
+        </div><!--/recommended_items--> --}}
         
     </div>
 </div>

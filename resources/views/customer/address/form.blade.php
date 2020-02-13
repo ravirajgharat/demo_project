@@ -41,5 +41,5 @@
 
 
 <div class="form-group">
-    <input class="btn btn-primary" type="submit" value="Proceed To Payment">
+    <input class="btn btn-primary" type="submit" value="Submit">
 </div>

@@ -17,10 +17,13 @@ class LoginController extends Controller
 
         $categories = App\Category::whereNull('category_id')->get();
         $products = App\Product::inRandomOrder()->take(6)->get();
-        //$ship = $ban = App\Banner::where('bannername','free shipping')->first();
+        $rec_act = App\Product::inRandomOrder()->take(3)->get();
+        $rec = App\Product::inRandomOrder()->take(3)->get();
         $ban = App\Banner::where('bannername','qqqwww')->first();
         $banners = App\Banner::where('bannername','!=','qqqwww')->inRandomOrder()->get();
+        $brands = App\Product::select('product_brand')->distinct()->get();
+        $tab_shoes = App\Product::inRandomOrder()->take(4)->get();
 
-        return view('customer.pages.shop', compact('banners', 'ban', 'ship', 'products', 'categories'));
+        return view('customer.pages.shop', compact('banners', 'ban', 'products', 'categories', 'brands', 'rec_act', 'rec', 'tab_shoes'));
     } 
 }

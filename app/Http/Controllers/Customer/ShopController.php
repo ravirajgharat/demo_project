@@ -16,27 +16,40 @@ class ShopController extends Controller
     public function subcategoryProducts($cat, $subcat)
     {
         $categories = App\Category::whereNull('category_id')->get();
-        //$ship = $ban = App\Banner::where('bannername','free shipping')->first();
         $ban = App\Banner::where('bannername','qqqwww')->first();
         $banners = App\Banner::where('bannername','!=','qqqwww')->inRandomOrder()->get();
-
+        $brands = App\Product::select('product_brand')->distinct()->get();
         $cat_id = App\Category::where('categoryname', $subcat)->first();
-        $products = App\Product::where('category_id', $cat_id->id)->inRandomOrder()->get();
+        $products = App\Product::where('category_id', $cat_id->id)->inRandomOrder()->take(6)->get();
 
-        return view('customer.pages.subcategory', compact('banners', 'ban', 'ship', 'products', 'categories'));
+        return view('customer.pages.subcategory', compact('banners', 'brands', 'ban', 'products', 'categories'));
     }
 
     // Display details of selected product
     public function displayProduct($id)
     {
         $categories = App\Category::whereNull('category_id')->get();
-        //$ship = $ban = App\Banner::where('bannername','free shipping')->first();
+        $brands = App\Product::select('product_brand')->distinct()->get();
         $ban = App\Banner::where('bannername','qqqwww')->first();
         $banners = App\Banner::where('bannername','!=','qqqwww')->inRandomOrder()->get();
         $product = App\Product::find($id);
         $params = App\Product_parameter::where('product_id', $id)->get();
 
-        return view('customer.pages.product_details', compact('banners', 'ban', 'ship', 'product', 'params', 'categories'));
+        return view('customer.pages.product_details', compact('banners', 'brands', 'ban', 'product', 'params', 'categories'));
+    }
+
+    // Display Brand Page
+    public function brandPage($brand)
+    {
+        $categories = App\Category::whereNull('category_id')->get();
+        $brands = App\Product::select('product_brand')->distinct()->get();
+        $ban = App\Banner::where('bannername','qqqwww')->first();
+        $banners = App\Banner::where('bannername','!=','qqqwww')->inRandomOrder()->get();
+
+        //$cat_id = App\Category::where('categoryname', $subcat)->first();
+        $products = App\Product::where('product_brand', $brand)->take(6)->get();
+
+        return view('customer.pages.brand', compact('banners', 'ban', 'brands', 'products', 'categories'));
     }
 
     // Cart Page
@@ -156,9 +169,11 @@ class ShopController extends Controller
 
         if($format == 1) {
             $discount = $float*$discount/100;
+            $request->session()->put('discount', $discount);
             $totalInDecimal = $float-$discount+$tax+$ship;
             $total = number_format($totalInDecimal,2);
         } else {
+            $request->session()->put('discount', $discount);
             $totalInDecimal = $float-$discount+$tax+$ship;
             $total = number_format($totalInDecimal,2);
         }

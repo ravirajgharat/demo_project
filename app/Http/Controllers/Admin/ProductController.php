@@ -74,6 +74,7 @@ class ProductController extends Controller
         $product->product_name = $request->product_name;
         $product->product_description = $request->product_description;
         $product->price = $request->price;
+        $product->product_brand= $request->product_brand;
         $product->category_id = $request->categories;
         $product->save();
         
@@ -155,7 +156,6 @@ class ProductController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //dd($request->product_image);
 
         $request->validate([
             'product_name' => 'bail|required|string|max:255|min:4',
@@ -163,8 +163,6 @@ class ProductController extends Controller
             'price' => 'bail|required|regex:/^\d+(\.\d{1,2})?$/',
             'product_brand' => 'bail|required|string|max:255|min:4',
             //'product_image' => 'bail|image|max:2048',
-            'categories' => 'required',
-            'parameter' => 'required',
         ]);
 
         //dd($request->categories);
@@ -172,6 +170,7 @@ class ProductController extends Controller
         $product->product_name = $request->product_name;
         $product->product_description = $request->product_description;
         $product->price = $request->price;
+        $product->product_brand= $request->product_brand;
         $product->category_id = $request->categories;
         $product->save();
 
@@ -200,14 +199,18 @@ class ProductController extends Controller
         
                 $product->images()->save($image);
             }
+            Product_image::destroy($request->selected_image);
+            
         }
 
         //App\Product_parameter::where('product_id', $id)->delete();
-        foreach($request->parameter as $param) {
-            $params = new App\Product_parameter([
-                'product_parameter' => $param,
-            ]);
-            $product->images()->save($params);
+        if($request->parameter) {
+            foreach($request->parameter as $param) {
+                $params = new App\Product_parameter([
+                    'product_parameter' => $param,
+                ]);
+                $product->images()->save($params);
+            }
         }
 
         return redirect('admin/product')->with('flash_message', 'Product updated!');

@@ -13,7 +13,7 @@
                         <form action="{{ url('/cust/checkout/address/add') }}">
                             {{-- <input type="hidden" name="cartTotal" value="{{ $cartTotal }}"> --}}
                             <button type="submit">
-                                    <i class="fa fa-plus" class="btn btn-primary btn-sm" aria-hidden="true"></i> Add New
+                                    <i class="fa fa-plus" class="btn btn-success btn-sm" aria-hidden="true"></i> Add New
                             </button>
                         
                         </form>
@@ -27,10 +27,10 @@
                                 </span>
                             </div>
                         </form> --}}
+                        <br/>
                     <form action="{{ url('/cust/checkout/payment') }}">
-                        <br/>
-                        <br/>
-                        <div class="table-responsive">
+                        
+                        {{-- <div class="table-responsive">
                             <table class="table table-bordered table-hover">
                                 <thead class="thead-dark">
                                     <tr>
@@ -46,7 +46,29 @@
                                 @endforeach
                                 </tbody>
                             </table>
-                            {{-- <div class="pagination-wrapper"> {!! $address->appends(['search' => Request::get('search')])->render() !!} </div> --}}
+                            
+                        </div> --}}
+
+                        <div class="row">
+
+                            @foreach($address as $item)
+                            
+                                <div class="col-sm-4" style="margin-bottom:25px;">
+                                    <div style="border:solid 1px; padding:10px;">
+                                        {{ $item->address }} <br>
+                                        <strong>City : </strong>{{ $item->city }} <br>
+                                        <strong>State : </strong>{{ $item->state }} <br>
+                                        <strong>Pin Code : </strong>{{ $item->pin_code }} <br>
+                                        <strong>Landmark : </strong>{{ $item->landmark }} <br>
+                                        
+                                        <label class="btn btn-primary" for="address">
+                                            <input type="radio" name="address" value="{{ $item->id }}">
+                                        </label>
+                                    </div>
+                                </div>
+                            
+                            @endforeach
+
                         </div>
 
                     </div>

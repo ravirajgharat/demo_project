@@ -63,7 +63,7 @@ class AddressController extends Controller
             'address' => 'bail|required|string|max:255|min:4',
             'city' => 'bail|required|string|max:255|min:4',
             'state' => 'bail|required|string|max:255|min:4',
-            'pin_code' => 'bail|required|integer|max:255|min:8',
+            'pin_code' => 'bail|required|integer|digits:6',
             'landmark' => 'bail|required|string|max:255|min:4',
         ]);
 
@@ -125,7 +125,7 @@ class AddressController extends Controller
             'address' => 'bail|required|string|max:255|min:4',
             'city' => 'bail|required|string|max:255|min:4',
             'state' => 'bail|required|string|max:255|min:4',
-            'pin_code' => 'bail|required|integer|max:255|min:8',
+            'pin_code' => 'bail|required|integer|digits:6',
             'landmark' => 'bail|required|string|max:255|min:4',
         ]);
 

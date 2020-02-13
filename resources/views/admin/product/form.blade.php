@@ -21,12 +21,13 @@
         <strong>{!! $errors->first('price', '<p class="help-block text-danger">:message</p>') !!}</strong>
     </div>
     <div class="form-group row {{ $errors->has('product_brand') ? 'has-error' : ''}}">
-            <label for="product_brand" class="col-sm-2 col-form-label">{{ 'Product Brand' }}</label>
-            <div class="col-sm-6">
-                <input class="form-control" name="product_brand" placeholder="Product Brand" type="text" id="product_brand" value="{{ isset($product->product_brand) ? $product->product_brand : ''}}" >
-            </div>
-            <strong>{!! $errors->first('product_brand', '<p class="help-block text-danger">:message</p>') !!}</strong>
+        <label for="product_brand" class="col-sm-2 col-form-label">{{ 'Product Brand' }}</label>
+        <div class="col-sm-6">
+            <input class="form-control" name="product_brand" placeholder="Product Brand" type="text" id="product_brand" value="{{ isset($product->product_brand) ? $product->product_brand : ''}}" >
         </div>
+        <strong>{!! $errors->first('product_brand', '<p class="help-block text-danger">:message</p>') !!}</strong>
+    </div>
+
     <div class="form-group row {{ $errors->has('product_image') ? 'has-error' : ''}}">
         <label for="product_image" class="col-sm-2 col-form-label">{{ 'Product Image' }}</label>
         <div class="col-sm-6">
@@ -38,10 +39,15 @@
     <div class="form-group row {{ $errors->has('parameter') ? 'has-error' : ''}}">
         <label for="parameter" class="col-sm-2 col-form-label">{{ 'Parameters' }}</label>
         <div class="col-sm-6">
+            
             {{-- <input class="form-control" name="parameter" placeholder="Parameter" type="text" id="parameter" value="{{ isset($parameter->parameter) ? $parameter->parameter : ''}}" > --}}
+            {{-- {{dd($parameters)}} --}}
             <select class="form-control" name="parameter[]" id="parameter" multiple>
+
                 @foreach ($parameters as $parameter)
-                    <option value="{{ $parameter->product_parameter }}">{{ $parameter->product_parameter }}</option>
+                    <option value="{{ $parameter->product_parameter }}">
+                        {{ $parameter->product_parameter }}
+                    </option>
                 @endforeach
 
             </select>
@@ -56,7 +62,9 @@
                 <option value="">Main Category</option>
 
                 @foreach ($categories as $category)
-                    <option value="{{ $category->id }}">{{ $category->categoryname }}</option>
+                    <option value="{{ $category->id }}">
+                        {{ $category->categoryname }}
+                    </option>
                 @endforeach
 
             </select>
