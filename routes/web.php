@@ -137,5 +137,10 @@ Route::get('/cust/checkout/payment', 'Customer\\CheckoutController@checkoutPayme
 //Checkout - Success
 Route::get('/cust/checkout/success', 'Customer\\CheckoutController@checkoutSuccess')->middleware('auth');
 
+//Checkout - Pay with Paypal
+Route::post('/cust/checkout/paypal', 'PaymentController@payWithPaypal')->name('paypal');
+Route::get('/cust/checkout/result', 'PaymentController@getPaymentStatus')->name('result');
+Route::get('/cust/checkout/status', 'PaymentController@displayPaymentStatus')->name('status');
+
 //Display Products for Category 
-Route::get('/cust/{cat}/{subcat}', 'Customer\\ShopController@subcategoryProducts')->middleware('auth');
+Route::get('/cust/category/{cat}/{subcat}', 'Customer\\ShopController@subcategoryProducts')->middleware('auth');

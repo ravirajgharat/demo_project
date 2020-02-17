@@ -257,7 +257,13 @@
                 <a href="{{ url('/cust/checkout/success') }}" class="btn btn-primary">Cash on Delivery</a>
             </span>
             <span>
-                <a href="" class="btn btn-primary">Paypal</a>
+                <form action="{{ url('/cust/checkout/paypal') }}" method="post">
+                    @csrf
+                    {{-- @foreach($items as $item)
+                        <input type="hidden" name="items[]" value="{{ $item }}">
+                    @endforeach --}}
+                    <button class="btn btn-primary">Pay with Paypal</button>
+                </form>
             </span>
         </div>
     </div>

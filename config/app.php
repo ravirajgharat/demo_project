@@ -228,6 +228,8 @@ return [
 
         'Form' => Collective\Html\FormFacade::class,
         'HTML' => Collective\Html\HtmlFacade::class,
+
+        'Input' => Illuminate\Support\Facades\Request::class,
     ],
 
 ];

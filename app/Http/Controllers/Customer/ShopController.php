@@ -33,7 +33,7 @@ class ShopController extends Controller
         $ban = App\Banner::where('bannername','qqqwww')->first();
         $banners = App\Banner::where('bannername','!=','qqqwww')->inRandomOrder()->get();
         $product = App\Product::find($id);
-        $params = App\Product_parameter::where('product_id', $id)->get();
+        $params = App\Product_parameter::where('product_id', $id)->select('product_parameter')->distinct()->get();
 
         return view('customer.pages.product_details', compact('banners', 'brands', 'ban', 'product', 'params', 'categories'));
     }
@@ -55,6 +55,7 @@ class ShopController extends Controller
     // Cart Page
     public function cart()
     {
+        // dd($request->session()->get('cartTotal'));
         $items = Cart::content();
         $float = floatval(preg_replace('/[^\d\.]/', '', Cart::subtotal()));
         
@@ -94,7 +95,7 @@ class ShopController extends Controller
             'price' => $product->price,
             'weight' => 0
 
-            ])->associate('App\Product');
+        ])->associate('App\Product');
 
         return $this->displayProduct($id);
     }

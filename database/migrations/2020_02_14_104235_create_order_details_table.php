@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateProductParametersTable extends Migration
+class CreateOrderDetailsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,12 @@ class CreateProductParametersTable extends Migration
      */
     public function up()
     {
-        Schema::create('product_parameters', function (Blueprint $table) {
+        Schema::create('order_details', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('parameter');
-            $table->string('parameter_value');
-            $table->integer('product_id');
+            $table->integer('order_id');
+            $table->string('product');
+            $table->integer('quantity');
+            $table->decimal('price');
             $table->timestamps();
             $table->softDeletes();
         });
@@ -30,6 +31,6 @@ class CreateProductParametersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('product_parameters');
+        Schema::dropIfExists('order_details');
     }
 }
