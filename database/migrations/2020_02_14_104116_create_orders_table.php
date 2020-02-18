@@ -18,6 +18,8 @@ class CreateOrdersTable extends Migration
             $table->integer('user_id');
             $table->string('order_status');
             $table->decimal('order_price');
+            $table->string('coupon');
+            $table->decimal('discount');
             $table->timestamps();
             $table->softDeletes();
         });

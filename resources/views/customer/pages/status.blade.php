@@ -10,7 +10,7 @@
                 <span style="float:right;"><i class="fa fa-check"></i></span>
             </h4>
         </div>
-        <?php //Session::forget('success');?>
+        <?php Session::forget('success');?>
 
     @endif
 

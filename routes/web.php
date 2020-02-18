@@ -134,13 +134,33 @@ Route::get('/cust/checkout/address/store', 'Customer\\CheckoutController@checkou
 //Checkout - Select Payment Method
 Route::get('/cust/checkout/payment', 'Customer\\CheckoutController@checkoutPayment')->middleware('auth');
 
-//Checkout - Success
-Route::get('/cust/checkout/success', 'Customer\\CheckoutController@checkoutSuccess')->middleware('auth');
+// //Checkout - Success
+// Route::get('/cust/checkout/success', 'Customer\\CheckoutController@checkoutSuccess')->middleware('auth');
 
 //Checkout - Pay with Paypal
 Route::post('/cust/checkout/paypal', 'PaymentController@payWithPaypal')->name('paypal');
 Route::get('/cust/checkout/result', 'PaymentController@getPaymentStatus')->name('result');
 Route::get('/cust/checkout/status', 'PaymentController@displayPaymentStatus')->name('status');
 
+//Checkout - Cash On Delivery
+Route::get('/cust/checkout/success', 'CashPaymentController@cashPayment');
+
 //Display Products for Category 
 Route::get('/cust/category/{cat}/{subcat}', 'Customer\\ShopController@subcategoryProducts')->middleware('auth');
+
+//Wishlist - Add product to wishlist
+Route::get('cust/wishlist/add/{id}', 'Customer\\WishlistController@store')->middleware('auth');
+
+Route::resource('cust/wishlist', 'Customer\\WishlistController')->middleware('auth');
+
+//Account - Info
+Route::get('cust/account/info', 'Customer\\AccountController@info')->middleware('auth');
+
+//Account - Update Info
+Route::get('cust/account/info/update', 'Customer\\AccountController@updateInfo')->middleware('auth');
+
+//Account - Orders
+Route::get('cust/order', 'Customer\\AccountController@orders')->middleware('auth');
+
+//Account - Order Details
+Route::get('cust/order/{id}', 'Customer\\AccountController@orderDetails')->middleware('auth');

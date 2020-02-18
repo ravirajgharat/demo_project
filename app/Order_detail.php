@@ -34,10 +34,10 @@ class Order_detail extends Model
      *
      * @var array
      */
-    protected $fillable = ['order_id', 'product', 'quantity', 'price'];
+    protected $fillable = ['order_id', 'product', 'quantity', 'price', 'coupon', 'discount'];
 
     // Many to One
-    public function product() {
-        return $this->belongsTo('App\Order_detail');
+    public function order() {
+        return $this->belongsTo('App\Order');
     }
 }

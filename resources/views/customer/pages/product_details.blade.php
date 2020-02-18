@@ -34,6 +34,15 @@
                             <a style="padding:15px 50px;" class="btn btn-primary" href="{{ url('/cust/cart/add/' . $product->id) }}">
                                 Add To Cart
                             </a>
+                            @if(App\Wishlist::where('user_id', Auth::User()->id)->where('product_id', $product->id)->count())
+                                <a style="padding:15px 40px;" class="btn btn-primary" href="{{ url('/cust/wishlist') }}">
+                                    Added To Wishlist
+                                </a>
+                            @else
+                                <a style="padding:15px 40px;" class="btn btn-primary" href="{{ url('/cust/wishlist/add/' . $product->id) }}">
+                                    Add To Wishlist
+                                </a>
+                            @endif
                         </div>
                         <div class="col-sm-6">
                             <img style="max-width:100%;max-height:auto" src="{{ url('/storage/' . $product->images->first()->product_image) }}" alt="" />

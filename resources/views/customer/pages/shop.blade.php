@@ -51,9 +51,20 @@
                                     </div>
                                 </div>
                         </div>
+                        
                         <div class="choose">
                             <ul class="nav nav-pills nav-justified">
-                                <li><a href="#"><i class="fa fa-plus-square"></i>Add to wishlist</a></li>
+                                <li>
+                                    @if(App\Wishlist::where('user_id', Auth::User()->id)->where('product_id', $product->id)->count())
+                                    <a href="{{ url('/cust/wishlist') }}">
+                                        <i class="fa fa-star"></i>Added to Wishlist
+                                    </a>
+                                    @else
+                                        <a href="{{ url('/cust/wishlist/add/' . $product->id) }}">
+                                            <i class="fa fa-plus-square"></i>Add to wishlist
+                                        </a>
+                                    @endif
+                                </li>
                                 <li><a href="#"><i class="fa fa-plus-square"></i>Add to compare</a></li>
                             </ul>
                         </div>
@@ -639,7 +650,7 @@
 </div>
 </div>
 </section>
-
+<br>
 <!----------------------------------------------- /products -------------------------------------------->
 
 @endsection

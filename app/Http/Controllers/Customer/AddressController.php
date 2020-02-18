@@ -80,7 +80,7 @@ class AddressController extends Controller
         $address->user_id = Auth::user()->id;
         $address->save();
 
-        return redirect('cust/address')->with('flash_message', 'Address added!');
+        return redirect('cust/address')->with('success', 'Address Added Successsfully.');
     }
 
     /**
@@ -134,7 +134,7 @@ class AddressController extends Controller
         $address = Address::findOrFail($id);
         $address->update($requestData);
 
-        return redirect('cust/address')->with('flash_message', 'Address updated!');
+        return redirect('cust/address')->with('success', 'Address Updated Successsfully.');
     }
 
     /**
@@ -148,6 +148,6 @@ class AddressController extends Controller
     {
         Address::destroy($id);
 
-        return redirect('cust/address')->with('flash_message', 'Address deleted!');
+        return redirect('cust/address')->with('success', 'Address Deleted Successsfully.');
     }
 }

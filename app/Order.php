@@ -34,7 +34,7 @@ class Order extends Model
      *
      * @var array
      */
-    protected $fillable = ['user_id', 'order_status'];
+    protected $fillable = ['user_id', 'order_status', 'coupon', 'discount'];
 
     // One to Many
     public function details() {

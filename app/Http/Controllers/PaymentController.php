@@ -54,8 +54,15 @@ class PaymentController extends Controller
 
         $cartTotal = $request->session()->get('cartTotal');
         $total = floatval(preg_replace('/[^\d\.]/', '', $cartTotal));
-        $discount = $request->session()->get('discount');
-        
+
+        if($request->session()->get('coupon')) {
+            $discount = $request->session()->get('discount');
+            $coupon = $request->session()->get('coupon');
+        } else {
+            $discount = 0;
+            $coupon = 'Not Applied';
+        }
+
         // $order = App\Order::create([
 
         //         'user_id' => Auth::user()->id,
@@ -68,6 +75,8 @@ class PaymentController extends Controller
         $order->user_id = Auth::user()->id;
         $order->order_status = 'Pending';
         $order->order_price = $total;
+        $order->coupon = $coupon;
+        $order->discount = $discount;
         $order->save();
 
         $request->session()->put('order_id', $order->id);
@@ -205,8 +214,10 @@ class PaymentController extends Controller
             $order->order_status = 'Processing';
             $order->save();
 
+            // Forget Session variables
             $request->session()->forget('cartTotal');
             $request->session()->forget('discount');
+            $request->session()->forget('coupon');
 
             \Session::put('success', 'Payment success');
             return Redirect::route('status');

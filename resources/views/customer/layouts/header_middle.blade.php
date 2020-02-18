@@ -36,8 +36,29 @@
             <div class="col-sm-8">
                 <div class="shop-menu pull-right">
                     <ul class="nav navbar-nav">
-                        @guest @else<li><a href="#"><i class="fa fa-user"></i> Account</a></li>@endguest
-                        @guest @else<li><a href="#"><i class="fa fa-star"></i> Wishlist</a></li>@endguest
+                        
+                        <li>
+                            <a href="{{ url('/cust/account/info') }}">
+                                @guest @else<i class="fa fa-user"></i>@endguest
+                                @guest
+                                    {{-- Cart <span class="badge badge-pill badge-success">{{ Cart::content()->count() }}</span> --}}
+                                @else
+                                    My Account
+                                @endguest
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="{{ url('/cust/wishlist') }}">
+                                @guest @else<i class="fa fa-star"></i>@endguest
+                                @guest
+                                    {{-- Cart <span class="badge badge-pill badge-success">{{ Cart::content()->count() }}</span> --}}
+                                @else
+                                    Wishlist <span class="badge badge-pill badge-success">{{ App\Wishlist::where('user_id', Auth::User()->id)->distinct('product_id')->count() }}</span>
+                                @endguest
+                            </a>
+                        </li>
+
                         {{-- <li><a href="checkout.html"><i class="fa fa-crosshairs"></i> Checkout</a></li> --}}
                         <li>
                             <a href="{{ url('/cust/cart') }}">

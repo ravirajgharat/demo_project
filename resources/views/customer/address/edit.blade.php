@@ -1,15 +1,23 @@
 @extends('customer.layouts.parent')
 
 @section('content')
+
+<section>
     <div class="container">
         <div class="row">
 
-            <div class="col-md-9">
-                <div class="card">
-                    <div class="card-header"><h2>Edit Address #{{ $address->id }}</h2></div>
-                    <hr>
-                    <div class="card-body">
-                        <a href="{{ url('/cust/address') }}" title="Back"><button class="btn btn-warning btn-sm"><i class="fa fa-arrow-left" aria-hidden="true"></i> Back</button></a>
+<!-------------------------------------- sidebar ---------------------------------------------------->
+
+@include('customer.layouts.account_sidebar')
+
+<!----------------------------------------------- /sidebar -------------------------------------------->
+
+
+<!-------------------------------------- content ---------------------------------------------------->
+                
+                <div class="col-sm-9 padding-right">
+                    <div class="features_items">
+                        <h2 class="title text-center">Update Address</h2>
                         <br />
                         <br />
 
@@ -28,10 +36,10 @@
                             @include ('customer.address.form', ['formMode' => 'edit'])
 
                         </form>
-
                     </div>
                 </div>
-            </div>
         </div>
     </div>
+</section>
+<br>
 @endsection

@@ -153,7 +153,7 @@ class ShopController extends Controller
         $coupon_code = $coupon->coupon_code;
         $discount = $coupon->discount;
         $format = $coupon->format;
-
+        $request->session()->put('coupon', $coupon_code);
         $items = Cart::content();
         $float = floatval(preg_replace('/[^\d\.]/', '', Cart::subtotal()));
         
