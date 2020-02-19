@@ -32,6 +32,7 @@ class CashPaymentController extends Controller
         $order->order_price = $total;
         $order->coupon = $coupon;
         $order->discount = $discount;
+        $order->payment_mode = 'Cash';
         $order->save();
 
         $request->session()->put('order_id', $order->id);
@@ -57,6 +58,8 @@ class CashPaymentController extends Controller
         $request->session()->forget('discount');
         $request->session()->forget('coupon');
 
+        $request->session()->put('success', 'Order Placed Successfully.');
         return view('customer.pages.success');
+
     }
 }

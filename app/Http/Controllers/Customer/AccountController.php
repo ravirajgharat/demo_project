@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Customer;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 use App;
 
@@ -62,6 +63,38 @@ class AccountController extends Controller
         $details = $order->details()->get();
 
         return view('customer.account.order_details', compact('order', 'details'));
+
+    }
+
+    // Account Password Change Form
+    public function changePassword() {
+
+        return view('customer.account.change_password');
+
+    }
+
+    // Update Account Password
+    public function updatePassword(Request $request) {
+
+        $request->validate([
+
+            'current_password' => 'bail|required|max:255|min:8',
+            'new_password' => 'bail|required|max:255|min:8|confirmed',
+
+        ]);
+        
+        $user = Auth::User();
+
+        if(! Hash::check($request->current_password, $user->password)) {
+
+            return redirect('cust/account/password')->with('error', 'Incorrect Password Entered, Please Try Again.');
+        
+        }
+
+        $user->password = Hash::make($request->new_password);
+        $user->save();
+        
+        return redirect('cust/account/password')->with('success', 'Password Updated Successfully.');
 
     }
 

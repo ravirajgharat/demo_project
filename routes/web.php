@@ -67,6 +67,14 @@ Route::group(['middleware' => ['auth', 'admin']], function() {
 
     //Coupon CRUD inside admin
     Route::resource('admin/coupon', 'Admin\\CouponController');
+
+    //Contact - Query
+    Route::get('admin/contact', 'Customer\\ContactController@displayQueries')->name('contact.index');
+    Route::get('admin/contact/{id}', 'Customer\\ContactController@showQuery')->name('contact.show');
+    Route::delete('admin/contact/{id}', 'Customer\\ContactController@destroyQuery')->name('contact.destroy');
+
+    //Order CRUD inside Admin
+    Route::resource('admin/order', 'Admin\\OrderController');
     
 });
 
@@ -164,3 +172,21 @@ Route::get('cust/order', 'Customer\\AccountController@orders')->middleware('auth
 
 //Account - Order Details
 Route::get('cust/order/{id}', 'Customer\\AccountController@orderDetails')->middleware('auth');
+
+//Account - Change Password Form
+Route::get('cust/account/password', 'Customer\\AccountController@changePassword')->middleware('auth');
+
+//Account - Update Password
+Route::get('cust/account/password/update', 'Customer\\AccountController@updatePassword')->middleware('auth');
+
+//Track Order with Order ID and Email
+Route::get('cust/track', 'Customer\\TrackController@trackOrder');
+
+//Get Order Status for Tracked Order
+Route::get('cust/track/status', 'Customer\\TrackController@orderStatus');
+
+//Contact Us - Ask Query
+Route::get('cust/contact', 'Customer\\ContactController@askQuery');
+
+//Contact Us - Store Query
+Route::get('cust/contact/query', 'Customer\\ContactController@storeQuery');

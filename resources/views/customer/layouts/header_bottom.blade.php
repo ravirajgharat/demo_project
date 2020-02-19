@@ -21,17 +21,24 @@
                         </li>
                         @guest
                         @else
-                        <li class="dropdown"><a href="#">Shop<i class="fa fa-angle-down"></i></a>
-                            <ul role="menu" class="sub-menu">
-                                <li><a href="{{-- --}}">Account</a></li>
-                                <li><a href="{{-- --}}">Wishlist</a></li> 
-                                <li><a href="{{ url('/cust/address') }}">Address</a></li> 
-                                <li><a href="{{ url('/cust/cart') }}">Cart</a></li>
-                            </ul>
-                        </li>
+                            <li class="dropdown"><a href="#">Shop<i class="fa fa-angle-down"></i></a>
+                                <ul role="menu" class="sub-menu">
+                                    <li><a href="{{ url('/cust/account/info') }}">Account</a></li>
+                                    <li><a href="{{ url('/cust/wishlist') }}">Wishlist</a></li> 
+                                    <li><a href="{{ url('/cust/address') }}">Address</a></li> 
+                                    <li><a href="{{ url('/cust/cart') }}">Cart</a></li>
+                                </ul>
+                            </li>
+                        @endguest
+                        @guest
+                            <li>
+                                <a href="{{ url('/cust/track') }}">
+                                    Track Order
+                                </a>
+                            </li>
                         @endguest
                         {{-- <li><a href="404.html">404</a></li> --}}
-                        <li><a href="contact-us.html">Contact</a></li>
+                        <li><a href="{{ url('/cust/contact') }}">Contact Us</a></li>
                     </ul>
                 </div>
             </div>

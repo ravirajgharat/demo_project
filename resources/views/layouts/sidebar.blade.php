@@ -96,6 +96,22 @@
                   </p>
                 </a>
               </li>
+              <li class="nav-item">
+                <a href="{{ url('/admin/contact') }}" class="nav-link">
+                  <i class="nav-icon fas fa-question-circle"></i>
+                  <p>
+                    Query
+                  </p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{ url('/admin/order') }}" class="nav-link">
+                  <i class="nav-icon fas fa-shopping-cart"></i>
+                  <p>
+                    Order
+                  </p>
+                </a>
+              </li>
               {{-- <li class="nav-item has-treeview">
                 <a href="#" class="nav-link">
                   <i class="nav-icon fas fa-copy"></i>

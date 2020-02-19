@@ -66,8 +66,15 @@ class User extends Authenticatable
         return $this->belongsToMany('App\Role');
     }
 
+    // One to Many
     public function addresses()
     {
         return $this->hasMany('App\Address');
+    }
+
+    // One to Many
+    public function orders()
+    {
+        return $this->hasMany('App\Order');
     }
 }

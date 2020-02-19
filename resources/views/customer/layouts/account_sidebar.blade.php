@@ -38,6 +38,12 @@
                                 </a>
                             </li>
 
+                            <li>
+                                <a href="{{url('/cust/account/password')}}">
+                                    Change Password
+                                </a>
+                            </li>
+
                     </ul>
 
                 </div>

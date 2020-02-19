@@ -77,6 +77,7 @@ class PaymentController extends Controller
         $order->order_price = $total;
         $order->coupon = $coupon;
         $order->discount = $discount;
+        $order->payment_mode = 'Paypal';
         $order->save();
 
         $request->session()->put('order_id', $order->id);

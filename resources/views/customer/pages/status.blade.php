@@ -19,7 +19,7 @@
         <div class="alert alert-danger">
             <h4 style="padding-top:10px;" id="id1" onclick="this.parentElement.style.display='none'">
                 {!! $message !!}
-                <span style="float:right;"><i class="fa fa-check"></i></span>
+                <span style="float:right;"><i class="fa fa-times"></i></span>
             </h4>
         </div>
         <?php Session::forget('error');?>

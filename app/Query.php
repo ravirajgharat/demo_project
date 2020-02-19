@@ -5,16 +5,16 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Order extends Model
+class Query extends Model
 {
     use SoftDeletes;
-    
+
     /**
      * The database table used by the model.
      *
      * @var string
      */
-    protected $table = 'orders';
+    protected $table = 'queries';
 
     /**
     * The database primary key value.
@@ -34,16 +34,5 @@ class Order extends Model
      *
      * @var array
      */
-    protected $fillable = ['user_id', 'order_status', 'coupon', 'discount'];
-
-    // One to Many
-    public function details() {
-        return $this->hasMany('App\Order_detail');
-    }
-
-    // Many to One
-    public function user()
-    {
-        return $this->belongsTo('App\User');
-    }
+    protected $fillable = ['firstname', 'lastname', 'email', 'contact', 'query'];
 }
