@@ -12,6 +12,9 @@ use App\Role;
 use Illuminate\Http\Request;
 use Mail;
 
+use App\Events\Event;
+use App\Events\TestEvent;
+
 class UserController extends Controller
 {
     /**
@@ -21,6 +24,7 @@ class UserController extends Controller
      */
     public function index(Request $request)
     {
+
         $keyword = $request->get('search');
         $perPage = 5;
 

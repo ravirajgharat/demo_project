@@ -20,6 +20,7 @@ class CreateQueriesTable extends Migration
             $table->string('email');
             $table->bigInteger('contact');
             $table->text('query');
+            $table->text('reply')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

@@ -31,7 +31,7 @@
                             <table class="table table-hover table-bordered table-striped" id="myTable ">
                                 <thead class="thead-dark">
                                     <tr>
-                                        <th>#</th><th>Name</th><th>Email</th><th>Contact No.</th><th>Actions</th>
+                                        <th>#</th><th>Name</th><th>Email</th><th>Contact No.</th><th>Reply</th><th>Actions</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -42,8 +42,14 @@
                                         <td>{{ $item->email }}</td>
                                         <td>{{ $item->contact }}</td>
                                         <td>
+                                            @if($item->reply) <i class="fa fa-check text-success" aria-hidden="true"></i>
+                                            @else <i class="fa fa-times text-danger" aria-hidden="true"></i>
+                                            @endif
+
+                                        </td>
+                                        <td>
                                             <a href="{{ url('/admin/contact/' . $item->id) }}" title="View Contact"><button class="btn btn-info btn-sm"><i class="fa fa-eye" aria-hidden="true"></i></button></a>
-                                            {{-- <a href="{{ url('/admin/configuration/' . $item->id . '/edit') }}" title="Edit Configuration"><button class="btn btn-primary btn-sm"><i class="fa fa-pencil" aria-hidden="true"></i></button></a> --}}
+                                            {{-- <a href="{{ url('/admin/contact/' . $item->id . '/reply') }}" title="Reply"><button class="btn btn-primary btn-sm"><i class="fa fa-reply" aria-hidden="true"></i></button></a> --}}
 
                                             <form method="POST" action="{{ url('/admin/contact' . '/' . $item->id) }}" accept-charset="UTF-8" style="display:inline">
                                                 {{ method_field('DELETE') }}

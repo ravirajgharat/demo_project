@@ -72,6 +72,7 @@ Route::group(['middleware' => ['auth', 'admin']], function() {
     Route::get('admin/contact', 'Customer\\ContactController@displayQueries')->name('contact.index');
     Route::get('admin/contact/{id}', 'Customer\\ContactController@showQuery')->name('contact.show');
     Route::delete('admin/contact/{id}', 'Customer\\ContactController@destroyQuery')->name('contact.destroy');
+    Route::get('admin/contact/{id}/reply', 'Customer\\ContactController@queryReply')->name('contact.reply');
 
     //Order CRUD inside Admin
     Route::resource('admin/order', 'Admin\\OrderController');

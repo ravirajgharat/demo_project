@@ -13,7 +13,8 @@ class Kernel extends ConsoleKernel
      * @var array
      */
     protected $commands = [
-        //
+        'App\Console\Commands\OrdersDaily',
+        'App\Console\Commands\WeeklyWishlist',
     ];
 
     /**
@@ -24,8 +25,10 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        // $schedule->command('inspire')
-        //          ->hourly();
+        $schedule->command('daily:orders')//->everyMinute();
+                 ->dailyAt('7:17');
+        $schedule->command('weekly:wishlist')//->everyMinute();
+                 ->weeklyOn(2, '7:17');
     }
 
     /**

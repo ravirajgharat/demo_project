@@ -4,6 +4,8 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use App\Events\QueryAsked;
+use App\Events\QueryReplied;
 
 class Query extends Model
 {
@@ -35,4 +37,14 @@ class Query extends Model
      * @var array
      */
     protected $fillable = ['firstname', 'lastname', 'email', 'contact', 'query'];
+
+    /**
+     * The event map for the model.
+     *
+     * @var array
+     */
+    protected $dispatchesEvents = [
+        'created' => QueryAsked::class,
+        'updated' => QueryReplied::class,
+    ];
 }

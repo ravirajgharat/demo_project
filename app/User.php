@@ -9,7 +9,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Kodeine\Acl\Traits\HasRole;
 use App\User;
-use App\Events\UserCreatedEvent;
+use App\Events\UserRegistered;
 
 class User extends Authenticatable
 {
@@ -77,4 +77,16 @@ class User extends Authenticatable
     {
         return $this->hasMany('App\Order');
     }
+
+
+
+    /**
+     * The event map for the model.
+     *
+     * @var array
+     */
+    protected $dispatchesEvents = [
+        'created' => UserRegistered::class,
+    ];
+
 }

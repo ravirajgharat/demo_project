@@ -15,9 +15,33 @@ class EventServiceProvider extends ServiceProvider
      * @var array
      */
     protected $listen = [
+
         Registered::class => [
             SendEmailVerificationNotification::class,
         ],
+
+        'App\Events\UserRegistered' => [
+            'App\Listeners\SendWelcomeEmail',
+            'App\Listeners\SendWelcomeEmailToAdmin',
+        ],
+
+        'App\Events\OrderPlaced' => [
+            'App\Listeners\SendOrderPlacedEmail',
+            'App\Listeners\SendOrderPlacedEmailToAdmin',
+        ],
+
+        'App\Events\OrderStatusChanged' => [
+            'App\Listeners\SendOrderStatusChangedEmail',
+        ],
+
+        'App\Events\QueryAsked' => [
+            'App\Listeners\SendQueryAskedEmailToAdmin',
+        ],
+
+        'App\Events\QueryReplied' => [
+            'App\Listeners\SendQueryRepliedEmail',
+        ],
+        
     ];
 
     /**

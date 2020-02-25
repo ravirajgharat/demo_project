@@ -86,4 +86,26 @@ class ContactController extends Controller
         return redirect('admin/contact')->with('flash_message', 'Configuration deleted!');
     }
 
+    /**
+     * Admin Reply to Query
+     *
+     * @param  int  $id
+     *
+     * @return \Illuminate\View\View
+     */
+    public function queryReply($id, Request $request)
+    {
+        $request->validate([
+
+            'reply' => 'bail|required|string|min:4',
+
+        ]);
+
+        $query = App\Query::findOrFail($id);
+        $query->reply = $request->reply;
+        $query->save();
+
+        return view('admin.query.show', compact('query'));
+    }
+
 }
