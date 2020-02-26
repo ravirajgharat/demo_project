@@ -74,23 +74,23 @@
                                 @enderror
 
                             {{-- <input type="email" placeholder="Email Address"/> --}}
-                            <input id="email" type="email" placeholder="Email Address" class="@error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
-                                @error('email')
+                            <input id="register_email" type="email" placeholder="Email Address" class="@error('register_email') is-invalid @enderror" name="register_email" value="{{ old('register_email') }}" required autocomplete="email">
+                                @error('register_email')
                                     <span class="invalid-feedback" role="alert">
                                         <strong class="text-danger">{{ $message }}</strong>
                                     </span>
                                 @enderror
 
                             {{-- <input type="password" placeholder="Password"/> --}}
-                            <input id="password" type="password" placeholder="Password" class="@error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
-                                @error('password')
+                            <input id="register_password" type="password" placeholder="Password" class="@error('register_password') is-invalid @enderror" name="register_password" required autocomplete="new-password">
+                                @error('register_password')
                                     <span class="invalid-feedback" role="alert">
                                         <strong class="text-danger">{{ $message }}</strong>
                                     </span>
                                 @enderror
 
                             {{-- <input type="password" placeholder="Retype Password"/> --}}
-                            <input id="password-confirm" type="password" placeholder="Retype Password" class="" name="password_confirmation" required autocomplete="new-password">
+                            <input id="password-confirm" type="password" placeholder="Retype Password" class="" name="register_password_confirmation" required autocomplete="new-password">
 
                             <button type="submit" class="btn btn-default">Register</button>
                         </form>

@@ -20,17 +20,17 @@
                         <br/>
 
                         <div class="table-responsive">
-                            <table class="table table-hover table-bordered">
+                            <table class="table table-hover table-bordered table-striped">
                                 <tbody>
                                     <tr><th style="width:25%;" class="text-primary">ID</th><td style="width:75%;"><strong>{{ $product->id }}</td></tr>
                                     <tr><th class="text-primary"> Product </th><td><strong>{{ $product->product_name }}</strong></td></tr>
-                                    <tr><th class="text-primary"> Description </th><td> {{ $product->product_description }} </td></tr>
+                                    <tr><th class="text-primary"> Description </th><td> {!! $product->product_description !!} </td></tr>
                                     <tr><th class="text-primary"> Price </th><td><strong>{{ $product->price }}</strong></td></tr>
                                     <tr><th class="text-primary"> Category </th><td><strong>@if(is_object($product->category)){{ $product->category->categoryname }} @else Main Category @endif</strong></td></tr>
                                     <tr>
                                         <th class="text-primary"> Parameters </th>
                                         <td>
-                                            @foreach($product->parameters as $par)
+                                            @foreach($product->parameters->unique('product_parameter    ') as $par)
                                                 <strong> {{ $par->product_parameter }}</strong><br>
                                             @endforeach
                                         </td>

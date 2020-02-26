@@ -64,16 +64,6 @@
                                         </a>
                                     @endif
                                 </li>
-                                {{-- @foreach($items as $item)
-                                dd($item->id)
-                                    @if($product->id == $item->id)
-                                    
-                                        @php 
-                                            $exist = 1; 
-                                        @endphp
-                                    @endif
-                                @endforeach --}}
-                                {{-- {{ dd($product->id) }} --}}
                                 <li>
                                     @if(in_array($product->id, $arr))
                                         <a href="{{ url('/cust/cart/') }}"><i class="fa fa-shopping-cart"></i>Added to Cart</a>
@@ -248,10 +238,10 @@
             <div class="col-sm-12">
                 <ul class="nav nav-tabs">
                     <li class="active"><a href="#shoes" data-toggle="tab">Shoes</a></li>
-                    <li><a href="#blazers" data-toggle="tab">Blazers</a></li>
-                    <li><a href="#sunglass" data-toggle="tab">Sunglass</a></li>
-                    <li><a href="#kids" data-toggle="tab">Kids</a></li>
-                    <li><a href="#poloshirt" data-toggle="tab">Polo shirt</a></li>
+                    <li><a href="#blazers" data-toggle="tab">Shirts </a></li>
+                    <li><a href="#sunglass" data-toggle="tab">Bags</a></li>
+                    <li><a href="#kids" data-toggle="tab">Pants</a></li>
+                    <li><a href="#poloshirt" data-toggle="tab">Jerseys</a></li>
                 </ul>
             </div>
             <div class="tab-content">

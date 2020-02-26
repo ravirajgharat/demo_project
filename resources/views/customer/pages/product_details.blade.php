@@ -53,18 +53,24 @@
                             @endif
                         </div>
                         <div class="col-sm-6">
-                            <img style="max-width:100%;max-height:auto" src="{{ url('/storage/' . $product->images->first()->product_image) }}" alt="" />
+                            @php $n = 1; @endphp
+                            @foreach($product->images as $image)
+                                <img class="col-sm-5 col-sm-offset-1" style="height:100px;margin-bottom:20px;" src="{{ url('/storage/' . $image->product_image) }}" alt="" />
+                                @if($n++ == 6)
+                                    @php break; @endphp
+                                @endif
+                            @endforeach
                         </div>
                     </div>
                     <br><br>
                     <div class="row">
                         <div class="col-sm-6">
                             <h4>Important : </h4>
-                            <ul class="list-group">
+                            <ol>
                                 @foreach($params as $param)
-                                    <li class="list-group-item">{{ $param->product_parameter }}</li>
+                                    <li>{{ $param->product_parameter }}</li>
                                 @endforeach
-                            </ul>
+                            </ol>
                         </div>
                     </div>
                 </div>

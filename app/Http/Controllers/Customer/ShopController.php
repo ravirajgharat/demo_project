@@ -21,8 +21,14 @@ class ShopController extends Controller
         $brands = App\Product::select('product_brand')->distinct()->get();
         $cat_id = App\Category::where('categoryname', $subcat)->first();
         $products = App\Product::where('category_id', $cat_id->id)->inRandomOrder()->take(6)->get();
+        
+        $arr = array();
+        $items = Cart::content();
+        foreach($items as $item) {
+            $arr[] = $item->id;
+        }
 
-        return view('customer.pages.subcategory', compact('banners', 'brands', 'ban', 'products', 'categories'));
+        return view('customer.pages.subcategory', compact('arr', 'banners', 'brands', 'ban', 'products', 'categories'));
     }
 
     // Display details of selected product
@@ -57,7 +63,13 @@ class ShopController extends Controller
         //$cat_id = App\Category::where('categoryname', $subcat)->first();
         $products = App\Product::where('product_brand', $brand)->take(6)->get();
 
-        return view('customer.pages.brand', compact('banners', 'ban', 'brands', 'products', 'categories'));
+        $arr = array();
+        $items = Cart::content();
+        foreach($items as $item) {
+            $arr[] = $item->id;
+        }
+
+        return view('customer.pages.brand', compact('arr', 'banners', 'ban', 'brands', 'products', 'categories'));
     }
 
     // Cart Page

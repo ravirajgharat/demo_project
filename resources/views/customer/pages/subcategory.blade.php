@@ -51,8 +51,24 @@
                         </div>
                         <div class="choose">
                             <ul class="nav nav-pills nav-justified">
-                                <li><a href="#"><i class="fa fa-plus-square"></i>Add to wishlist</a></li>
-                                <li><a href="#"><i class="fa fa-plus-square"></i>Add to compare</a></li>
+                                <li>
+                                    @if(App\Wishlist::where('user_id', Auth::User()->id)->where('product_id', $product->id)->count())
+                                    <a href="{{ url('/cust/wishlist') }}">
+                                        <i class="fa fa-star"></i>Added to Wishlist
+                                    </a>
+                                    @else
+                                        <a href="{{ url('/cust/wishlist/add/' . $product->id) }}">
+                                            <i class="fa fa-plus-square"></i>Add to Wishlist
+                                        </a>
+                                    @endif
+                                </li>
+                                <li>
+                                    @if(in_array($product->id, $arr))
+                                        <a href="{{ url('/cust/cart/') }}"><i class="fa fa-shopping-cart"></i>Added to Cart</a>
+                                    @else
+                                        <a href="{{ url('/cust/cart/add/' . $product->id) }}"><i class="fa fa-plus-square"></i>Add to Cart</a>
+                                    @endif
+                                </li>
                             </ul>
                         </div>
                     </div>

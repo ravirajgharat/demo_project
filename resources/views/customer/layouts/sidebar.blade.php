@@ -22,7 +22,7 @@
                                     @foreach($category->categories as $subcategory)
 
                                         <li>
-                                            <a href="{{ url('/cust/' . $category->categoryname . '/' . $subcategory->categoryname) }}">
+                                            <a href="{{ url('/cust/category/' . $category->categoryname . '/' . $subcategory->categoryname) }}">
                                                 {{ $subcategory->categoryname }}
                                             </a>
                                         </li>

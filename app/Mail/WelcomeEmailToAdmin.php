@@ -6,7 +6,7 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
-use App\Order;
+use App\User;
 
 class WelcomeEmailToAdmin extends Mailable
 {
@@ -31,6 +31,6 @@ class WelcomeEmailToAdmin extends Mailable
      */
     public function build()
     {
-        return $this->markdown('emails.user.order_placed');
+        return $this->markdown('emails.admin.welcome');
     }
 }
