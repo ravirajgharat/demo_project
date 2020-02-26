@@ -52,7 +52,7 @@ class PageController extends Controller
     {
         $request->validate([
 
-            'page' => 'bail|required|string|min:4|max:255',
+            'page' => 'bail|required|string|min:4|max:255|unique:pages',
             'point' => 'bail|required|string|min:4',
 
         ]);
@@ -103,6 +103,12 @@ class PageController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $request->validate([
+
+            'page' => 'bail|required|string|min:4|max:255|unique:pages,page,' . $id,
+            'point' => 'bail|required|string|min:4',
+
+        ]);
         
         $page = Page::findOrFail($id);
         $page->page = $request->page;

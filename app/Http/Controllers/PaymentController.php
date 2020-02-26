@@ -94,6 +94,10 @@ class PaymentController extends Controller
 
             ]);
 
+            $product = App\Product::find($item->id);
+            $product->quantity = $product->quantity - $item->qty;
+            $product->save();
+
         }
 
         // dd($request->session()->get('cartTotal'));

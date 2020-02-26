@@ -29,7 +29,7 @@ class CategoryController extends Controller
         }
 
 
-        $categories = Category::with('childrenCategories')->orderBy('category_id')->latest()->paginate($perPage);
+        $categories = Category::with('childrenCategories')->with('parent')->orderBy('category_id')->latest()->paginate($perPage);
         
 
         return view('admin.category.index', compact('category', 'categories'));

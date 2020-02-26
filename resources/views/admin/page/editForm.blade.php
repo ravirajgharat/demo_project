@@ -7,7 +7,7 @@
         <strong>{!! $errors->first('page', '<p class="help-block text-danger">:message</p>') !!}</strong>
     </div>
 
-    <div class="form-group row {{ $errors->has('page') ? 'has-error' : ''}}">
+    <div class="form-group row {{ $errors->has('point') ? 'has-error' : ''}}">
         <label for="point" class="col-sm-2 col-form-label">{{ 'Content' }}</label>
         <div class="col-sm-6">
             <textarea name="point" id="point" class="form-control" rows="10" placeholder="Content">{{ $page->content }}</textarea>
@@ -15,7 +15,6 @@
         </div>
         <strong>{!! $errors->first('point', '<p class="help-block text-danger">:message</p>') !!}</strong>
     </div>
-
 </div>
 
 <div class="card-footer">

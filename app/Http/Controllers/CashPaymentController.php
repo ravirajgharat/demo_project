@@ -49,7 +49,13 @@ class CashPaymentController extends Controller
 
             ]);
 
+            $product = App\Product::find($item->id);
+            $product->quantity = $product->quantity - $item->qty;
+            $product->save();
+
         }
+
+        
 
         // Empty the Cart
         Cart::destroy();

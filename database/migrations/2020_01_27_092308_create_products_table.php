@@ -18,6 +18,7 @@ class CreateProductsTable extends Migration
             $table->string('product_description');
             $table->string('product_brand');
             $table->decimal('price')->nullable();
+            $table->integer('quantity')->unsigned();
             $table->timestamps();
             $table->softDeletes();
             });

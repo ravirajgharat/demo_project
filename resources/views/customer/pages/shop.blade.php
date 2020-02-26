@@ -20,7 +20,6 @@
 
 
 
-
 <!----------------------------------------------- products -------------------------------------------->
 
 <div class="col-sm-9 padding-right">
@@ -61,11 +60,27 @@
                                     </a>
                                     @else
                                         <a href="{{ url('/cust/wishlist/add/' . $product->id) }}">
-                                            <i class="fa fa-plus-square"></i>Add to wishlist
+                                            <i class="fa fa-plus-square"></i>Add to Wishlist
                                         </a>
                                     @endif
                                 </li>
-                                <li><a href="#"><i class="fa fa-plus-square"></i>Add to compare</a></li>
+                                {{-- @foreach($items as $item)
+                                dd($item->id)
+                                    @if($product->id == $item->id)
+                                    
+                                        @php 
+                                            $exist = 1; 
+                                        @endphp
+                                    @endif
+                                @endforeach --}}
+                                {{-- {{ dd($product->id) }} --}}
+                                <li>
+                                    @if(in_array($product->id, $arr))
+                                        <a href="{{ url('/cust/cart/') }}"><i class="fa fa-shopping-cart"></i>Added to Cart</a>
+                                    @else
+                                        <a href="{{ url('/cust/cart/add/' . $product->id) }}"><i class="fa fa-plus-square"></i>Add to Cart</a>
+                                    @endif
+                                </li>
                             </ul>
                         </div>
                     </div>

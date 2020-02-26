@@ -26,18 +26,23 @@
                                     <img style="width:100px;height:auto" src="{{ url('/storage/' . App\Product_image::where('product_id', $item->id)->first()->product_image) }}" alt="">
                                 </td>
                                 <td class="cart_description">
-                                <h4><a href="">{{ $item->name }}</a></h4>
+                                <h4><a href="{{ url('/cust/product/' . $item->id) }}">{{ $item->name }}</a></h4>
                                     <p>Product ID: {{ $item->id }}</p>
                                 </td>
                                 <td class="cart_price">
                                     <p>{{ $item->price }}</p>
                                 </td>
-                                
                                 <td class="cart_quantity">
                                     <div class="cart_quantity_button">
-                                        <a class="cart_quantity_up" href="{{ url('/cust/cart/plus/' . $item->rowId) }}">
-                                            + 
-                                        </a>
+                                        @if((App\Product::find($item->id)->quantity) == $item->qty)
+                                            <a class="cart_quantity_up" onclick="return alert(&quot;Maximum Quantity Exceeded&quot;)">
+                                                + 
+                                            </a>
+                                        @else
+                                            <a class="cart_quantity_up" href="{{ url('/cust/cart/plus/' . $item->rowId) }}">
+                                                + 
+                                            </a>
+                                        @endif
                                     <input class="cart_quantity_input" type="text" name="quantity" value="{{ $item->qty }}" autocomplete="off" size="2">
                                         <a class="cart_quantity_down" href="{{ url('/cust/cart/minus/' . $item->rowId) }}">
                                             - 

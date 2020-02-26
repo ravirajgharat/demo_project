@@ -35,7 +35,15 @@ class ShopController extends Controller
         $product = App\Product::find($id);
         $params = App\Product_parameter::where('product_id', $id)->select('product_parameter')->distinct()->get();
 
-        return view('customer.pages.product_details', compact('banners', 'brands', 'ban', 'product', 'params', 'categories'));
+        $items = Cart::content();
+        $exist = 0;
+        foreach($items as $item) {
+            if($item->id == $product->id) {
+                $exist = 1;
+            }
+        }
+
+        return view('customer.pages.product_details', compact('exist', 'banners', 'brands', 'ban', 'product', 'params', 'categories'));
     }
 
     // Display Brand Page

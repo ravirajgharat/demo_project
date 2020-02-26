@@ -70,12 +70,13 @@
                                 @endguest
                             </a>
                         </li>
-                        <li>
+                        {{-- <li>
                                 @guest
                                 @else
                                     <a href="{{ url('/cust/address') }}"><i class="fa fa-map-marker"></i>My Addresses</a>
                                 @endguest
-                        </li>
+                        </li> --}}
+                        
                         <li>
                             
                                 

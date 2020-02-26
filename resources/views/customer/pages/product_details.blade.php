@@ -31,9 +31,17 @@
                             <p>{{ $product->product_description }}</p>
                             <hr>
                             <h2>Rs. {{ $product->price }}</h2>
-                            <a style="padding:15px 50px;" class="btn btn-primary" href="{{ url('/cust/cart/add/' . $product->id) }}">
-                                Add To Cart
-                            </a>
+
+                            @if($exist)
+                                <a style="padding:15px 50px;" class="btn btn-primary" href="{{ url('/cust/cart') }}">
+                                    Added To Cart
+                                </a>
+                            @else
+                                <a style="padding:15px 50px;" class="btn btn-primary" href="{{ url('/cust/cart/add/' . $product->id) }}">
+                                    Add To Cart
+                                </a>
+                            @endif
+
                             @if(App\Wishlist::where('user_id', Auth::User()->id)->where('product_id', $product->id)->count())
                                 <a style="padding:15px 40px;" class="btn btn-primary" href="{{ url('/cust/wishlist') }}">
                                     Added To Wishlist

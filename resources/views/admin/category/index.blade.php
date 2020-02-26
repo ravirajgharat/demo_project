@@ -29,22 +29,43 @@
                             <table class="table table-hover table-bordered table-striped">
                                 <thead class="thead-dark">
                                     <tr>
-                                        <th>#</th><th>Category</th><th>Actions</th>
+                                        <th>#</th><th>Category</th><th>Hierarchy</th><th>Actions</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                 @foreach($categories as $item)
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>
-                                        <td>{{-- $item->categoryname --}}
+                                        <td>
+                                            {{ $item->categoryname }}
+                                            {{-- <ul style="list-style:none;">
+                                                    <li><strong>{{ $item->categoryname }}</strong></li>
+                                                    
+                                                    @foreach ($item->childrenCategories as $childCategory)
+                                                        <ul style="list-style:none;"> @include('admin.category.child_category', ['child_category' => $childCategory]) </ul>
+                                                    @endforeach
+                                            </ul> --}}
+                                        </td>
+                                        <td>
+                                            @if(is_object($item->parent)) 
                                                 <ul style="list-style:none;">
-                                                        <li><strong>{{ $item->categoryname }}</strong></li>
-                                                        
-                                                        @foreach ($item->childrenCategories as $childCategory)
-                                                            <ul style="list-style:none;"> @include('admin.category.child_category', ['child_category' => $childCategory]) </ul>
-                                                        @endforeach
+                                                    <li>{{ $item->parent->categoryname }}</li>
+                                                    @foreach($item->parent->categories as $subcat)
+                                                        @if($item->categoryname == $subcat->categoryname)
+                                                            <ul><strong>{{ $subcat->categoryname }}</strong></ul>
+                                                        @else
+                                                            <ul>{{ $subcat->categoryname }}</ul>
+                                                        @endif
+                                                    @endforeach
+                                                </ul>  
+                                            @else 
+                                                <ul style="list-style:none;">
+                                                    <li><strong>{{ $item->categoryname }}</strong></li>
+                                                    @foreach($item->categories as $subcat)
+                                                        <ul>{{ $subcat->categoryname }}</ul>
+                                                    @endforeach
                                                 </ul>
-                                        
+                                            @endif
                                         </td>
                                         <td>
                                             <a href="{{ url('/admin/category/' . $item->id) }}" title="View Category"><button class="btn btn-info btn-sm"><i class="fa fa-eye" aria-hidden="true"></i></button></a>

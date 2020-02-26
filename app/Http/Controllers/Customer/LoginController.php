@@ -5,7 +5,8 @@ namespace App\Http\Controllers\Customer;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App;
-use Darryldecode\Cart\Cart;
+// use Darryldecode\Cart\Cart;
+use Gloudemans\Shoppingcart\Facades\Cart;
 
 class LoginController extends Controller
 {
@@ -24,6 +25,12 @@ class LoginController extends Controller
         $brands = App\Product::select('product_brand')->distinct()->get();
         $tab_shoes = App\Product::inRandomOrder()->take(4)->get();
 
-        return view('customer.pages.shop', compact('banners', 'ban', 'products', 'categories', 'brands', 'rec_act', 'rec', 'tab_shoes'));
+        $arr = array();
+        $items = Cart::content();
+        foreach($items as $item) {
+            $arr[] = $item->id;
+        }
+
+        return view('customer.pages.shop', compact('arr', 'exist', 'banners', 'ban', 'products', 'categories', 'brands', 'rec_act', 'rec', 'tab_shoes'));
     } 
 }
