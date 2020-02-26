@@ -36,7 +36,7 @@
                                 </thead>
                                 <tbody>
                                 @foreach($user as $item)
-                                    @if(count($item->roles))
+                                    {{-- @if(count($item->roles)) --}}
                                         <tr>
                                             {{--dd(array_keys($item->getRoles())[0])--}}
                                             <td>{{ $loop->iteration }}</td>
@@ -52,7 +52,7 @@
                                                 </form>
                                             </td>
                                         </tr>
-                                    @endif
+                                    {{-- @endif --}}
                                 @endforeach
                                 </tbody>
                             </table>

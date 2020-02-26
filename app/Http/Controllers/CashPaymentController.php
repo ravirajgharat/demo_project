@@ -14,7 +14,7 @@ class CashPaymentController extends Controller
 {
     public function cashPayment(Request $request) {
 
-        // dd($request->session()->get('discount'));
+        // dd($request->session()->get('address'));
         $cartTotal = $request->session()->get('cartTotal');
         $total = floatval(preg_replace('/[^\d\.]/', '', $cartTotal));
         
@@ -28,6 +28,7 @@ class CashPaymentController extends Controller
         
         $order = new App\Order;
         $order->user_id = Auth::user()->id;
+        $order->address_id = $request->session()->get('address');
         $order->order_status = 'Processing';
         $order->order_price = $total;
         $order->coupon = $coupon;
@@ -57,6 +58,7 @@ class CashPaymentController extends Controller
         $request->session()->forget('cartTotal');
         $request->session()->forget('discount');
         $request->session()->forget('coupon');
+        $request->session()->forget('address');
 
         $request->session()->put('success', 'Order Placed Successfully.');
         return view('customer.pages.success');

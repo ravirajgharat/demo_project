@@ -73,6 +73,7 @@ class PaymentController extends Controller
 
         $order = new App\Order;
         $order->user_id = Auth::user()->id;
+        $order->address_id = $request->session()->get('address');
         $order->order_status = 'Pending';
         $order->order_price = $total;
         $order->coupon = $coupon;
@@ -219,6 +220,7 @@ class PaymentController extends Controller
             $request->session()->forget('cartTotal');
             $request->session()->forget('discount');
             $request->session()->forget('coupon');
+            $request->session()->forget('address');
 
             \Session::put('success', 'Payment success');
             return Redirect::route('status');

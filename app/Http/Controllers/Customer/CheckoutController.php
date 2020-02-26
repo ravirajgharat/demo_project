@@ -67,6 +67,7 @@ class CheckoutController extends Controller
         if($request->address) {
             //$cartTotal = $request->cartTotal;
             $address = App\Address::find($request->address);
+            $request->session()->put('address', $request->address);
         }
         $cartTotal = $request->session()->get('cartTotal');
         $user = Auth::User();

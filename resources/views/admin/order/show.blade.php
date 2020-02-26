@@ -11,7 +11,6 @@
                         <hr>
 
                         <a href="{{ url('/admin/order') }}" title="Back"><button class="btn btn-default btn-sm"><i class="fa fa-arrow-left" aria-hidden="true"></i> Back</button></a>
-                        <a href="{{ url('/admin/order/' . $order->id . '/edit') }}" title="Edit Order"><button class="btn btn-primary btn-sm"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</button></a>
 
                         <form method="POST" action="{{ url('admin/order' . '/' . $order->id) }}" accept-charset="UTF-8" style="display:inline">
                             {{ method_field('DELETE') }}
@@ -33,7 +32,20 @@
                                         <td><strong> {{ $order->user->email }} </strong></td>
                                     </tr>
                                     <tr>
-                                        <th class="text-primary"> Order Status </th>
+                                        <th class="text-primary"> Address </th>
+                                        <td>
+                                            {{ $order->address->address }} <br>
+                                            <strong>City :</strong> {{ $order->address->city }}<br>
+                                            <strong>State :</strong> {{ $order->address->state }}<br>
+                                            <strong>Pin Code :</strong> {{ $order->address->pin_code }}<br>
+                                            <strong>Landmark :</strong> {{ $order->address->landmark }}
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th class="text-primary"> 
+                                            Order Status
+                                            <a href="{{ url('/admin/order/' . $order->id . '/edit') }}" title="Edit Order"><button class="btn btn-primary btn-sm pull-right"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</button></a>
+                                        </th>
                                         <td><strong> {{ $order->order_status }} </strong></td>
                                     </tr>
                                     <tr>
