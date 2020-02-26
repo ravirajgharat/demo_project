@@ -61,7 +61,7 @@ class Category extends Model
     //     return $this->belongsToMany(Category::class)->with('parent');
     // }
 
-    // Many to Many
+    // One to Many
     public function products() {
         return $this->hasMany('App\Product');
     }

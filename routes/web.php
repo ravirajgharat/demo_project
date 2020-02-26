@@ -76,6 +76,9 @@ Route::group(['middleware' => ['auth', 'admin']], function() {
 
     //Order CRUD inside Admin
     Route::resource('admin/order', 'Admin\\OrderController');
+
+    //Static Page CRUD inside admin
+    Route::resource('admin/page', 'Admin\\PageController');
     
 });
 
@@ -191,3 +194,36 @@ Route::get('cust/contact', 'Customer\\ContactController@askQuery');
 
 //Contact Us - Store Query
 Route::get('cust/contact/query', 'Customer\\ContactController@storeQuery');
+
+/*
+|--------------------------------------------------------------------------
+| Static Page Routes
+|--------------------------------------------------------------------------
+*/
+
+//Terms of Use
+Route::get('cust/terms_of_use', 'StaticPageController@termsOfUse');
+
+//Privacy Policy
+Route::get('cust/privacy_policy', 'StaticPageController@privacyPolicy');
+
+//Refund Policy
+Route::get('cust/refund_policy', 'StaticPageController@refundPolicy');
+
+//FAQs
+Route::get('cust/faq', 'StaticPageController@faq');
+
+//About Us
+Route::get('cust/about_us', 'StaticPageController@aboutUs');
+
+//Copyright
+Route::get('cust/copyright', 'StaticPageController@copyright');
+
+//Billing System
+Route::get('cust/billing_system', 'StaticPageController@billingSystem');
+
+//Partners
+Route::get('cust/partner', 'StaticPageController@partner');
+
+//Career
+Route::get('cust/career', 'StaticPageController@career');
