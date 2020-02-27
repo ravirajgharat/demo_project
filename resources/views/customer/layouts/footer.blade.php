@@ -126,13 +126,17 @@
                 </div>
             </div>
             <div class="col-sm-3">
-                <div class="single-widget">
-                    <h2>About Shopper</h2>
-                    <form action="#" class="searchform">
-                        <input type="text" placeholder="Your email address" />
-                        <button type="submit" class="btn btn-default"><i class="fa fa-arrow-circle-o-right"></i></button>
-                        <p>Get the most recent updates from <br />our site and be updated your self...</p>
-                    </form>
+                <div class="single-widget text-center">
+                    <h2>Subscribe for Newsletter</h2>
+                    {{-- <form action="{{ url('/cust/newsletter') }}" class="searchform"> --}}
+                        {{-- <input type="email" name="email" placeholder="Email address" /> --}}
+                    <a href="{{ url('/cust/newsletter') }}" class="btn btn-primary">Subscribe <i class="fa fa-sign-in"></i></a>
+                    <br><br>
+                    {{-- <p>Get the most recent updates from <br />our site and be updated your self...</p> --}}
+                    {{-- </form> --}}
+                    <ul class="nav nav-pills nav-stacked">
+                        <li><a>Get the most recent updates from <br />our site and be updated your self...</a></li>
+                    </ul>
                 </div>
             </div>
             
@@ -148,3 +152,4 @@
         </div>
     </div>
 </div>
+

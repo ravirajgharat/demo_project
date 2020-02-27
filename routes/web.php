@@ -227,3 +227,15 @@ Route::get('cust/partner', 'StaticPageController@partner');
 
 //Career
 Route::get('cust/career', 'StaticPageController@career');
+
+/*
+|--------------------------------------------------------------------------
+| 
+|--------------------------------------------------------------------------
+*/
+
+//Newsletter form
+Route::get('cust/newsletter', 'NewsletterController@newsletter');
+
+//Newsletter Subscribe
+Route::post('cust/newsletter/subscribe', 'NewsletterController@subscribeToNewsletter');
