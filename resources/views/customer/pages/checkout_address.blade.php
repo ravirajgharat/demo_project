@@ -10,13 +10,16 @@
                     <div class="card-header"><h2>Select Address</h2></div>
                     <hr>
                     <div class="card-body">
-                        <form action="{{ url('/cust/checkout/address/add') }}">
-                            {{-- <input type="hidden" name="cartTotal" value="{{ $cartTotal }}"> --}}
-                            <button type="submit">
-                                    <i class="fa fa-plus" class="btn btn-success btn-sm" aria-hidden="true"></i> Add New
-                            </button>
-                        
-                        </form>
+
+                        @if($address->count() < 4)
+                            <form action="{{ url('/cust/checkout/address/add') }}">
+                                {{-- <input type="hidden" name="cartTotal" value="{{ $cartTotal }}"> --}}
+                                <button type="submit">
+                                        <i class="fa fa-plus" class="btn btn-success btn-sm" aria-hidden="true"></i> Add New
+                                </button>
+                            </form>
+                        @endif
+
                         {{-- <form method="GET" action="{{ url('/cust/address') }}" accept-charset="UTF-8" class="form-inline my-2 my-lg-0 float-right" role="search">
                             <div class="input-group">
                                 <input type="text" class="form-control" name="search" placeholder="Search..." value="{{ request('search') }}">

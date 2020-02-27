@@ -32,13 +32,19 @@
                             <hr>
                             <h2>Rs. {{ $product->price }}</h2>
 
-                            @if($exist)
-                                <a style="padding:15px 50px;" class="btn btn-primary" href="{{ url('/cust/cart') }}">
-                                    Added To Cart
-                                </a>
+                            @if($product->quantity != 0)
+                                @if($exist)
+                                    <a style="padding:15px 50px;" class="btn btn-primary" href="{{ url('/cust/cart') }}">
+                                        Added To Cart
+                                    </a>
+                                @else
+                                    <a style="padding:15px 50px;" class="btn btn-primary" href="{{ url('/cust/cart/add/' . $product->id) }}">
+                                        Add To Cart
+                                    </a>
+                                @endif
                             @else
-                                <a style="padding:15px 50px;" class="btn btn-primary" href="{{ url('/cust/cart/add/' . $product->id) }}">
-                                    Add To Cart
+                                <a style="padding:15px 50px;" class="btn btn-primary">
+                                    Out of Stock
                                 </a>
                             @endif
 

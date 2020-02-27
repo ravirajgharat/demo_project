@@ -51,11 +51,28 @@ class CouponController extends Controller
      */
     public function store(Request $request)
     {
+        if($request->date == null && $request->time == null) {
+            $request->session()->put('expires_at', 'The date and time fields are required.');
+        } elseif($request->date == null) {
+            $request->session()->put('expires_at', 'The date field is required.');
+        } elseif($request->time == null) {
+            $request->session()->put('expires_at', 'The time field is required.');
+        } else {
+            $timestamp = $request->date." ".$request->time;
+            if(strtotime($timestamp) < time()) {
+                $request->session()->put('expires_at', 'Expiration cannot be in past.');
+            }
+        }
+
         $request->validate([
             'coupon_code' => 'bail|required|alpha_num|max:50|min:4|unique:coupons',
             'discount' => 'bail|required|integer',
             'format' => 'required'
         ]);
+
+        if($request->session()->get('expires_at')) {
+            return back();
+        }
 
         // $requestData = $request->all();
         
@@ -64,8 +81,9 @@ class CouponController extends Controller
         $coupon_code = $request->coupon_code;
         $discount = $request->discount;
         $format = $request->format;
+        $expires_at = $timestamp;
 
-        DB::select( 'call generate_coupon(?,?,?)', [$coupon_code, $discount, $format] );
+        DB::select( 'call generate_coupon(?,?,?,?)', [$coupon_code, $discount, $format, $expires_at] );
 
         return redirect('admin/coupon')->with('flash_message', 'Coupon added!');
     }
@@ -111,12 +129,26 @@ class CouponController extends Controller
      */
     public function update(Request $request, $id)
     {  
+        if($request->date == null && $request->time == null) {
+            $request->session()->put('expires_at', 'The date and time fields are required.');
+        } elseif($request->date == null) {
+            $request->session()->put('expires_at', 'The date field is required.');
+        } elseif($request->time == null) {
+            $request->session()->put('expires_at', 'The time field is required.');
+        } else {
+            $timestamp = $request->date." ".$request->time;
+        }
+
         //dd($request->coupon_code); 
         $request->validate([
             'coupon_code' => 'bail|required|alpha_num|max:50|min:4|unique:coupons,coupon_code,' . $id,
             'discount' => 'bail|required|integer',
             'format' => 'required'
         ]);
+
+        if($request->session()->get('expires_at')) {
+            return back();
+        }
 
         // $requestData = $request->all();
         
@@ -127,8 +159,9 @@ class CouponController extends Controller
         $coupon_code = $request->coupon_code;
         $discount = $request->discount;
         $format = $request->format;
+        $expires_at = $timestamp;
 
-        DB::select( 'call update_coupon(?,?,?,?)', [$coupon_code, $discount, $format, $id] );
+        DB::select( 'call update_coupon(?,?,?,?,?)', [$coupon_code, $discount, $format, $expires_at, $id] );
 
         return redirect('admin/coupon')->with('flash_message', 'Coupon updated!');
     }

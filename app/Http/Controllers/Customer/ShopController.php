@@ -8,6 +8,7 @@ use App;
 use Illuminate\Support\Facades\Auth;
 //use Gloudemans\Shoppingcart\Cart;
 use Gloudemans\Shoppingcart\Facades\Cart;
+use Carbon\Carbon;
 
 class ShopController extends Controller
 {
@@ -93,8 +94,10 @@ class ShopController extends Controller
             $ship = 50;
         }
 
+        $codes = App\Coupon::where('expires_at', '>', Carbon::now())->get();
+
         $total = number_format($float+$tax+$ship,2);
-        return view('customer.pages.cart', compact('items', 'float', 'taxNo', 'ship', 'total', 'coupon_code', 'discount'));
+        return view('customer.pages.cart', compact('codes', 'items', 'float', 'taxNo', 'ship', 'total', 'coupon_code', 'discount'));
     }
 
     

@@ -34,7 +34,7 @@
                                 </td>
                                 <td class="cart_quantity">
                                     <div class="cart_quantity_button">
-                                        @if((App\Product::find($item->id)->quantity) == $item->qty)
+                                        @if((App\Product::find($item->id)->quantity) <= $item->qty)
                                             <a class="cart_quantity_up" onclick="return alert(&quot;Maximum Quantity Exceeded&quot;)">
                                                 + 
                                             </a>
@@ -137,7 +137,7 @@
 
                             <form action="{{ url('/cust/cart/coupon') }}">
 
-                                @foreach(App\Coupon::all() as $coupon)
+                                @foreach($codes as $coupon)
 
                                     <li>
                                         <input type="radio" name="coupon" value="{{ $coupon->id }}">

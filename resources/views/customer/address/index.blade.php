@@ -40,11 +40,13 @@
                                 </span>
                             </div>
                         </form> --}}
-                        <a href="{{ url('/cust/address/create') }}" class="btn btn-primary btn-sm" title="Add New Address">
-                            <i class="fa fa-plus" aria-hidden="true"></i> Add New
-                        </a>
-                        <br/>
-                        <br/>
+                        @if($address->count() < 4)
+                            <a href="{{ url('/cust/address/create') }}" class="btn btn-primary btn-sm" title="Add New Address">
+                                <i class="fa fa-plus" aria-hidden="true"></i> Add New
+                            </a>
+                            <br/>
+                            <br/>
+                        @endif
                         
                         <div class="row">
 

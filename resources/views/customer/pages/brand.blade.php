@@ -64,13 +64,19 @@
                                         </a>
                                     @endif
                                 </li>
-                                <li>
-                                    @if(in_array($product->id, $arr))
-                                        <a href="{{ url('/cust/cart/') }}"><i class="fa fa-shopping-cart"></i>Added to Cart</a>
-                                    @else
-                                        <a href="{{ url('/cust/cart/add/' . $product->id) }}"><i class="fa fa-plus-square"></i>Add to Cart</a>
-                                    @endif
-                                </li>
+                                @if($product->quantity != 0)
+                                    <li>
+                                        @if(in_array($product->id, $arr))
+                                            <a href="{{ url('/cust/cart/') }}"><i class="fa fa-shopping-cart"></i>Added to Cart</a>
+                                        @else
+                                            <a href="{{ url('/cust/cart/add/' . $product->id) }}"><i class="fa fa-plus-square"></i>Add to Cart</a>
+                                        @endif
+                                    </li>
+                                @else
+                                    <li>
+                                        <a><i class="fa fa-times"></i>Out of Stock</a>
+                                    </li>
+                                @endif
                             </ul>
                         </div>
                     </div>
