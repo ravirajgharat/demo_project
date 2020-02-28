@@ -30,7 +30,7 @@
                             <table class="table table-hover table-bordered table-striped">
                                 <thead class="thead-dark">
                                     <tr>
-                                        <th>#</th><th>Coupon Code</th><th>Discount</th><th>Expiry</th><th>Actions</th>
+                                        <th>#</th><th>Coupon Code</th><th>Discount</th><th>Expiry</th><th>Max Use</th><th>Actions</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -40,6 +40,7 @@
                                         <td>{{ $item->coupon_code }}</td>
                                         <td>@if(!$item->format)Rs. @endif{{ $item->discount }}@if($item->format) %@endif</td>
                                         <td>{{ $item->expires_at }}</td>
+                                        <td>{{ $item->max_use }}</td>
                                         <td>
                                             <a href="{{ url('/admin/coupon/' . $item->id) }}" title="View Coupon"><button class="btn btn-info btn-sm"><i class="fa fa-eye" aria-hidden="true"></i></button></a>
                                             <a href="{{ url('/admin/coupon/' . $item->id . '/edit') }}" title="Edit Coupon"><button class="btn btn-primary btn-sm"><i class="fa fa-pencil" aria-hidden="true"></i></button></a>

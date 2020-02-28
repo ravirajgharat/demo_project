@@ -126,7 +126,7 @@
         <div class="container">
             <div class="heading">
                 <h3>What would you like to do next?</h3>
-                <p>Choose if you have a discount code or reward points you want to use or would like to estimate your delivery cost.</p>
+                <p>Choose if you have a discount code you want to use or would like to estimate your delivery cost.</p>
             </div>
             <div class="row">
                 <div class="col-sm-6">
@@ -136,20 +136,20 @@
                             <hr>
 
                             <form action="{{ url('/cust/cart/coupon') }}">
-
+                                
                                 @foreach($codes as $coupon)
-
-                                    <li>
-                                        <input type="radio" name="coupon" value="{{ $coupon->id }}">
-                                        <label>
-                                            <h4>
-                                                {{ $coupon->coupon_code }} - 
-                                                <span class="text-success">@if($coupon->format == 0)Rs. @endif{{ $coupon->discount }}@if($coupon->format == 1)%@endif OFF</span>
-                                            </h4>
-                                        </label>
-                                        <hr>
-                                    </li>
-
+                                    @if(App\Order::where('coupon', $coupon->coupon_code)->where('user_id', $user_id)->count() < $coupon->max_use)
+                                        <li>
+                                            <input type="radio" name="coupon" value="{{ $coupon->id }}">
+                                            <label>
+                                                <h4>
+                                                    {{ $coupon->coupon_code }} - 
+                                                    <span class="text-success">@if($coupon->format == 0)Rs. @endif{{ $coupon->discount }}@if($coupon->format == 1)%@endif OFF</span>
+                                                </h4>
+                                            </label>
+                                            <hr>
+                                        </li>
+                                    @endif
                                 @endforeach
 
                         </ul>

@@ -29,6 +29,7 @@
                                     <tr><th class="text-primary"> Coupon Code </th><td><strong>{{ $coupon->coupon_code }}</strong></td></tr>
                                     <tr><th class="text-primary"> Discount </th><td><strong>@if(!$coupon->format)Rs. @endif {{ $coupon->discount }} @if($coupon->format) % @endif</strong></td></tr>
                                     <tr><th class="text-primary"> Expiration </th><td><strong>{{ $coupon->expires_at }}</strong></td></tr>
+                                    <tr><th class="text-primary"> Max Use </th><td><strong>{{ $coupon->max_use }}</strong></td></tr>
                                 </tbody>
                             </table>
                         </div>

@@ -28,10 +28,10 @@
     <div class="form-group row {{ $errors->has('expires_at') ? 'has-error' : ''}}">
         <label for="expires_at" class="col-sm-2 col-form-label">{{ 'Expiration' }}</label>
         <div class="col-sm-3">
-            <input class="form-control" type="date" id="date" name="date">
+            <input class="form-control" type="date" id="date" name="date" value="{{ (date('Y-m-d',strtotime($coupon->expires_at)) != null) ? date('Y-m-d',strtotime($coupon->expires_at)) : ''}}">
         </div>
         <div class="col-sm-3">
-            <input class="form-control" type="time" id="time" name="time">
+            <input class="form-control" type="time" id="time" name="time" value="{{ (time('H:i',strtotime($coupon->expires_at)) != null) ? date('H:i',strtotime($coupon->expires_at)) : ''}}">
         </div>
         {{-- <strong>{!! $errors->first('expires_at', '<p class="help-block text-danger">:message</p>') !!}</strong> --}}
         <strong><p class="help-block text-danger">{{ Session::get('expires_at') }}</p></strong>{{ Session::forget('expires_at') }}

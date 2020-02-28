@@ -43,12 +43,25 @@
                             @endif
 
                         </form>
+                        <br>
+                        <a href="{{ url('/google') }}" class="btn btn-lg btn-block" style="background-color:#4285f4;color:white;">
+                            {{-- <i class="fa fa-google"></i> --}}
+                            Login With Google
+                        </a>
+                        <a href="" class="btn btn-lg btn-block" style="background-color:#4267B2;color:white;">
+                            {{-- <i class="fa fa-google"></i> --}}
+                            Login With Facebook
+                        </a>
+                        <a href="" class="btn btn-lg btn-block" style="background-color:#00acee;color:white;">
+                            {{-- <i class="fa fa-google"></i> --}}
+                            Login With Twitter
+                        </a>
                     
                     </div><!--/login form-->
                 </div>
 
                 <div class="col-sm-1">
-                    <h2 class="or">OR</h2>
+                    <h2 class="or" style="margin:200px 0;">OR</h2>
                 </div>
 
                 <div class="col-sm-4">
@@ -92,6 +105,7 @@
                             {{-- <input type="password" placeholder="Retype Password"/> --}}
                             <input id="password-confirm" type="password" placeholder="Retype Password" class="" name="register_password_confirmation" required autocomplete="new-password">
 
+                            <br>
                             <button type="submit" class="btn btn-default">Register</button>
                         </form>
                     </div><!--/sign up form-->

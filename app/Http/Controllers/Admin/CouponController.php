@@ -67,7 +67,8 @@ class CouponController extends Controller
         $request->validate([
             'coupon_code' => 'bail|required|alpha_num|max:50|min:4|unique:coupons',
             'discount' => 'bail|required|integer',
-            'format' => 'required'
+            'format' => 'required',
+            'max_use' => 'bail|required|integer',
         ]);
 
         if($request->session()->get('expires_at')) {
@@ -82,8 +83,9 @@ class CouponController extends Controller
         $discount = $request->discount;
         $format = $request->format;
         $expires_at = $timestamp;
+        $max_use = $request->max_use;
 
-        DB::select( 'call generate_coupon(?,?,?,?)', [$coupon_code, $discount, $format, $expires_at] );
+        DB::select( 'call generate_coupon(?,?,?,?,?)', [$coupon_code, $discount, $format, $expires_at, $max_use] );
 
         return redirect('admin/coupon')->with('flash_message', 'Coupon added!');
     }
@@ -143,7 +145,8 @@ class CouponController extends Controller
         $request->validate([
             'coupon_code' => 'bail|required|alpha_num|max:50|min:4|unique:coupons,coupon_code,' . $id,
             'discount' => 'bail|required|integer',
-            'format' => 'required'
+            'format' => 'required',
+            'max_use' => 'bail|required|integer',
         ]);
 
         if($request->session()->get('expires_at')) {
@@ -160,8 +163,9 @@ class CouponController extends Controller
         $discount = $request->discount;
         $format = $request->format;
         $expires_at = $timestamp;
+        $max_use = $request->max_use;
 
-        DB::select( 'call update_coupon(?,?,?,?,?)', [$coupon_code, $discount, $format, $expires_at, $id] );
+        DB::select( 'call update_coupon(?,?,?,?,?,?)', [$coupon_code, $discount, $format, $expires_at, $max_use, $id] );
 
         return redirect('admin/coupon')->with('flash_message', 'Coupon updated!');
     }

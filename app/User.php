@@ -35,7 +35,7 @@ class User extends Authenticatable
      *
      * @var array
      */
-    protected $fillable = ['firstname', 'lastname', 'email', 'password', 'status'];
+    protected $fillable = ['firstname', 'lastname', 'email', 'password', 'status', 'google_id'];
 
     /**
      * The attributes that should be hidden for arrays.
@@ -77,8 +77,6 @@ class User extends Authenticatable
     {
         return $this->hasMany('App\Order');
     }
-
-
 
     /**
      * The event map for the model.

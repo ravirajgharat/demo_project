@@ -174,6 +174,9 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         Collective\Html\HtmlServiceProvider::class,
+
+        // Login with Google, Facebook, Twitter
+        Laravel\Socialite\SocialiteServiceProvider::class,
         
     ],
 
@@ -230,6 +233,10 @@ return [
         'HTML' => Collective\Html\HtmlFacade::class,
 
         'Input' => Illuminate\Support\Facades\Request::class,
+
+        // Socialite for Register with Google, Facebook, Twitter
+        'Socialite' => Laravel\Socialite\Facades\Socialite::class,
+        
     ],
 
 ];

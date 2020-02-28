@@ -28,7 +28,7 @@ class Coupon extends Model
      *
      * @var array
      */
-    protected $fillable = ['coupon_code', 'discount', 'format'];
+    protected $fillable = ['coupon_code', 'discount', 'format', 'expires_at', 'max_use'];
 
     /**
      * Date for SoftDeletes.

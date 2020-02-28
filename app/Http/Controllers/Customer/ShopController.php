@@ -94,10 +94,12 @@ class ShopController extends Controller
             $ship = 50;
         }
 
+        $user_id = Auth::user()->id;
+
         $codes = App\Coupon::where('expires_at', '>', Carbon::now())->get();
 
         $total = number_format($float+$tax+$ship,2);
-        return view('customer.pages.cart', compact('codes', 'items', 'float', 'taxNo', 'ship', 'total', 'coupon_code', 'discount'));
+        return view('customer.pages.cart', compact('user_id', 'codes', 'items', 'float', 'taxNo', 'ship', 'total', 'coupon_code', 'discount'));
     }
 
     

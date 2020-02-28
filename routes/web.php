@@ -33,7 +33,24 @@ Route::get('/admin', function () {
 //Admin users
 Route::get('/admin', 'HomeController@dashboard')->name('admin')->middleware('auth','admin');
 
+/*
+|--------------------------------------------------------------------------
+| Auth Routes
+|--------------------------------------------------------------------------
+*/
+
+//Regsiter 
 Auth::routes();
+
+//Register with Google
+Route::get('google', 'Auth\LoginController@redirectToGoogle');
+Route::get('google/callback', 'Auth\LoginController@handleGoogleCallback');
+
+/*
+|--------------------------------------------------------------------------
+| Admin Routes
+|--------------------------------------------------------------------------
+*/
 
 //Customers
 Route::get('/home', 'HomeController@home')->name('home')->middleware('auth','user');
