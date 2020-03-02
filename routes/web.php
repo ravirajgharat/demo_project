@@ -97,6 +97,9 @@ Route::group(['middleware' => ['auth', 'admin']], function() {
     //Static Page CRUD inside admin
     Route::resource('admin/page', 'Admin\\PageController');
     
+    //Email Template CRUD inside admin
+    Route::resource('admin/template', 'Admin\\TemplateController');
+
 });
 
 
@@ -256,3 +259,12 @@ Route::get('cust/newsletter', 'NewsletterController@newsletter');
 
 //Newsletter Subscribe
 Route::post('cust/newsletter/subscribe', 'NewsletterController@subscribeToNewsletter');
+
+
+
+
+Route::get('mailable', function () {
+    $user = App\User::find(1);
+
+    return (new App\Mail\WelcomeEmail($user))->render();
+});
