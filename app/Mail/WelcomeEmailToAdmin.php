@@ -7,6 +7,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 use App\User;
+use App\Template;
 
 class WelcomeEmailToAdmin extends Mailable
 {
@@ -31,6 +32,10 @@ class WelcomeEmailToAdmin extends Mailable
      */
     public function build()
     {
-        return $this->markdown('emails.admin.welcome');
+        $str = Template::find(1)->template;
+        $str = str_replace('{email}', $this->user->email, $str);
+        $str = str_replace('{login}', 'http://localhost/demo_project/public/login', $str);
+
+        return $this->view('email')->with('str', $str);
     }
 }

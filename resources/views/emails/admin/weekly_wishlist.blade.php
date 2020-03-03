@@ -1,11 +1,11 @@
-@component('mail::message')
 <h1>This week's Wishlist Items</h1><br>
-<h2>Total Number of Wishlist Items : {{ $items->count() }}</h2>
+<h3>Total Number of Wishlist Items : {count}</h3>
 <hr>
-<table border="2px">
-<tr><th style="width:20%;">User ID</th><th style="width:20%;">Product ID</th></tr>
-@foreach($items as $item)
-<tr><td style="text-align:center;">{{ $item->user_id }}</td><td style="text-align:center;">{{ $item->product_id }}</td></tr>
-@endforeach
+<table style="border-left:1px solid black;border-right:1px solid black;border-top:1px solid black;width:100%;">
+<thead>
+<tr><th style="border-right:1px solid black;border-bottom:1px solid black;width:25%;">User ID</th><th 	style="border-bottom:1px solid black;width:25%;">Product ID</th></tr>
+</thead>
+<tbody>
+{wishlist}
+</tbody>
 </table>
-@endcomponent

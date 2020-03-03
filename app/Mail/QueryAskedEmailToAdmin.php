@@ -6,8 +6,8 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
-
 use App\Query;
+use App\Template;
 
 class QueryAskedEmailToAdmin extends Mailable
 {
@@ -32,6 +32,13 @@ class QueryAskedEmailToAdmin extends Mailable
      */
     public function build()
     {
-        return $this->markdown('emails.admin.query_asked');
+        $name = $this->query->firstname . " " . $this->query->lastname;
+        $str = Template::find(6)->template;
+        $str = str_replace('{name}', $name, $str);
+        $str = str_replace('{email}', $this->query->email, $str);
+        $str = str_replace('{contact}', $this->query->contact, $str);
+        $str = str_replace('{comment}', $this->query->query, $str);
+        
+        return $this->view('email')->with('str',$str);
     }
 }

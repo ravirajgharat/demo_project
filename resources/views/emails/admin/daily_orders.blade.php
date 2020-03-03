@@ -1,11 +1,11 @@
-@component('mail::message')
 <h1>Today's Orders</h1><br>
-<h2>Total Number of Orders Placed : {{ $orders->count() }}</h2>
+<h3>Total Number of Orders Placed : {count}</h3>
 <hr>
-<table border="2px">
-<tr><th style="width:20%;">Order ID</th><th style="width:20%;">User ID</th><th style="width:20%;">Price</th><th style="width:20%;">Payment</th></tr>
-@foreach($orders as $order)
-<tr><td style="text-align:center;">{{ $order->id }}</td><td style="text-align:center;">{{ $order->user_id }}</td><td style="text-align:center;">{{ $order->order_price }}</td><td style="text-align:center;">{{ $order->payment_mode }}</td></tr>
-@endforeach
+<table style="border-left:1px solid black;border-right:1px solid black;border-top:1px solid black;width:100%;">
+<thead>
+<tr><th style="border-right:1px solid black;border-bottom:1px solid black;width:25%;">Order ID</th><th style="border-right:1px solid black;border-bottom:1px solid black;width:25%;">User ID</th><th style="border-right:1px solid black;border-bottom:1px solid black;width:25%;">Price</th><th style="border-bottom:1px solid black;width:25%;">Payment</th></tr>
+</thead>
+<tbody>
+{orders}
+</tbody>
 </table>
-@endcomponent

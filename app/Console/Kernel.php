@@ -25,9 +25,9 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        $schedule->command('daily:orders')//->everyMinute();
+        $schedule->command('daily:orders')
                  ->dailyAt('7:17');
-        $schedule->command('weekly:wishlist')//->everyMinute();
+        $schedule->command('weekly:wishlist')
                  ->weeklyOn(2, '7:17');
     }
 

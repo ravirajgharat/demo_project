@@ -6,8 +6,8 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
-
 use App\Query;
+use App\Template;
 
 class QueryRepliedEmail extends Mailable
 {
@@ -32,6 +32,14 @@ class QueryRepliedEmail extends Mailable
      */
     public function build()
     {
-        return $this->markdown('emails.user.query_replied');
+        $name = $this->query->firstname . " " . $this->query->lastname;
+        $str = Template::find(7)->template;
+        $str = str_replace('{name}', $name, $str);
+        $str = str_replace('{email}', $this->query->email, $str);
+        $str = str_replace('{contact}', $this->query->contact, $str);
+        $str = str_replace('{comment}', $this->query->query, $str);
+        $str = str_replace('{reply}', $this->query->reply, $str);
+        
+        return $this->markdown('email')->with('str',$str);
     }
 }

@@ -54,8 +54,12 @@ class CashPaymentController extends Controller
             $product->save();
 
         }
-
         
+        /**
+         * Event : OrderPlaced($order)
+         * Listener Action : Send Order Placed Mail to Customer and Admin
+         */
+        event(new App\Events\OrderPlaced($order));
 
         // Empty the Cart
         Cart::destroy();

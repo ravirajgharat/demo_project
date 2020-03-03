@@ -9,6 +9,7 @@ use Illuminate\Queue\SerializesModels;
 
 use Carbon\Carbon;
 use App\Wishlist;
+use App\Template;
 
 class WeeklyWishlistEmailToAdmin extends Mailable
 {
@@ -31,8 +32,20 @@ class WeeklyWishlistEmailToAdmin extends Mailable
      */
     public function build()
     {
+        // This Week's Wishlist Items
         $items = Wishlist::where('created_at','>', Carbon::today()->subDays(7))->get();
 
-        return $this->markdown('emails.admin.weekly_wishlist')->with('items', $items);
+        $wishlist = "";
+        foreach ($items as $item) {
+            $wishlist .= '<tr><td style="border-right:1px solid black;border-bottom:1px solid black;">' . $item->user_id . '</td><td style="border-bottom:1px solid black;">' . $item->product_id . '</td></tr>'; 
+        }
+
+        // Email Template
+        $str = Template::find(10)->template;
+        $str = str_replace('{count}', $items->count(), $str);
+        $str = str_replace('{wishlist}', $wishlist, $str);
+
+
+        return $this->view('email')->with('str', $str);
     }
 }

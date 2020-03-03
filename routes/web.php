@@ -264,7 +264,7 @@ Route::post('cust/newsletter/subscribe', 'NewsletterController@subscribeToNewsle
 
 
 Route::get('mailable', function () {
-    $user = App\User::find(1);
+    //$order = App\Order::find(5);
 
-    return (new App\Mail\WelcomeEmail($user))->render();
+    return (new App\Mail\WeeklyWishlistEmailToAdmin())->render();
 });

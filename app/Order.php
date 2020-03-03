@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use App\Events\OrderPlaced;
+// use App\Events\OrderPlaced;
 use App\Events\OrderStatusChanged;
 
 class Order extends Model
@@ -59,10 +59,10 @@ class Order extends Model
      * The event map for the model.
      *
      * @var array
-     */
+     
     protected $dispatchesEvents = [
         'created' => OrderPlaced::class,
         'updated' => OrderStatusChanged::class,
     ];
-
+    */
 }

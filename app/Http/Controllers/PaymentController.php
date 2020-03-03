@@ -220,6 +220,12 @@ class PaymentController extends Controller
             $order->order_status = 'Processing';
             $order->save();
 
+            /**
+             * Event : OrderPlaced($order)
+             * Listener Action : Send Order Placed Mail to Customer and Admin
+             */
+            event(new App\Events\OrderPlaced($order)); 
+
             // Forget Session variables
             $request->session()->forget('cartTotal');
             $request->session()->forget('discount');

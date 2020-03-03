@@ -7,6 +7,8 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 use App\Order;
+use App\Template;
+use App\Address;
 
 class OrderStatusChangedEmail extends Mailable
 {
@@ -31,6 +33,16 @@ class OrderStatusChangedEmail extends Mailable
      */
     public function build()
     {
-        return $this->markdown('emails.user.order_status_changed');
+        $add = Address::find($this->order->address_id);
+        $address = $add->address . ", " . $add->city . ", " . $add->state . ", " . $add->pin_code . ", " . $add->landmark;
+        $price = 
+        $str = Template::find(5)->template;
+        $str = str_replace('{login}', 'http://localhost/demo_project/public/login', $str);
+        $str = str_replace('{id}', $this->order->id, $str);
+        $str = str_replace('{price}', $this->order->order_price, $str);
+        $str = str_replace('{address}', $address, $str);
+        $str = str_replace('{payment}', $this->order->payment_mode, $str);
+
+        return $this->view('email')->with('str', $str);
     }
 }

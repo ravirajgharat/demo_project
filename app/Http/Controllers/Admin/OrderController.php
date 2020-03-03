@@ -110,6 +110,12 @@ class OrderController extends Controller
         $order = Order::findOrFail($id);
         $order->update($requestData);
 
+        /**
+         * Event : OrderPlaced($order)
+         * Listener Action : Send Order Placed Mail to Customer and Admin
+         */
+        event(new App\Events\OrderStatusChanged($order));
+
         return redirect('admin/order')->with('flash_message', 'Order updated!');
     }
 
