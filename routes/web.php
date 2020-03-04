@@ -11,14 +11,6 @@
 |
 */
 
-
-
-
-
-
-
-
-
 /*
 |--------------------------------------------------------------------------
 | Admin Routes
@@ -45,6 +37,14 @@ Auth::routes();
 //Register with Google
 Route::get('google', 'Auth\LoginController@redirectToGoogle');
 Route::get('google/callback', 'Auth\LoginController@handleGoogleCallback');
+
+//Register with Facebbok
+Route::get('facebook', 'Auth\LoginController@redirectToFacebook');
+Route::get('facebook/callback', 'Auth\LoginController@handleFacebookCallback');
+
+//Register with Facebbok
+Route::get('twitter', 'Auth\LoginController@redirectToTwitter');
+Route::get('twitter/callback', 'Auth\LoginController@handleTwitterCallback');
 
 /*
 |--------------------------------------------------------------------------
@@ -102,14 +102,6 @@ Route::group(['middleware' => ['auth', 'admin']], function() {
 
 });
 
-
-
-
-
-
-
-
-
 /*
 |--------------------------------------------------------------------------
 | Customer Routes
@@ -120,6 +112,9 @@ Route::group(['middleware' => ['auth', 'admin']], function() {
 Route::get('/', 'Customer\\HomeController@index');
 
 Route::get('/cust', 'Customer\\HomeController@index')->name('cust');
+
+//Search Products
+Route::get('/cust/search', 'SearchController@searchProducts')->name('cust.search');
 
 //Home Page for Auth User
 Route::get('/cust/shop', 'Customer\\LoginController@shop')->name('cust.shop')->middleware('auth');
@@ -248,20 +243,11 @@ Route::get('cust/partner', 'StaticPageController@partner');
 //Career
 Route::get('cust/career', 'StaticPageController@career');
 
-/*
-|--------------------------------------------------------------------------
-| 
-|--------------------------------------------------------------------------
-*/
-
 //Newsletter form
 Route::get('cust/newsletter', 'NewsletterController@newsletter');
 
 //Newsletter Subscribe
 Route::post('cust/newsletter/subscribe', 'NewsletterController@subscribeToNewsletter');
-
-
-
 
 Route::get('mailable', function () {
     //$order = App\Order::find(5);

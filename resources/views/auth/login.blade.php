@@ -48,11 +48,11 @@
                             {{-- <i class="fa fa-google"></i> --}}
                             Login With Google
                         </a>
-                        <a href="" class="btn btn-lg btn-block" style="background-color:#4267B2;color:white;">
+                        <a href="{{ url('/facebook') }}" class="btn btn-lg btn-block" style="background-color:#4267B2;color:white;">
                             {{-- <i class="fa fa-google"></i> --}}
                             Login With Facebook
                         </a>
-                        <a href="" class="btn btn-lg btn-block" style="background-color:#00acee;color:white;">
+                        <a href="{{ url('/twitter') }}" class="btn btn-lg btn-block" style="background-color:#00acee;color:white;">
                             {{-- <i class="fa fa-google"></i> --}}
                             Login With Twitter
                         </a>

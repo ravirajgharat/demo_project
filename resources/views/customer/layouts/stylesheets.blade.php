@@ -2,6 +2,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="">
 <meta name="author" content="">
+<meta name="_token" content="{{ csrf_token() }}"> 
 <link href="{{ asset('customer/css/bootstrap.min.css') }}" rel="stylesheet">
 <link href="{{ asset('customer/css/font-awesome.min.css') }}" rel="stylesheet">
 <link href="{{ asset('customer/css/prettyPhoto.css') }}" rel="stylesheet">
@@ -18,3 +19,4 @@
 <link rel="apple-touch-icon-precomposed" sizes="114x114" href="{{ asset('customer/images/ico/apple-touch-icon-114-precomposed.png') }}">
 <link rel="apple-touch-icon-precomposed" sizes="72x72" href="{{ asset('customer/images/ico/apple-touch-icon-72-precomposed.png') }}">
 <link rel="apple-touch-icon-precomposed" href="{{ asset('customer/images/ico/apple-touch-icon-57-precomposed.png') }}">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>

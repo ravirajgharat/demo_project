@@ -28,7 +28,7 @@
                 <label for="email">Email address</label>
             </div>
             <div class="col-sm-5">
-                <input type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp" placeholder="Enter Email">
+                <input type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp" placeholder="Enter Email" @if(Auth::check()) value="{{ Auth::User()->email  }}" @endif>
             </div>
             @error('email')
                 <div class="text-danger col-sm-5">

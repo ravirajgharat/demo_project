@@ -28,7 +28,7 @@
                 <label for="firstname">First Name</label>
             </div>
             <div class="col-sm-5">
-                <input type="text" class="form-control" id="firstname" name="firstname" aria-describedby="firstnameHelp" placeholder="Enter First Name">
+                <input type="text" class="form-control" id="firstname" name="firstname" aria-describedby="firstnameHelp" placeholder="Enter First Name" @if(Auth::check()) value="{{ Auth::User()->firstname  }}" @endif>
             </div>
             @error('firstname')
                 <div class="text-danger col-sm-5">
@@ -44,7 +44,7 @@
                 <label for="lastname">Last Name</label>
             </div>
             <div class="col-sm-5">
-                <input type="text" class="form-control" id="lastname" name="lastname" aria-describedby="lastnameHelp" placeholder="Enter Last Name">
+                <input type="text" class="form-control" id="lastname" name="lastname" aria-describedby="lastnameHelp" placeholder="Enter Last Name" @if(Auth::check()) value="{{ Auth::User()->lastname  }}" @endif>
             </div>
             @error('lastname')
                 <div class="text-danger col-sm-5">
@@ -60,7 +60,7 @@
                 <label for="email">Email address</label>
             </div>
             <div class="col-sm-5">
-                <input type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp" placeholder="Enter Email">
+                <input type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp" placeholder="Enter Email" @if(Auth::check()) value="{{ Auth::User()->email  }}" @endif>
             </div>
             @error('email')
                 <div class="text-danger col-sm-5">

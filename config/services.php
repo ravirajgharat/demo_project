@@ -36,4 +36,16 @@ return [
         'redirect' => 'http://localhost/demo_project/public/google/callback',
     ],
 
+    'facebook' => [
+        'client_id' => env('FACEBOOK_CLIENT_ID'),
+        'client_secret' => env('FACEBOOK_SECRET'),
+        'redirect' => 'http://localhost/demo_project/public/facebook/callback',
+    ],
+
+    'twitter' => [
+        'client_id' => env('TWITTER_CLIENT_ID'),
+        'client_secret' => env('TWITTER_SECRET'),
+        'redirect' => 'http://localhost/demo_project/public/twitter/callback',
+    ],
+
 ];

@@ -32,7 +32,6 @@ class UserController extends Controller
             $user = User::where('firstname', 'LIKE', "%$keyword%")
                 ->orWhere('lastname', 'LIKE', "%$keyword%")
                 ->orWhere('email', 'LIKE', "%$keyword%")
-                ->orWhere('password', 'LIKE', "%$keyword%")
                 ->orWhere('status', 'LIKE', "%$keyword%")
                 ->latest()->paginate($perPage);
         } else {

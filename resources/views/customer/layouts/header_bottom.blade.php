@@ -30,13 +30,11 @@
                                 </ul>
                             </li>
                         @endguest
-                        @guest
-                            <li>
-                                <a href="{{ url('/cust/track') }}">
-                                    Track Order
-                                </a>
-                            </li>
-                        @endguest
+                        <li>
+                            <a href="{{ url('/cust/track') }}">
+                                Track Order
+                            </a>
+                        </li>
                         {{-- <li><a href="404.html">404</a></li> --}}
                         <li><a href="{{ url('/cust/contact') }}">Contact Us</a></li>
                     </ul>
@@ -44,8 +42,13 @@
             </div>
             <div class="col-sm-3">
                 <div class="search_box pull-right">
-                    <input type="text" placeholder="Search"/>
+                    <input type="text" placeholder="Search Products" name="search" id="search" autocomplete="off" />
                 </div>
+            </div>
+            <div>
+                <ul id="list_tag_search">
+                    
+                </ul>
             </div>
         </div>
     </div>
