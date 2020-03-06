@@ -59,7 +59,6 @@ class Order extends Model
      * The event map for the model.
      *
      * @var array
-     
     protected $dispatchesEvents = [
         'created' => OrderPlaced::class,
         'updated' => OrderStatusChanged::class,

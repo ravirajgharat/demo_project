@@ -13,9 +13,9 @@ use App\Events\UserRegistered;
 
 class User extends Authenticatable
 {
-    use SoftDeletes;
-    
+    use SoftDeletes;    
     use Notifiable, HasRole;
+    
     /**
      * The database table used by the model.
      *
@@ -86,5 +86,4 @@ class User extends Authenticatable
     protected $dispatchesEvents = [
         'created' => UserRegistered::class,
     ];
-
 }

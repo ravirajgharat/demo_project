@@ -35,5 +35,4 @@ class Template extends Model
      *
      */
     protected $dates = ['deleted_at'];
-
 }

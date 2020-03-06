@@ -3,27 +3,22 @@
 @section('content')
 
 <div class="container">
-
     <div class="step-one">
         <h2 class="heading">Track Order</h2>
     </div>
 
     @if ($message = Session::get('error'))
-
         <div class="alert alert-danger">
             <h4 style="padding-top:10px;" id="id1" onclick="this.parentElement.style.display='none'">
                 {!! $message !!}
                 <span style="float:right;"><i class="fa fa-times"></i></span>
             </h4>
         </div>
-        <?php Session::forget('error');?>
-        
+        <?php Session::forget('error');?>   
     @endif
 
     <form action="{{ url('/cust/track/status') }}">
-
         <div class="form-group row">
-
             <div class="col-sm-2">
                 <label for="email">Email address</label>
             </div>
@@ -35,11 +30,8 @@
                     <strong>{{ $message }}</strong>
                 </div>
             @enderror
-
         </div>
-
         <div class="form-group row">
-
             <div class="col-sm-2">
                 <label for="order_id">Order ID</label>
             </div>
@@ -51,15 +43,10 @@
                     <strong>{{ $message }}</strong>
                 </div>
             @enderror
-
         </div>
-
         <button class="btn btn-primary" style="padding:10px 30px;" type="submit">Get Order Status</button>
-
     </form>
-
     <br>
-
 </div>
 
 @endsection

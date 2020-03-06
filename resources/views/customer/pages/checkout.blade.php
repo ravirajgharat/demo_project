@@ -4,7 +4,6 @@
 
 <section id="cart_items">
     <div class="container">
-
         <div class="shopper-informations">
             <div class="row">
                 <div class="col-sm-3">

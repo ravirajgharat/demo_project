@@ -17,7 +17,6 @@
 |--------------------------------------------------------------------------
 */
 
-
 Route::get('/admin', function () {
     return view('auth.login');
 });
@@ -35,20 +34,21 @@ Route::get('/admin', 'HomeController@dashboard')->name('admin')->middleware('aut
 Auth::routes();
 
 // Register with Google
-Route::get('google', 'Auth\LoginController@redirectToGoogle');
-Route::get('google/callback', 'Auth\LoginController@handleGoogleCallback');
+Route::get('/google', 'Auth\LoginController@redirectToGoogle');
+Route::get('/google/callback', 'Auth\LoginController@handleGoogleCallback');
 
 // Register with Facebbok
-Route::get('facebook', 'Auth\LoginController@redirectToFacebook');
-Route::get('facebook/callback', 'Auth\LoginController@handleFacebookCallback');
+Route::get('/facebook', 'Auth\LoginController@redirectToFacebook');
+Route::get('/facebook/callback', 'Auth\LoginController@handleFacebookCallback');
 
 // Register with Facebbok
-Route::get('twitter', 'Auth\LoginController@redirectToTwitter');
-Route::get('twitter/callback', 'Auth\LoginController@handleTwitterCallback');
+Route::get('/twitter', 'Auth\LoginController@redirectToTwitter');
+Route::get('/twitter/callback', 'Auth\LoginController@handleTwitterCallback');
 
 /*
 |--------------------------------------------------------------------------
-| Admin Routes
+| Admin Routes 
+| 'middleware' => ['auth', 'admin']
 |--------------------------------------------------------------------------
 */
 
@@ -62,43 +62,43 @@ Route::get('/unauthorized', 'HomeController@unauthorized');
 Route::group(['middleware' => ['auth', 'admin']], function() {
 
     // User CRUD inside admin
-    Route::resource('admin/user', 'Admin\\UserController');
+    Route::resource('/admin/user', 'Admin\\UserController');
 
     // Configuration CRUD inside admin
-    Route::resource('admin/configuration', 'Admin\\ConfigurationController');
+    Route::resource('/admin/configuration', 'Admin\\ConfigurationController');
 
     // Banner CRUD inside admin
-    Route::resource('admin/banner', 'Admin\\BannerController');
+    Route::resource('/admin/banner', 'Admin\\BannerController');
 
     // Role CRUD inside admin
-    Route::resource('admin/role', 'Admin\\RoleController');
+    Route::resource('/admin/role', 'Admin\\RoleController');
 
     // Category multilevel CRUD inside admin
-    Route::resource('admin/category', 'Admin\\CategoryController');
+    Route::resource('/admin/category', 'Admin\\CategoryController');
 
     // Product CRUD inside admin
-    Route::resource('admin/product', 'Admin\\ProductController');
+    Route::resource('/admin/product', 'Admin\\ProductController');
 
     // Product Parameter CRUD inside admin
-    Route::resource('admin/product_parameter', 'Admin\\Product_parameterController');
+    Route::resource('/admin/product_parameter', 'Admin\\Product_parameterController');
 
     // Coupon CRUD inside admin
-    Route::resource('admin/coupon', 'Admin\\CouponController');
+    Route::resource('/admin/coupon', 'Admin\\CouponController');
 
     // Contact - Query
-    Route::get('admin/contact', 'Customer\\ContactController@displayQueries')->name('contact.index');
-    Route::get('admin/contact/{id}', 'Customer\\ContactController@showQuery')->name('contact.show');
-    Route::delete('admin/contact/{id}', 'Customer\\ContactController@destroyQuery')->name('contact.destroy');
-    Route::get('admin/contact/{id}/reply', 'Customer\\ContactController@queryReply')->name('contact.reply');
+    Route::get('/admin/contact', 'Customer\\ContactController@displayQueries')->name('contact.index');
+    Route::get('/admin/contact/{id}', 'Customer\\ContactController@showQuery')->name('contact.show');
+    Route::delete('/admin/contact/{id}', 'Customer\\ContactController@destroyQuery')->name('contact.destroy');
+    Route::get('/admin/contact/{id}/reply', 'Customer\\ContactController@queryReply')->name('contact.reply');
 
     // Order CRUD inside Admin
-    Route::resource('admin/order', 'Admin\\OrderController');
+    Route::resource('/admin/order', 'Admin\\OrderController');
 
     // Static Page CRUD inside admin
-    Route::resource('admin/page', 'Admin\\PageController');
+    Route::resource('/admin/page', 'Admin\\PageController');
     
     // Email Template CRUD inside admin
-    Route::resource('admin/template', 'Admin\\TemplateController');
+    Route::resource('/admin/template', 'Admin\\TemplateController');
 
 });
 
@@ -175,80 +175,86 @@ Route::get('/cust/checkout/success', 'CashPaymentController@cashPayment');
 Route::get('/cust/category/{cat}/{subcat}', 'Customer\\ShopController@subcategoryProducts')->middleware('auth');
 
 // Wishlist - Add product to wishlist
-Route::get('cust/wishlist/add/{id}', 'Customer\\WishlistController@store')->middleware('auth');
+Route::get('/cust/wishlist/add/{id}', 'Customer\\WishlistController@store')->middleware('auth');
 
-Route::resource('cust/wishlist', 'Customer\\WishlistController')->middleware('auth');
+Route::resource('/cust/wishlist', 'Customer\\WishlistController')->middleware('auth');
 
 // Account - Info
-Route::get('cust/account/info', 'Customer\\AccountController@info')->middleware('auth');
+Route::get('/cust/account/info', 'Customer\\AccountController@info')->middleware('auth');
 
 // Account - Update Info
-Route::get('cust/account/info/update', 'Customer\\AccountController@updateInfo')->middleware('auth');
+Route::get('/cust/account/info/update', 'Customer\\AccountController@updateInfo')->middleware('auth');
 
 // Account - Orders
-Route::get('cust/order', 'Customer\\AccountController@orders')->middleware('auth');
+Route::get('/cust/order', 'Customer\\AccountController@orders')->middleware('auth');
 
 // Account - Order Details
-Route::get('cust/order/{id}', 'Customer\\AccountController@orderDetails')->middleware('auth');
+Route::get('/cust/order/{id}', 'Customer\\AccountController@orderDetails')->middleware('auth');
 
 // Account - Change Password Form
-Route::get('cust/account/password', 'Customer\\AccountController@changePassword')->middleware('auth');
+Route::get('/cust/account/password', 'Customer\\AccountController@changePassword')->middleware('auth');
 
 //Account - Update Password
-Route::get('cust/account/password/update', 'Customer\\AccountController@updatePassword')->middleware('auth');
+Route::get('/cust/account/password/update', 'Customer\\AccountController@updatePassword')->middleware('auth');
 
 // Track Order with Order ID and Email
-Route::get('cust/track', 'Customer\\TrackController@trackOrder');
+Route::get('/cust/track', 'Customer\\TrackController@trackOrder');
 
 // Get Order Status for Tracked Order
-Route::get('cust/track/status', 'Customer\\TrackController@orderStatus');
+Route::get('/cust/track/status', 'Customer\\TrackController@orderStatus');
 
 // Contact Us - Ask Query
-Route::get('cust/contact', 'Customer\\ContactController@askQuery');
+Route::get('/cust/contact', 'Customer\\ContactController@askQuery');
 
 // Contact Us - Store Query
-Route::get('cust/contact/query', 'Customer\\ContactController@storeQuery');
+Route::get('/cust/contact/query', 'Customer\\ContactController@storeQuery');
 
 /*
 |--------------------------------------------------------------------------
-| Static Page Routes
+| Static Page Routes  'cust/{page_name}'
 |--------------------------------------------------------------------------
 */
 
 // Terms of Use
-Route::get('cust/terms_of_use', 'StaticPageController@termsOfUse');
+Route::get('/cust/terms_of_use', 'StaticPageController@termsOfUse');
 
 // Privacy Policy
-Route::get('cust/privacy_policy', 'StaticPageController@privacyPolicy');
+Route::get('/cust/privacy_policy', 'StaticPageController@privacyPolicy');
 
 // Refund Policy
-Route::get('cust/refund_policy', 'StaticPageController@refundPolicy');
+Route::get('/cust/refund_policy', 'StaticPageController@refundPolicy');
 
 // FAQs
-Route::get('cust/faq', 'StaticPageController@faq');
+Route::get('/cust/faq', 'StaticPageController@faq');
 
 // About Us
-Route::get('cust/about_us', 'StaticPageController@aboutUs');
+Route::get('/cust/about_us', 'StaticPageController@aboutUs');
 
 // Copyright
-Route::get('cust/copyright', 'StaticPageController@copyright');
+Route::get('/cust/copyright', 'StaticPageController@copyright');
 
 // Billing System
-Route::get('cust/billing_system', 'StaticPageController@billingSystem');
+Route::get('/cust/billing_system', 'StaticPageController@billingSystem');
 
 // Partners
-Route::get('cust/partner', 'StaticPageController@partner');
+Route::get('/cust/partner', 'StaticPageController@partner');
 
 // Career
-Route::get('cust/career', 'StaticPageController@career');
+Route::get('/cust/career', 'StaticPageController@career');
 
 // Newsletter form
-Route::get('cust/newsletter', 'NewsletterController@newsletter');
+Route::get('/cust/newsletter', 'NewsletterController@newsletter');
 
 // Newsletter Subscribe
-Route::post('cust/newsletter/subscribe', 'NewsletterController@subscribeToNewsletter');
+Route::post('/cust/newsletter/subscribe', 'NewsletterController@subscribeToNewsletter');
 
-// Route::get('mailable', function () {
-//     $order = App\Order::find(5);
-//     return (new App\Mail\WeeklyWishlistEmailToAdmin())->render();
-// });
+/*
+|--------------------------------------------------------------------------
+| Test MAil
+|--------------------------------------------------------------------------
+*/
+Route::get('/mailable', function () {
+    $order = App\Order::find(5);
+
+    return (new App\Mail\OrderPlacedEmail($order))->render();
+});

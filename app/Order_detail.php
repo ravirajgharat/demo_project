@@ -37,7 +37,8 @@ class Order_detail extends Model
     protected $fillable = ['order_id', 'product', 'quantity', 'price', 'coupon', 'discount'];
 
     // Many to One
-    public function order() {
+    public function order()
+    {
         return $this->belongsTo('App\Order');
     }
 }

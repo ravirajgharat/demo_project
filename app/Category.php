@@ -54,12 +54,6 @@ class Category extends Model
     {
         return $this->belongsTo('App\Category', 'category_id');
     }
-    
-    //Multi level Parent Categories
-    // public function parentCategories()
-    // {
-    //     return $this->belongsToMany(Category::class)->with('parent');
-    // }
 
     // One to Many
     public function products() 
@@ -72,5 +66,4 @@ class Category extends Model
     {
         return $this->hasMany('App\Banner');
     }
-    
 }

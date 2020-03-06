@@ -3,7 +3,6 @@
 @section('content')
 
 <div class="container">
-
     <div class="step-one">
         <h2 class="heading">Partners</h2>
     </div>
@@ -11,7 +10,6 @@
         {!! $page->content !!}
     </div>
     <br>
-
 </div>
 
 @endsection

@@ -50,10 +50,8 @@ class PageController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-
             'page' => 'bail|required|string|min:4|max:255|unique:pages',
             'point' => 'bail|required|string|min:4',
-
         ]);
 
         $page = new Page;

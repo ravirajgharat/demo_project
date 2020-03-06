@@ -2,12 +2,28 @@
 
 @section('content')
 <div class="content-wrapper">
-    <div class="container">
+    <!-- Content Header (Page header) -->
+      <div class="content-header">
+        <div class="container-fluid">
+          <div class="row mb-2">
+            <div class="col-sm-6">
+              <h1 class="m-0 text-dark">Category</h1>
+            </div><!-- /.col -->
+            <div class="col-sm-6">
+              <ol class="breadcrumb float-sm-right">
+                <li class="breadcrumb-item"><a href="{{ url('/admin') }}">Home</a></li>
+                <li class="breadcrumb-item active">Category</li>  
+              </ol>
+            </div><!-- /.col -->
+          </div><!-- /.row -->
+          <hr>
+        </div><!-- /.container-fluid -->
+      </div>
+    <!-- /.content-header -->
+    <div class="container-fluid">
         <div class="row">
-
-                <div class="card-body">
-                        <h2>Category</h2>
-                        <hr>
+                    
+                    <div class="card-body">
                         <a href="{{ url('/admin/category/create') }}" class="btn btn-success btn-sm" title="Add New Banner">
                             <i class="fa fa-plus" aria-hidden="true"></i> Add New
                         </a>

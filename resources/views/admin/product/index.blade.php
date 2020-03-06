@@ -3,12 +3,28 @@
 @section('content')
 
 <div class="content-wrapper">
-    <div class="container">
+    <!-- Content Header (Page header) -->
+      <div class="content-header">
+        <div class="container-fluid">
+          <div class="row mb-2">
+            <div class="col-sm-6">
+              <h1 class="m-0 text-dark">Product</h1>
+            </div><!-- /.col -->
+            <div class="col-sm-6">
+              <ol class="breadcrumb float-sm-right">
+                <li class="breadcrumb-item"><a href="{{ url('/admin') }}">Home</a></li>
+                <li class="breadcrumb-item active">Product</li>  
+              </ol>
+            </div><!-- /.col -->
+          </div><!-- /.row -->
+          <hr>
+        </div><!-- /.container-fluid -->
+      </div>
+    <!-- /.content-header -->
+    <div class="container-fluid">
         <div class="row">
-
+                    
                     <div class="card-body">
-                        <h2>Product</h2>
-                        <hr>
                         <a href="{{ url('/admin/product/create') }}" class="btn btn-success btn-sm" title="Add New Product">
                             <i class="fa fa-plus" aria-hidden="true"></i> Add New
                         </a>

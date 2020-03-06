@@ -15,30 +15,18 @@
 
 <!-------------------------------------- content ---------------------------------------------------->
                 
-                <div class="col-sm-9 padding-right">
-                    <div class="features_items">
-                        <h2 class="title text-center">Add Address</h2>
-                        <a href="{{ url('/cust/address') }}" title="Back"><button class="btn btn-primary btn-sm"><i class="fa fa-arrow-left" aria-hidden="true"></i> Back</button></a>
-                        <br />
-                        <br />
-
-                        {{-- @if ($errors->any())
-                            <ul class="alert alert-danger">
-                                @foreach ($errors->all() as $error)
-                                    <li>{{ $error }}</li>
-                                @endforeach
-                            </ul>
-                        @endif --}}
-
-                        <form method="POST" action="{{ url('/cust/address') }}" accept-charset="UTF-8" class="form-horizontal" enctype="multipart/form-data">
-                            {{ csrf_field() }}
-
-                            @include ('customer.address.form', ['formMode' => 'create'])
-
-                        </form>
-
-                    </div>
+            <div class="col-sm-9 padding-right">
+                <div class="features_items">
+                    <h2 class="title text-center">Add Address</h2>
+                    <a href="{{ url('/cust/address') }}" title="Back"><button class="btn btn-primary btn-sm"><i class="fa fa-arrow-left" aria-hidden="true"></i> Back</button></a>
+                    <br />
+                    <br />
+                    <form method="POST" action="{{ url('/cust/address') }}" accept-charset="UTF-8" class="form-horizontal" enctype="multipart/form-data">
+                        {{ csrf_field() }}
+                        @include ('customer.address.form', ['formMode' => 'create'])
+                    </form>
                 </div>
+            </div>
         </div>
     </div>
 </section>

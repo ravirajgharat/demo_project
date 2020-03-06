@@ -194,8 +194,6 @@
         </div>
         <!-- /.register-box -->
 
-
-
 @endsection
 @section('scripts')
 <!-- jQuery -->

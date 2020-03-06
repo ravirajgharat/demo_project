@@ -9,6 +9,11 @@ class Role extends Model
 {
     use SoftDeletes;
     
+    /**
+     * Attributes that should be mass-assignable.
+     *
+     * @var array
+     */
     protected $fillable = [
         'name',
     ];

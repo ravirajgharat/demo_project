@@ -37,7 +37,8 @@ class Order_status extends Model
     protected $fillable = ['order_id', 'changed_by', 'changed_to'];
 
     // Many to One
-    public function order() {
+    public function order()
+    {
         return $this->belongsTo('App\Order');
     }
 }

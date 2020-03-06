@@ -35,5 +35,4 @@ class Wishlist extends Model
      *
      */
     protected $dates = ['deleted_at'];
-    
 }

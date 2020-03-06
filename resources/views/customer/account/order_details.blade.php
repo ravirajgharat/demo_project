@@ -3,7 +3,6 @@
 @section('content')
 
 @if ($message = Session::get('success'))
-
     <div class="alert alert-success">            
         <h4 style="padding-top:10px;" id="id1" onclick="this.parentElement.style.display='none'">
             {!! $message !!}
@@ -11,7 +10,6 @@
         </h4>
     </div>
     <?php Session::forget('success');?>
-
 @endif
 
 <section>
@@ -50,39 +48,35 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {{-- <tr> --}}
-                                        <?php $sum = 0; ?>
-                                        @foreach($details as $product)
+                                    <?php $sum = 0; ?>
+                                    @foreach($details as $product)    
+                                        <?php
+                                            $prod = App\Product::where('product_name', $product->product)->first();
+                                            $sum = $sum + $product->price * $product->quantity;
+                                        ?>
+
+                                        <tr>
+                                            <td class="cart_product">
+                                                <img style="width:100px;height:auto" src="{{ url('/storage/' . App\Product_image::where('product_id', $prod->id)->first()->product_image) }}" alt="">
+                                            </td>
+                                            <td></td>
+                                            <td></td>
+                                            <td class="cart_description" style="padding-left:20px;">
+                                                <h4><a href="">{{ $product->product }}</a></h4>
+                                                <p>Product ID: {{ $prod->id }}</p>
+                                            </td>
+                                            <td class="cart_price">
+                                                <p>Rs. {{ $product->price }}</p>
+                                            </td>
                                             
-                                            <?php
-                                                $prod = App\Product::where('product_name', $product->product)->first();
-                                                $sum = $sum + $product->price * $product->quantity;
-                                            ?>
-
-                                            <tr>
-                                                <td class="cart_product">
-                                                    <img style="width:100px;height:auto" src="{{ url('/storage/' . App\Product_image::where('product_id', $prod->id)->first()->product_image) }}" alt="">
-                                                </td>
-                                                <td></td>
-                                                <td></td>
-                                                <td class="cart_description" style="padding-left:20px;">
-                                                    <h4><a href="">{{ $product->product }}</a></h4>
-                                                    <p>Product ID: {{ $prod->id }}</p>
-                                                </td>
-                                                <td class="cart_price">
-                                                    <p>Rs. {{ $product->price }}</p>
-                                                </td>
-                                                
-                                                <td class="cart_quantity">
-                                                    <p>&nbsp; &nbsp;&times; {{ $product->quantity }}</p>
-                                                </td>
-                                                <td class="cart_total">
-                                                    <p class="cart_total_price">Rs. {{ $product->price * $product->quantity }}</p>
-                                                </td>
-                                            </tr>
-                                        
-                                        @endforeach
-
+                                            <td class="cart_quantity">
+                                                <p>&nbsp; &nbsp;&times; {{ $product->quantity }}</p>
+                                            </td>
+                                            <td class="cart_total">
+                                                <p class="cart_total_price">Rs. {{ $product->price * $product->quantity }}</p>
+                                            </td>
+                                        </tr>
+                                    @endforeach
                                     <tr>
                                         <td colspan="4">&nbsp;</td>
                                         <td colspan="2">
@@ -130,8 +124,7 @@
                 </div>
             </div>
         </div>
-    </div>
-            
+    </div>        
 </section>
 <br>
 

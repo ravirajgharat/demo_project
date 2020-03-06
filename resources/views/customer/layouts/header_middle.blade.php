@@ -9,34 +9,10 @@
                         <a href="{{ url('/') }}"><img src="{{ asset('customer/images/home/logo.png') }}" alt="" /></a>
                     @endif
                 </div>
-                <!-- <div class="btn-group pull-right">
-                    <div class="btn-group">
-                        <button type="button" class="btn btn-default dropdown-toggle usa" data-toggle="dropdown">
-                            USA
-                            <span class="caret"></span>
-                        </button>
-                        <ul class="dropdown-menu">
-                            <li><a href="#">Canada</a></li>
-                            <li><a href="#">UK</a></li>
-                        </ul>
-                    </div>
-                    
-                    <div class="btn-group">
-                        <button type="button" class="btn btn-default dropdown-toggle usa" data-toggle="dropdown">
-                            DOLLAR
-                            <span class="caret"></span>
-                        </button>
-                        <ul class="dropdown-menu">
-                            <li><a href="#">Canadian Dollar</a></li>
-                            <li><a href="#">Pound</a></li>
-                        </ul>
-                    </div>
-                </div> -->
             </div>
             <div class="col-sm-8">
                 <div class="shop-menu pull-right">
                     <ul class="nav navbar-nav">
-                        
                         <li>
                             <a href="{{ url('/cust/account/info') }}">
                                 @guest @else<i class="fa fa-user"></i>@endguest
@@ -58,8 +34,6 @@
                                 @endguest
                             </a>
                         </li>
-
-                        {{-- <li><a href="checkout.html"><i class="fa fa-crosshairs"></i> Checkout</a></li> --}}
                         <li>
                             <a href="{{ url('/cust/cart') }}">
                                 @guest @else<i class="fa fa-shopping-cart"></i>@endguest
@@ -70,16 +44,7 @@
                                 @endguest
                             </a>
                         </li>
-                        {{-- <li>
-                                @guest
-                                @else
-                                    <a href="{{ url('/cust/address') }}"><i class="fa fa-map-marker"></i>My Addresses</a>
-                                @endguest
-                        </li> --}}
-                        
-                        <li>
-                            
-                                
+                        <li>  
                             @guest
                                 <a href="{{ url('/login') }}">
                                     <i class="fa fa-lock"></i> 
@@ -104,7 +69,6 @@
                                     </div>
                                 </li>
                             @endguest
-                            
                         </li>
                     </ul>
                 </div>

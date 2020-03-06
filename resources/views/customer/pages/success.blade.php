@@ -3,7 +3,6 @@
 @section('content')
 
 @if ($message = Session::get('success'))
-
     <div class="alert alert-success">            
         <h4 style="padding-top:10px;" id="id1" onclick="this.parentElement.style.display='none'">
             {!! $message !!}
@@ -11,7 +10,6 @@
         </h4>
     </div>
     <?php Session::forget('success');?>
-
 @endif
 
 <div class="container text-center">

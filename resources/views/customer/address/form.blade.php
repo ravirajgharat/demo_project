@@ -33,13 +33,6 @@
     </div>
     <strong>{!! $errors->first('landmark', '<p class="help-block">:message</p>') !!}</strong>
 </div>
-{{-- <div class="form-group {{ $errors->has('user_id') ? 'has-error' : ''}}">
-    <label for="user_id" class="control-label">{{ 'User Id' }}</label>
-    <input class="form-control" name="user_id" type="number" id="user_id" value="{{ isset($address->user_id) ? $address->user_id : ''}}" >
-    {!! $errors->first('user_id', '<p class="help-block">:message</p>') !!}
-</div> --}}
-
-
 <div>
     <input class="btn btn-primary" type="submit" value="Submit">
 </div>

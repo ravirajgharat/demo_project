@@ -7,9 +7,10 @@
         <strong>{!! $errors->first('template_name', '<p class="help-block text-danger">:message</p>') !!}</strong>
     </div>
     <div class="form-group {{ $errors->has('template') ? 'has-error' : ''}}">
-    <label for="template" class="control-label">{{ 'Template' }}</label>
-    <textarea class="form-control" rows="20" name="template" type="textarea" id="template" >{{ isset($template->template) ? $template->template : ''}}</textarea>
-    <strong>{!! $errors->first('template', '<p class="help-block">:message</p>') !!}</strong>
+        <label for="template" class="control-label">{{ 'Template' }}</label>
+        <textarea class="form-control" rows="20" name="template" type="textarea" id="template" >{{ isset($template->template) ? $template->template : ''}}</textarea>
+        <strong>{!! $errors->first('template', '<p class="help-block">:message</p>') !!}</strong>
+    </div>
 </div>
 
 

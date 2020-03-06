@@ -35,6 +35,4 @@ class Coupon extends Model
      *
      */
     protected $dates = ['deleted_at'];
-    
 }
-    

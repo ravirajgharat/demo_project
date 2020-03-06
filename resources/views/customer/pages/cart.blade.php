@@ -18,9 +18,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        
                         @foreach($items as $item)
-
                             <tr>
                                 <td class="cart_product">
                                     <img style="width:100px;height:auto" src="{{ url('/storage/' . App\Product_image::where('product_id', $item->id)->first()->product_image) }}" alt="">
@@ -56,72 +54,15 @@
                                     <a class="cart_quantity_delete" href="{{ url('/cust/cart/remove/' . $item->rowId) }}"><i class="fa fa-times"></i></a>
                                 </td>
                             </tr>
-                        
                         @endforeach
-
-                        {{-- <tr>
-                            <td class="cart_product">
-                                <a href=""><img src="images/cart/two.png" alt=""></a>
-                            </td>
-                            <td class="cart_description">
-                                <h4><a href="">Colorblock Scuba</a></h4>
-                                <p>Web ID: 1089772</p>
-                            </td>
-                            <td class="cart_price">
-                                <p>$59</p>
-                            </td>
-                            <td class="cart_quantity">
-                                <div class="cart_quantity_button">
-                                    <a class="cart_quantity_up" href=""> + </a>
-                                    <input class="cart_quantity_input" type="text" name="quantity" value="1" autocomplete="off" size="2">
-                                    <a class="cart_quantity_down" href=""> - </a>
-                                </div>
-                            </td>
-                            <td class="cart_total">
-                                <p class="cart_total_price">$59</p>
-                            </td>
-                            <td class="cart_delete">
-                                <a class="cart_quantity_delete" href=""><i class="fa fa-times"></i></a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="cart_product">
-                                <a href=""><img src="images/cart/three.png" alt=""></a>
-                            </td>
-                            <td class="cart_description">
-                                <h4><a href="">Colorblock Scuba</a></h4>
-                                <p>Web ID: 1089772</p>
-                            </td>
-                            <td class="cart_price">
-                                <p>$59</p>
-                            </td>
-                            <td class="cart_quantity">
-                                <div class="cart_quantity_button">
-                                    <a class="cart_quantity_up" href=""> + </a>
-                                    <input class="cart_quantity_input" type="text" name="quantity" value="1" autocomplete="off" size="2">
-                                    <a class="cart_quantity_down" href=""> - </a>
-                                </div>
-                            </td>
-                            <td class="cart_total">
-                                <p class="cart_total_price">$59</p>
-                            </td>
-                            <td class="cart_delete">
-                                <a class="cart_quantity_delete" href=""><i class="fa fa-times"></i></a>
-                            </td>
-                        </tr> --}}
-
                     </tbody>
                 </table>
             </div>
-            
             <a class="btn btn-primary" style="float:right; padding:10px 50px;" href="{{ url('/cust/cart/clear') }}" onclick="return confirm(&quot;This will clear all items from Cart. Are you sure you want to proceed?&quot;)">
                 Clear Cart
             </a>
         </div>
-        
     </section> <!--/#cart_items-->
-
-
     <section id="do_action">
         <div class="container">
             <div class="heading">
@@ -134,9 +75,7 @@
                         <ul class="user_option">
                             <h3>Available Coupons</h3>
                             <hr>
-
                             <form action="{{ url('/cust/cart/coupon') }}">
-                                
                                 @foreach($codes as $coupon)
                                     @if(App\Order::where('coupon', $coupon->coupon_code)->where('user_id', $user_id)->count() < $coupon->max_use)
                                         <li>
@@ -151,47 +90,9 @@
                                         </li>
                                     @endif
                                 @endforeach
-
                         </ul>
-                        {{-- <ul class="user_info">
-                            <li class="single_field">
-                                <label>Country:</label>
-                                <select>
-                                    <option>United States</option>
-                                    <option>Bangladesh</option>
-                                    <option>UK</option>
-                                    <option>India</option>
-                                    <option>Pakistan</option>
-                                    <option>Ucrane</option>
-                                    <option>Canada</option>
-                                    <option>Dubai</option>
-                                </select>
-                                
-                                
-                            </li>
-                            <li class="single_field">
-                                <label>Region / State:</label>
-                                <select>
-                                    <option>Select</option>
-                                    <option>Dhaka</option>
-                                    <option>London</option>
-                                    <option>Dillih</option>
-                                    <option>Lahore</option>
-                                    <option>Alaska</option>
-                                    <option>Canada</option>
-                                    <option>Dubai</option>
-                                </select>
-                            
-                            </li>
-                            <li class="single_field zip-field">
-                                <label>Zip Code:</label>
-                                <input type="text">
-                            </li>
-                        </ul> --}}
-                        
                             <button class="btn btn-primary" style="margin-left:40px;">Apply Coupon</button>
                         </form>
-                        {{-- <a class="btn btn-default check_out" href="">Continue</a> --}}
                     </div>
                 </div>
                 <div class="col-sm-6">
@@ -215,7 +116,6 @@
             </div>
         </div>
     </section><!--/#do_action-->
-
 @else
     <div class="container text-center" style="padding:50px;">
         <h2 style="color:gray;">Cart is Empty.</h2>

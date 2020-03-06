@@ -10,13 +10,16 @@ class Product extends Model implements Buyable
 {
     use SoftDeletes;
 
-    public function getBuyableIdentifier($options = null) {
+    public function getBuyableIdentifier($options = null)
+    {
         return $this->id;
     }
-    public function getBuyableDescription($options = null) {
+    public function getBuyableDescription($options = null)
+    {
         return $this->name;
     }
-    public function getBuyablePrice($options = null) {
+    public function getBuyablePrice($options = null)
+    {
         return $this->price;
     }
     
@@ -40,7 +43,6 @@ class Product extends Model implements Buyable
      */
     protected $dates = ['deleted_at'];
 
-
     /**
      * Attributes that should be mass-assignable.
      *
@@ -49,17 +51,20 @@ class Product extends Model implements Buyable
     protected $fillable = ['product_name', 'product_description', 'price', 'quantity'];
 
     // Many to Many
-    public function category() {
+    public function category()
+    {
         return $this->belongsTo('App\Category');
     }
 
     // One to Many
-    public function images() {
+    public function images()
+    {
         return $this->hasMany('App\Product_image');
     }
 
     // One to Many
-    public function parameters() {
+    public function parameters()
+    {
         return $this->hasMany('App\Product_parameter');
     }
 }

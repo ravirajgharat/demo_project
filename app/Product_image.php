@@ -37,7 +37,8 @@ class Product_image extends Model
     protected $fillable = ['product_image', 'product_id'];
 
     // Many to One
-    public function product() {
+    public function product()
+    {
         return $this->belongsTo('App\Product');
     }
 }

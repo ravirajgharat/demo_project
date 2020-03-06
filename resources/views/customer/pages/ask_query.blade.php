@@ -3,27 +3,20 @@
 @section('content')
 
 <div class="container">
-
     <div class="step-one">
         <h2 class="heading">Ask Query</h2>
     </div>
-
     @if ($message = Session::get('success'))
-
         <div class="alert alert-success">
             <h4 style="padding-top:10px;" id="id1" onclick="this.parentElement.style.display='none'">
                 {!! $message !!}
                 <span style="float:right;"><i class="fa fa-check"></i></span>
             </h4>
         </div>
-        <?php Session::forget('success');?>
-        
+        <?php Session::forget('success');?>        
     @endif
-
     <form action="{{ url('/cust/contact/query') }}">
-
         <div class="form-group row">
-
             <div class="col-sm-2">
                 <label for="firstname">First Name</label>
             </div>
@@ -35,11 +28,8 @@
                     <strong>{{ $message }}</strong>
                 </div>
             @enderror
-
         </div>
-
         <div class="form-group row">
-
             <div class="col-sm-2">
                 <label for="lastname">Last Name</label>
             </div>
@@ -51,11 +41,8 @@
                     <strong>{{ $message }}</strong>
                 </div>
             @enderror
-
         </div>
-
         <div class="form-group row">
-
             <div class="col-sm-2">
                 <label for="email">Email address</label>
             </div>
@@ -67,11 +54,8 @@
                     <strong>{{ $message }}</strong>
                 </div>
             @enderror
-
         </div>
-
         <div class="form-group row">
-
             <div class="col-sm-2">
                 <label for="contact">Contact No.</label>
             </div>
@@ -83,11 +67,8 @@
                     <strong>{{ $message }}</strong>
                 </div>
             @enderror
-
         </div>
-
         <div class="form-group row">
-
             <div class="col-sm-2">
                 <label for="query">Message</label>
             </div>
@@ -99,15 +80,10 @@
                     <strong>{{ $message }}</strong>
                 </div>
             @enderror
-
         </div>
-
         <button class="btn btn-primary" style="padding:10px 30px;" type="submit">Submit Query</button>
-
     </form>
-
     <br>
-
 </div>
 
 @endsection

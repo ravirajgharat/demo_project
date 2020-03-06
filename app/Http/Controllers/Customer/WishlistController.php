@@ -29,8 +29,9 @@ class WishlistController extends Controller
         }
 
         $wishlist = Wishlist::where('user_id', Auth::user()->id)->distinct('product_id')->get();
+        $count = $wishlist->count();
 
-        return view('customer.wishlist.index', compact('wishlist'));
+        return view('customer.wishlist.index', compact('wishlist', 'count'));
     }
 
     /**

@@ -35,5 +35,4 @@ class Page extends Model
      *
      */
     protected $dates = ['deleted_at'];
-
 }

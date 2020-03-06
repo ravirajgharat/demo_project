@@ -35,5 +35,4 @@ class Configuration extends Model
      *
      */
     protected $dates = ['deleted_at'];
-    
 }
