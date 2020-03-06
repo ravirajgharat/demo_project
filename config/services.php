@@ -32,19 +32,19 @@ return [
 
     'google' => [
         'client_id' => env('GOOGLE_CLIENT_ID'),
-        'client_secret' => env('GOOGLE_SECRET'),
+        'client_secret' => env('GOOGLE_SECRET_KEY'),
         'redirect' => 'http://localhost/demo_project/public/google/callback',
     ],
 
     'facebook' => [
         'client_id' => env('FACEBOOK_CLIENT_ID'),
-        'client_secret' => env('FACEBOOK_SECRET'),
+        'client_secret' => env('FACEBOOK_SECRET_KEY'),
         'redirect' => 'http://localhost/demo_project/public/facebook/callback',
     ],
 
     'twitter' => [
         'client_id' => env('TWITTER_CLIENT_ID'),
-        'client_secret' => env('TWITTER_SECRET'),
+        'client_secret' => env('TWITTER_SECRET_KEY'),
         'redirect' => 'http://localhost/demo_project/public/twitter/callback',
     ],
 

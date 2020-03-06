@@ -9,7 +9,7 @@
                         <a href="{{ url('/') }}"><img src="{{ asset('customer/images/home/logo.png') }}" alt="" /></a>
                     @endif
                 </div>
-                {{-- <div class="btn-group pull-right">
+                <!-- <div class="btn-group pull-right">
                     <div class="btn-group">
                         <button type="button" class="btn btn-default dropdown-toggle usa" data-toggle="dropdown">
                             USA
@@ -31,7 +31,7 @@
                             <li><a href="#">Pound</a></li>
                         </ul>
                     </div>
-                </div> --}}
+                </div> -->
             </div>
             <div class="col-sm-8">
                 <div class="shop-menu pull-right">
@@ -104,7 +104,6 @@
                                     </div>
                                 </li>
                             @endguest
-
                             
                         </li>
                     </ul>

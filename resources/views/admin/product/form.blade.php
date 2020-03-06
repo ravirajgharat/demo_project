@@ -54,6 +54,15 @@
         </div>
         <strong>{!! $errors->first('parameter', '<p class="help-block text-danger">:message</p>') !!}</strong>
     </div>
+
+    <div class="form-group row {{ $errors->has('quantity') ? 'has-error' : ''}}">
+        <label for="quantity" class="col-sm-2 col-form-label">{{ 'Quantity' }}</label>
+        <div class="col-sm-6">
+            <input class="form-control" name="quantity" type="number" placeholder="Quantity" id="quantity" value="{{ isset($product->quantity) ? $product->quantity : ''}}" >
+        </div>
+        <strong>{!! $errors->first('quantity', '<p class="help-block text-danger">:message</p>') !!}</strong>
+    </div>
+
     <div class="form-group row {{ $errors->has('categories') ? 'has-error' : ''}}">
         <label for="categories" class="col-sm-2 col-form-label">{{ 'Category' }}</label>
         <div class="col-sm-6">

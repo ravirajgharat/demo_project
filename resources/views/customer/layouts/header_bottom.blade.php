@@ -35,20 +35,15 @@
                                 Track Order
                             </a>
                         </li>
-                        {{-- <li><a href="404.html">404</a></li> --}}
                         <li><a href="{{ url('/cust/contact') }}">Contact Us</a></li>
                     </ul>
                 </div>
             </div>
-            <div class="col-sm-3">
+            <div class="col-sm-3 dropdown">
                 <div class="search_box pull-right">
-                    <input type="text" placeholder="Search Products" name="search" id="search" autocomplete="off" />
+                    <input type="text" placeholder="Search Products" name="search" id="search" autocomplete="off" class="pull-right dropdown-toggle" data-toggle="dropdown"/><br>
+                    <ul id="search_result" class="pull-right dropdown-menu list-group" style="margin-right:15px;display:none;background:#F0F0E9;"></ul>
                 </div>
-            </div>
-            <div>
-                <ul id="list_tag_search">
-                    
-                </ul>
             </div>
         </div>
     </div>

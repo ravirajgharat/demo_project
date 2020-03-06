@@ -19,4 +19,6 @@
 <link rel="apple-touch-icon-precomposed" sizes="114x114" href="{{ asset('customer/images/ico/apple-touch-icon-114-precomposed.png') }}">
 <link rel="apple-touch-icon-precomposed" sizes="72x72" href="{{ asset('customer/images/ico/apple-touch-icon-72-precomposed.png') }}">
 <link rel="apple-touch-icon-precomposed" href="{{ asset('customer/images/ico/apple-touch-icon-57-precomposed.png') }}">
+<!-- Font Awesome -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>

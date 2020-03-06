@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests;
 use Illuminate\Support\Facades\Storage;
+use App;
 use App\Banner;
 use Illuminate\Http\Request;
 use Illuminate\Http\UploadedFile;
@@ -43,7 +44,15 @@ class BannerController extends Controller
      */
     public function create()
     {
-        return view('admin.banner.create');
+        $cats = App\Category::with('categories')->get();
+        $categories = array();
+        foreach ($cats as $cat) {
+            if(! $cat->categories->count()) {
+                $categories[] = $cat;
+            }
+        }
+
+        return view('admin.banner.create', compact('categories'));
     }
 
     /**
@@ -58,6 +67,7 @@ class BannerController extends Controller
         $request->validate([
             'bannername' => 'bail|required|unique:banners|string|max:255|min:4',
             'bannerimage' => 'bail|required|image|max:2048',
+            'categories' => 'required'
         ]);
 
         $requestData = $request->all();
@@ -65,7 +75,11 @@ class BannerController extends Controller
             $requestData['bannerimage'] = $request->file('bannerimage')->store('uploads/banners', 'public');
         }
 
-        Banner::create($requestData);
+        Banner::create([
+            'bannername' => $requestData['bannername'],
+            'bannerimage' => $requestData['bannerimage'],
+            'category_id' => $requestData['categories'],
+        ]);
 
         return redirect('admin/banner')->with('flash_message', 'Banner added!');
     }
@@ -94,8 +108,15 @@ class BannerController extends Controller
     public function edit($id)
     {
         $banner = Banner::findOrFail($id);
+        $cats = App\Category::with('categories')->get();
+        $categories = array();
+        foreach ($cats as $cat) {
+            if(! $cat->categories->count()) {
+                $categories[] = $cat;
+            }
+        }
 
-        return view('admin.banner.edit', compact('banner'));
+        return view('admin.banner.edit', compact('banner', 'categories'));
     }
 
     /**
@@ -111,6 +132,7 @@ class BannerController extends Controller
         $request->validate([
             'bannername' => 'bail|required|string|max:255|min:4|unique:banners,bannername,' . $id,
             'bannerimage' => 'bail|image|max:2048',
+            'categories' => 'required'
         ]);
 
         $requestData = $request->all();
@@ -120,11 +142,16 @@ class BannerController extends Controller
         
         $banner = Banner::findOrFail($id);
 
+
         if ($request->hasFile('bannerimage')) {
             Storage::delete('public/' . $banner->bannerimage);
-            $banner->update($requestData);
+            $banner->bannername = $request->bannername;
+            $banner->bannerimage = $requestData['bannerimage'];
+            $banner->category_id = $request->categories;
+            $banner->save();
         } else {           
             $banner->bannername = $request->bannername;
+            $banner->category_id = $request->categories;
             $banner->save();
         }
 

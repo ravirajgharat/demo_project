@@ -23,9 +23,15 @@ class SearchController extends Controller
 				$data = Product::where('product_name', 'like', '%'. $search .'%')->get();
 				$total_row = $data->count();
 			}
+			$count = 0;
 			if($total_row > 0)	{
 				foreach($data as $row) {
-					$output .= '<li>' . $row->product_name . '</li>';
+					$url = 'http://localhost/demo_project/public/cust/product/' . $row->id;
+					$name = $row->product_name;
+					$output .= '<li><a class="pull-right" style="background:#F0F0E9;color: #666;" href="' . $url . '">' . $name . '</a></li>';
+					if(++$count >= 4) {
+						break;
+					}
 				}
 			}
 			$data = array(

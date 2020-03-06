@@ -13,7 +13,12 @@ $('#search').on('keyup',function() {
         data:{'search':$value},
         success:function(data) {
             var obj = JSON.parse(data);
-            $('#list_tag_search').html(obj.table_data);
+            console.log(obj.table_data);
+            if(obj.table_data == '') {
+                $('#search_result').hide();
+            } else {
+                $('#search_result').show().html(obj.table_data);
+            }
         }
     });
     $.ajaxSetup({ headers: { 'csrftoken' : '{{ csrf_token() }}' } });

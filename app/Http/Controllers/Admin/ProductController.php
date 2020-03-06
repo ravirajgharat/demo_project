@@ -63,7 +63,8 @@ class ProductController extends Controller
             'product_brand' => 'bail|required|string|max:255|min:4',
             //'product_image' => 'bail|required|image|max:2048',
             'parameter' => 'required',
-            'categories'=> 'required',
+            'categories' => 'required',
+            'quantity' => 'bail|required|integer',
         ]);
         //dd($request->product_image);
 
@@ -76,6 +77,7 @@ class ProductController extends Controller
         $product->price = $request->price;
         $product->product_brand= $request->product_brand;
         $product->category_id = $request->categories;
+        $product->quantity = $request->quantity;
         $product->save();
         
         // $img = [];
@@ -163,6 +165,7 @@ class ProductController extends Controller
             'price' => 'bail|required|regex:/^\d+(\.\d{1,2})?$/',
             'product_brand' => 'bail|required|string|max:255|min:4',
             //'product_image' => 'bail|image|max:2048',
+            'quantity' => 'bail|required|integer',
         ]);
 
         //dd($request->categories);
@@ -172,6 +175,7 @@ class ProductController extends Controller
         $product->price = $request->price;
         $product->product_brand= $request->product_brand;
         $product->category_id = $request->categories;
+        $product->quantity = $request->quantity;
         $product->save();
 
         // if($request->hasFile('product_image')) {

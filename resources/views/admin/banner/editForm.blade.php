@@ -14,6 +14,19 @@
         </div>
         <strong>{!! $errors->first('bannerimage', '<p class="help-block text-danger">:message</p>') !!}</strong>
     </div>
+    <div class="form-group row {{ $errors->has('categories') ? 'has-error' : ''}}">
+        <label for="categories" class="col-sm-2 col-form-label">{{ 'Category' }}</label>
+        <div class="col-sm-6">
+            <select class="form-control" name="categories" id="categories" required="required">
+                @foreach ($categories as $category)
+                   <option value="{{ $category->id }}" <?php if(is_object($banner->category) && ($banner->category->id == $category->id)) { echo ' selected="selected"'; } ?>>
+                            {{ $category->categoryname }}
+                        </option>
+                @endforeach
+            </select>
+        </div>
+        <strong>{!! $errors->first('category_id', '<p class="help-block text-danger">:message</p>') !!}</strong>
+    </div>
 </div>    
     
     <div class="card-footer">

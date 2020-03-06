@@ -51,7 +51,7 @@ class OrderPlacedEmail extends Mailable
         $det = $order->details()->get();
         $details = "";
         foreach ($det as $item) {
-            $details .= '<tr><td style="border-right:1px solid black;border-bottom:1px solid black;">' . $item->product . '</td><td style="border-right:1px solid black;border-bottom:1px solid black;">' . $item->quantity . '</td><td style="border-right:1px solid black;border-bottom:1px solid black;">' . $item->price . '</td><td style="border-bottom:1px solid black;">' . $item->price*$item->quantity . '</td></tr>'; 
+            $details .= '<tr><td style="border-right:1px solid black;border-bottom:1px solid black;">' . $item->product . '</td><td style="border-right:1px solid black;border-bottom:1px solid black;">' . $item->quantity . '</td><td style="border-right:1px solid black;border-bottom:1px solid black;">' . $item->price . '</td><td style="border-bottom:1px solid black;">' . $item->price*$item->quantity . '</td></tr>';
         }
 
         // Email Template

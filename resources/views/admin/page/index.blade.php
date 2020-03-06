@@ -9,10 +9,11 @@
                     <div class="card-body">
                         <h2>Static Page</h2>
                         <hr>
+                        
                         <a href="{{ url('/admin/page/create') }}" class="btn btn-success btn-sm" title="Add New Page">
                             <i class="fa fa-plus" aria-hidden="true"></i> Add New
                         </a>
-
+                
                         <form method="GET" action="{{ url('/admin/page') }}" accept-charset="UTF-8" class="form-inline my-2 my-lg-0 float-right" role="search">
                             <div class="input-group">
                                 <input type="text" class="form-control" name="search" placeholder="Search..." value="{{ request('search') }}">

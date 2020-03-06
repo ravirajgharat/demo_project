@@ -13,13 +13,13 @@
                         <div class="item active">
                             <div class="col-sm-5">
                                 <h1><span>E</span>-SHOPPER</h1>
-                                <h2>Free E-Commerce Template</h2>
+                                <h2>{{ $ban->category->categoryname }}</h2>
                                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
-                                <button type="button" class="btn btn-default get">Get it now</button>
+                                <a href="{{ url('/cust/category/' . $ban->category->parent->categoryname . '/' . $ban->category->categoryname) }}" class="btn btn-default get">Get it now</a>
                             </div>
                             <div class="col-sm-6">
                                 <img src="{{ url('/storage/' . $ban->bannerimage) }}" class="girl img-responsive" alt="" />
-                                <img src="{{ asset('customer/images/home/pricing.png') }}"  class="pricing" alt="" />
+                                <!-- <img src="{{ asset('customer/images/home/pricing.png') }}"  class="pricing" alt="" /> -->
                             </div>
                         </div>
                         <?php $i = 1; ?>
@@ -28,13 +28,12 @@
                             <div class="item">
                                 <div class="col-sm-5">
                                     <h1><span>E</span>-SHOPPER</h1>
-                                    <h2>Free E-Commerce Template</h2>
+                                    <h2>{{ $banner->category->categoryname }}</h2>
                                     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
-                                    <button type="button" class="btn btn-default get">Get it now</button>
+                                    <a href="{{ url('/cust/category/' . $banner->category->parent->categoryname . '/' . $banner->category->categoryname) }}" class="btn btn-default get">Get it now</a>
                                 </div>
                                 <div class="col-sm-6">
                                     <img src="{{ url('/storage/' . $banner->bannerimage) }}" class="girl img-responsive" alt="" />
-                                    <img src="{{ asset('customer/images/home/pricing.png') }}"  class="pricing" alt="" />
                                 </div>
                             </div>
                             @if($i++ == 2) <?php break; ?> @endif

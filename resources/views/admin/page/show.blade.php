@@ -32,7 +32,7 @@
                         </div>
 
                         <div class="card-header bg-primary">Page Content</div>
-                        <div class="card-body">
+                        <div class="card-body border border-primary">
                             {!! $page->content !!}
                         </div>
                     </div>

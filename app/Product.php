@@ -46,7 +46,7 @@ class Product extends Model implements Buyable
      *
      * @var array
      */
-    protected $fillable = ['product_name', 'product_description', 'price'];
+    protected $fillable = ['product_name', 'product_description', 'price', 'quantity'];
 
     // Many to Many
     public function category() {

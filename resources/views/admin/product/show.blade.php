@@ -30,8 +30,8 @@
                                     <tr>
                                         <th class="text-primary"> Parameters </th>
                                         <td>
-                                            @foreach($product->parameters->unique('product_parameter    ') as $par)
-                                                <strong> {{ $par->product_parameter }}</strong><br>
+                                            @foreach($product->parameters as $par)
+                                                {{ $par->product_parameter }}<br>
                                             @endforeach
                                         </td>
                                     </tr>

@@ -68,7 +68,7 @@ class LoginController extends Controller
             $finduser = User::where('google_id', $user->id)->first();
             if($finduser){
                 Auth::login($finduser);
-                return redirect('/home');
+                return redirect('/cust/shop');
             } else {
                 $nameArray = explode(' ',$user->name);
                 //Create new User
@@ -116,7 +116,7 @@ class LoginController extends Controller
             //Check if User Exist
             if($finduser){
                 Auth::login($finduser);
-                return redirect('/home');
+                return redirect('/cust/shop');
             } else {
                 $nameArray = explode(' ',$user->name);
                 $role = Role::where('name', 'customer')->first()->id;
@@ -147,7 +147,7 @@ class LoginController extends Controller
         }
     }
 
-/**
+    /**
      * Redirect to google api.
      *
      * @return void
@@ -171,7 +171,7 @@ class LoginController extends Controller
             $finduser = User::where('twitter_id', $user->id)->first();
             if($finduser){
                 Auth::login($finduser);
-                return redirect('/home');
+                return redirect('/cust/shop');
             } else {
                 $nameArray = explode(' ',$user->name);
                 $role = Role::where('name', 'customer')->first()->id;
@@ -185,7 +185,7 @@ class LoginController extends Controller
                 $newUser = new User;
                 $newUser->firstname = $nameArray[0];
                 $newUser->lastname = $nameArray[1];
-                $newUser->email = $email;
+                $newUser->email = $user->email;
                 $newUser->twitter_id = $user->id;
                 $newUser->save();
                 //Assign Customer Role To User

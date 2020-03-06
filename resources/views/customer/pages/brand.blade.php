@@ -74,7 +74,7 @@
                                     </li>
                                 @else
                                     <li>
-                                        <a><i class="fa fa-times"></i>Out of Stock</a>
+                                        <a><i class="fa fa-frown-o"></i>Out of Stock</a>
                                     </li>
                                 @endif
                             </ul>

@@ -5,7 +5,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Banner extends Model
+class Order_status extends Model
 {
     use SoftDeletes;
     
@@ -14,7 +14,7 @@ class Banner extends Model
      *
      * @var string
      */
-    protected $table = 'banners';
+    protected $table = 'order_statuses';
 
     /**
     * The database primary key value.
@@ -24,21 +24,20 @@ class Banner extends Model
     protected $primaryKey = 'id';
 
     /**
-     * Attributes that should be mass-assignable.
-     *
-     * @var array
-     */
-    protected $fillable = ['bannername', 'bannerimage', 'category_id'];
-
-    /**
      * Date for SoftDeletes.
      *
      */
     protected $dates = ['deleted_at'];
 
+    /**
+     * Attributes that should be mass-assignable.
+     *
+     * @var array
+     */
+    protected $fillable = ['order_id', 'changed_by', 'changed_to'];
+
     // Many to One
-    public function category()
-    {
-        return $this->belongsTo('App\Category');
+    public function order() {
+        return $this->belongsTo('App\Order');
     }
 }

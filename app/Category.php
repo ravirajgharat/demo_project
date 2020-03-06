@@ -62,8 +62,15 @@ class Category extends Model
     // }
 
     // One to Many
-    public function products() {
+    public function products() 
+    {
         return $this->hasMany('App\Product');
+    }
+
+    // One to Many
+    public function banners() 
+    {
+        return $this->hasMany('App\Banner');
     }
     
 }

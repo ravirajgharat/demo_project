@@ -2,9 +2,6 @@
 
 @section('content')
 
-
-
-
     <section><!--form-->
         <div class="container">
             <div class="row">
@@ -44,19 +41,18 @@
 
                         </form>
                         <br>
-                        <a href="{{ url('/google') }}" class="btn btn-lg btn-block" style="background-color:#4285f4;color:white;">
-                            {{-- <i class="fa fa-google"></i> --}}
-                            Login With Google
-                        </a>
-                        <a href="{{ url('/facebook') }}" class="btn btn-lg btn-block" style="background-color:#4267B2;color:white;">
-                            {{-- <i class="fa fa-google"></i> --}}
-                            Login With Facebook
-                        </a>
-                        <a href="{{ url('/twitter') }}" class="btn btn-lg btn-block" style="background-color:#00acee;color:white;">
-                            {{-- <i class="fa fa-google"></i> --}}
-                            Login With Twitter
-                        </a>
-                    
+                        <h2 class="text-center"> - &nbsp Login With &nbsp -  </h2>
+                        <div class="text-center">
+                            <a href="{{ url('/google') }}" class="btn btn-lg" style="color:#4285f4;background-color:white;border:2px solid #4285f4;width:50px;">
+                                <i class="fa fa-google"></i>
+                            </a>
+                            <a href="{{ url('/facebook') }}" class="btn btn-lg" style="color:#4267B2;background-color:white;border:2px solid #4267B2;width:50px;">
+                                 <i class="fa fa-facebook"></i>
+                            </a>
+                            <a href="{{ url('/twitter') }}" class="btn btn-lg" style="color:#00acee;background-color:white;border:2px solid #00acee;width:50px;">
+                                <i class="fa fa-twitter"></i>
+                            </a>
+                        </div>
                     </div><!--/login form-->
                 </div>
 

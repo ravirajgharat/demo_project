@@ -30,7 +30,7 @@
                         </div>
 
                         <div class="card-header bg-primary">Email Template</div>
-                        <div class="card-body">
+                        <div class="card-body border border-primary">
                             {!! $template->template !!}
                         </div>
                     </div>

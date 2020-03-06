@@ -16,7 +16,7 @@
 
                         <form method="GET" action="{{ url('/admin/user') }}" accept-charset="UTF-8" class="form-inline my-2 my-lg-0 float-right" role="search">
                             <div class="input-group">
-                                <input type="text" class="form-control" name="search" id="search" placeholder="Search..." value="{{ request('search') }}">
+                                <input type="text" class="form-control" name="search" id="search" placeholder="Search..." value="{{ request('search') }}" onkeyup="searchValue()">
                                 <span class="input-group-append">
                                     <button class="btn btn-secondary" type="submit">
                                         <i class="fa fa-search"></i>
@@ -63,6 +63,5 @@
                 
         </div>
     </div>
-</div>
-    
+</div>  
 @endsection

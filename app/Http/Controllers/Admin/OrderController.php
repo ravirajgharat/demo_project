@@ -4,10 +4,11 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests;
-
+use Illuminate\Support\Facades\Auth;
 use App;
 use App\Order;
 use App\Order_detail;
+use App\Order_status;
 
 use Illuminate\Http\Request;
 
@@ -115,6 +116,16 @@ class OrderController extends Controller
          * Listener Action : Send Order Placed Mail to Customer and Admin
          */
         event(new App\Events\OrderStatusChanged($order));
+
+        /**
+         * Order status changed record
+         * Table : order_statuses
+         */
+        Order_status::create([
+            'order_id' => $order->id,
+            'changed_by' => Auth::User()->id,
+            'changed_to' => $requestData['order_status']
+        ]);
 
         return redirect('admin/order')->with('flash_message', 'Order updated!');
     }

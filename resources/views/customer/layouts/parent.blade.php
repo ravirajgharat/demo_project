@@ -10,7 +10,7 @@
 
     <header id="header">
 
-        @include('customer.layouts.header_top')
+        <!-- @include('customer.layouts.header_top') -->
 
         @include('customer.layouts.header_middle')
 

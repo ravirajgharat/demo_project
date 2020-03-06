@@ -17,8 +17,8 @@ class ShopController extends Controller
     public function subcategoryProducts($cat, $subcat)
     {
         $categories = App\Category::whereNull('category_id')->get();
-        $ban = App\Banner::where('bannername','qqqwww')->first();
-        $banners = App\Banner::where('bannername','!=','qqqwww')->inRandomOrder()->get();
+        $ban = App\Banner::where('bannername','qqqwww')->with('category')->first();
+        $banners = App\Banner::where('bannername','!=','qqqwww')->inRandomOrder()->with('category')->get();
         $brands = App\Product::select('product_brand')->distinct()->get();
         $cat_id = App\Category::where('categoryname', $subcat)->first();
         $products = App\Product::where('category_id', $cat_id->id)->inRandomOrder()->take(6)->get();
@@ -37,8 +37,8 @@ class ShopController extends Controller
     {
         $categories = App\Category::whereNull('category_id')->get();
         $brands = App\Product::select('product_brand')->distinct()->get();
-        $ban = App\Banner::where('bannername','qqqwww')->first();
-        $banners = App\Banner::where('bannername','!=','qqqwww')->inRandomOrder()->get();
+        $ban = App\Banner::where('bannername','qqqwww')->with('category')->first();
+        $banners = App\Banner::where('bannername','!=','qqqwww')->inRandomOrder()->with('category')->get();
         $product = App\Product::find($id);
         $params = App\Product_parameter::where('product_id', $id)->select('product_parameter')->distinct()->get();
 
@@ -58,11 +58,11 @@ class ShopController extends Controller
     {
         $categories = App\Category::whereNull('category_id')->get();
         $brands = App\Product::select('product_brand')->distinct()->get();
-        $ban = App\Banner::where('bannername','qqqwww')->first();
-        $banners = App\Banner::where('bannername','!=','qqqwww')->inRandomOrder()->get();
+        $ban = App\Banner::where('bannername','qqqwww')->with('category')->first();
+        $banners = App\Banner::where('bannername','!=','qqqwww')->inRandomOrder()->with('category')->get();
 
         //$cat_id = App\Category::where('categoryname', $subcat)->first();
-        $products = App\Product::where('product_brand', $brand)->take(6)->get();
+        $products = App\Product::where('product_brand', $brand)->inRandomOrder()->take(6)->get();
 
         $arr = array();
         $items = Cart::content();
