@@ -12,7 +12,6 @@ use App\Template;
 class QueryAskedEmailToAdmin extends Mailable
 {
     use Queueable, SerializesModels;
-
     public $query;
 
     /**

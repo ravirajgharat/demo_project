@@ -74,7 +74,6 @@ class BannerController extends Controller
         if ($request->hasFile('bannerimage')) {
             $requestData['bannerimage'] = $request->file('bannerimage')->store('uploads/banners', 'public');
         }
-
         Banner::create([
             'bannername' => $requestData['bannername'],
             'bannerimage' => $requestData['bannerimage'],
@@ -139,10 +138,7 @@ class BannerController extends Controller
         if ($request->hasFile('bannerimage')) {
             $requestData['bannerimage'] = $request->file('bannerimage')->store('uploads/banners', 'public');
         }
-        
         $banner = Banner::findOrFail($id);
-
-
         if ($request->hasFile('bannerimage')) {
             Storage::delete('public/' . $banner->bannerimage);
             $banner->bannername = $request->bannername;

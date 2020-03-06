@@ -3,18 +3,15 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
 use App;
-
 use Illuminate\Support\Facades\Auth;
-
 use Gloudemans\Shoppingcart\Facades\Cart;
 
 class CashPaymentController extends Controller
 {
-    public function cashPayment(Request $request) {
-
-        // dd($request->session()->get('address'));
+    // Cash Payment
+    public function cashPayment(Request $request)
+    {
         $cartTotal = $request->session()->get('cartTotal');
         $total = floatval(preg_replace('/[^\d\.]/', '', $cartTotal));
         
@@ -26,6 +23,7 @@ class CashPaymentController extends Controller
             $coupon = 'Not Applied';
         }
         
+        // Create Order
         $order = new App\Order;
         $order->user_id = Auth::user()->id;
         $order->address_id = $request->session()->get('address');
@@ -39,20 +37,17 @@ class CashPaymentController extends Controller
         $request->session()->put('order_id', $order->id);
 
         foreach(Cart::content() as $item) {
-
+            // Store Details of all items in order
             $orderDetail = App\Order_detail::create([
-
                 'order_id' => $order->id,
                 'product' => $item->name,
                 'quantity' => $item->qty,
                 'price' => $item->price,
-
             ]);
-
+            // Reduce Product Quantity Available
             $product = App\Product::find($item->id);
             $product->quantity = $product->quantity - $item->qty;
             $product->save();
-
         }
         
         /**
@@ -69,9 +64,9 @@ class CashPaymentController extends Controller
         $request->session()->forget('discount');
         $request->session()->forget('coupon');
         $request->session()->forget('address');
-
+        // Success Message
         $request->session()->put('success', 'Order Placed Successfully.');
-        return view('customer.pages.success');
 
+        return view('customer.pages.success');
     }
 }

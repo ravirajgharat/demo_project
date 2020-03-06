@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests;
-
 use App\Configuration;
 use Illuminate\Http\Request;
 
@@ -56,7 +55,6 @@ class ConfigurationController extends Controller
         ]);
 
         $requestData = $request->all();
-        
         Configuration::create($requestData);
 
         return redirect('admin/configuration')->with('flash_message', 'Configuration added!');
@@ -106,7 +104,6 @@ class ConfigurationController extends Controller
         ]);
         
         $requestData = $request->all();
-        
         $configuration = Configuration::findOrFail($id);
         $configuration->update($requestData);
 

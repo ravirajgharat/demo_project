@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests;
-
 use App\Role;
 use Illuminate\Http\Request;
 
@@ -49,9 +48,7 @@ class RoleController extends Controller
      */
     public function store(Request $request)
     {
-        
         $requestData = $request->all();
-        
         Role::create($requestData);
 
         return redirect('admin/role')->with('flash_message', 'Role added!');
@@ -97,7 +94,6 @@ class RoleController extends Controller
     {
         
         $requestData = $request->all();
-        
         $role = Role::findOrFail($id);
         $role->update($requestData);
 

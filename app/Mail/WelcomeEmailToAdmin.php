@@ -12,7 +12,6 @@ use App\Template;
 class WelcomeEmailToAdmin extends Mailable
 {
     use Queueable, SerializesModels;
-
     public $user;
 
     /**

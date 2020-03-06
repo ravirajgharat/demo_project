@@ -14,7 +14,6 @@ use App\Template;
 class OrderPlacedEmail extends Mailable
 {
     use Queueable, SerializesModels;
-    
     public $order;
 
     /**
@@ -34,19 +33,15 @@ class OrderPlacedEmail extends Mailable
      */
     public function build()
     {
-        // Order
+        // Get New Order
         $order = Order::find($this->order->id);
-
         $id = $order->id;
         $date = $order->created_at;
         $price = round($order->order_price, 2);
         $payment = $order->payment_mode;
-
         // Order Address
         $add = Address::find($order->address_id);
-
         $address = $add->address . ", " . $add->city . ", " . $add->state . ", " . $add->pin_code . ", " . $add->landmark;
-
         // Order Details
         $det = $order->details()->get();
         $details = "";

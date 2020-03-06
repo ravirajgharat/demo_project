@@ -67,10 +67,6 @@ class AddressController extends Controller
             'landmark' => 'bail|required|string|max:255|min:4',
         ]);
 
-        // $requestData = $request->all();
-        // $requestData->user_id = Auth::user()->id;
-        // Address::create($requestData);
-
         $address = new Address;
         $address->address = $request->address;
         $address->city = $request->city;
@@ -130,7 +126,6 @@ class AddressController extends Controller
         ]);
 
         $requestData = $request->all();
-        
         $address = Address::findOrFail($id);
         $address->update($requestData);
 

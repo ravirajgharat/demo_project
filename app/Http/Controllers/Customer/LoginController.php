@@ -5,17 +5,19 @@ namespace App\Http\Controllers\Customer;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App;
-// use Darryldecode\Cart\Cart;
 use Gloudemans\Shoppingcart\Facades\Cart;
 
 class LoginController extends Controller
 {
-    public function loginPage() {
+    // Show Login Page
+    public function loginPage()
+    {
         return view('customer.pages.login');
     }
 
-    public function shop() {
-
+    // Show Home Page to Authenticated Users
+    public function shop()
+    {
         $categories = App\Category::whereNull('category_id')->get();
         $products = App\Product::inRandomOrder()->take(6)->get();
         $rec_act = App\Product::inRandomOrder()->take(3)->get();

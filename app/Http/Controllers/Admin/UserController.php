@@ -6,12 +6,10 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Requests;
-
 use App\User;
 use App\Role;
 use Illuminate\Http\Request;
 use Mail;
-
 use App\Events\Event;
 use App\Events\TestEvent;
 
@@ -24,7 +22,6 @@ class UserController extends Controller
      */
     public function index(Request $request)
     {
-
         $keyword = $request->get('search');
         $perPage = 5;
 
@@ -120,6 +117,7 @@ class UserController extends Controller
             'lastname' => 'bail|required|string|max:255|min:4',
             'email' => 'bail|required|email|max:255|min:4|unique:users,email,' . $id,
         ]);
+
         $role = Role::where('name', $request->category)->first()->id;
         $requestData = $request->all();
         

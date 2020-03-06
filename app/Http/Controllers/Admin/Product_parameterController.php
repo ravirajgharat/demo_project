@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests;
-
 use App\Product_parameter;
 use Illuminate\Http\Request;
 
@@ -27,7 +26,6 @@ class Product_parameterController extends Controller
         } else {
             $product_parameter = Product_parameter::latest()->paginate($perPage);
         }
-        //$product_parameter = Product_parameter::distinct()->get(['product_parameter']);
 
         return view('admin.product_parameter.index', compact('product_parameter'));
     }
@@ -56,7 +54,6 @@ class Product_parameterController extends Controller
         ]);
 
         $requestData = $request->all();
-        
         Product_parameter::create($requestData);
 
         return redirect('admin/product_parameter')->with('flash_message', 'Product_parameter added!');
@@ -105,7 +102,6 @@ class Product_parameterController extends Controller
         ]);
 
         $requestData = $request->all();
-        
         $product_parameter = Product_parameter::findOrFail($id);
         $product_parameter->update($requestData);
 

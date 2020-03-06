@@ -6,7 +6,6 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
-
 use Carbon\Carbon;
 use App\Order;
 use App\Template;
@@ -14,8 +13,6 @@ use App\Template;
 class DailyOrdersPlacedEmailToAdmin extends Mailable
 {
     use Queueable, SerializesModels;
-
-    // public $orders;
 
     /**
      * Create a new message instance.

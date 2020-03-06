@@ -9,7 +9,6 @@ use App;
 use App\Order;
 use App\Order_detail;
 use App\Order_status;
-
 use Illuminate\Http\Request;
 
 class OrderController extends Controller
@@ -39,33 +38,6 @@ class OrderController extends Controller
 
         return view('admin.order.index', compact('order'));
     }
-
-    // /**
-    //  * Show the form for creating a new resource.
-    //  *
-    //  * @return \Illuminate\View\View
-    //  */
-    // public function create()
-    // {
-    //     return view('admin.order.create');
-    // }
-
-    // /**
-    //  * Store a newly created resource in storage.
-    //  *
-    //  * @param \Illuminate\Http\Request $request
-    //  *
-    //  * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
-    //  */
-    // public function store(Request $request)
-    // {
-        
-    //     $requestData = $request->all();
-        
-    //     Order::create($requestData);
-
-    //     return redirect('admin/order')->with('flash_message', 'Order added!');
-    // }
 
     /**
      * Display the specified resource.
@@ -105,9 +77,7 @@ class OrderController extends Controller
      */
     public function update(Request $request, $id)
     {
-        
         $requestData = $request->all();
-        
         $order = Order::findOrFail($id);
         $order->update($requestData);
 
@@ -139,7 +109,6 @@ class OrderController extends Controller
      */
     public function destroy($id)
     {
-
         Order::destroy($id);
 
         return redirect('admin/order')->with('flash_message', 'Order deleted!');

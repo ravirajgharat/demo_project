@@ -49,18 +49,6 @@ class TemplateController extends Controller
      */
     public function store(Request $request)
     {
-        
-        // $requestData = $request->all();
-        
-        // Template::create($requestData);
-
-        // Template::create([
-
-        //     'template_name' => $request->template_name,
-        //     'template' => $request->template,
-
-        // ]);
-
         $template = new Template;
         $template->template_name = $request->template_name;
         $template->template = $request->template;
@@ -107,7 +95,6 @@ class TemplateController extends Controller
      */
     public function update(Request $request, $id)
     {
-        
         $template = Template::findOrFail($id);
         $template->template_name = $request->template_name;
         $template->template = $request->template;

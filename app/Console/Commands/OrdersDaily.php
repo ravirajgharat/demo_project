@@ -3,7 +3,6 @@
 namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
-
 use App\Configuration;
 use App\Mail\DailyOrdersPlacedEmailToAdmin;
 use Illuminate\Support\Facades\Mail;
@@ -42,7 +41,6 @@ class OrdersDaily extends Command
     public function handle()
     {
         $admin = Configuration::where('configname','admin_email')->first()->configvalue;
-
         Mail::to($admin)->send(new DailyOrdersPlacedEmailToAdmin());
     }
 }

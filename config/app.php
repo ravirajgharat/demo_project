@@ -174,7 +174,6 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         Collective\Html\HtmlServiceProvider::class,
-
         // Login with Google, Facebook, Twitter
         Laravel\Socialite\SocialiteServiceProvider::class,
         

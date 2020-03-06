@@ -13,7 +13,6 @@ use App\Address;
 class OrderStatusChangedEmail extends Mailable
 {
     use Queueable, SerializesModels;
-    
     public $order;
 
     /**

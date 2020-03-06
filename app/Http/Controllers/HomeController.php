@@ -32,13 +32,16 @@ class HomeController extends Controller
         return view('home');
     }
 
+    /**
+     * Show the Admin Dashboard.
+     * Pass Admin report parameters
+     * params - users, sales, order, coupon, charts
+     */
     public function dashboard()
     {
         $orders = App\Order::where('created_at', '>', Carbon::today()->subDays(30))->count();
         $users = App\User::where('created_at', '>', Carbon::today()->subDays(30))->count();
         $coupons = App\Order::where('created_at', '>', Carbon::today()->subDays(7))->where('discount', '!=', '0')->count();
-
-
         $sales1 = App\Order::where('created_at', '>', Carbon::today()->subDays(5))->sum('order_price');
         $sales2 = App\Order::where('created_at', '>', Carbon::today()->subDays(10))->sum('order_price') - $sales1;
         try {
@@ -48,23 +51,18 @@ class HomeController extends Controller
             $sales = 0;
         }
 
-        // User Chart - Bar
+        // Admin Reports : User Chart - Bar
         $user = App\User::select(\DB::raw("COUNT(*) as count"))
                     ->whereYear('created_at', date('Y'))
                     ->groupBy(\DB::raw("Month(created_at)"))
                     ->pluck('count');
 
-
         $userChart = new UserChart;
-
         $userChart->labels(['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']);
-
         $userChart->dataset('New Users', 'bar', $user)->options([
-
             'fill' => 'true',
             'backgroundColor' => '#5cb85c',
             'borderColor' => '#5cb85c'
-
         ]);
 
         // Order Chart - Bar
@@ -73,17 +71,12 @@ class HomeController extends Controller
                     ->groupBy(\DB::raw("Month(created_at)"))
                     ->pluck('count');
 
-                    
         $orderChart = new OrderChart;
-
         $orderChart->labels(['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']);
-
         $orderChart->dataset('Orders Placed', 'line', $order)->options([
-
             'fill' => 'true',
             'borderColor' => '#0275d8',
             'backgroundColor' => '#0275d8'
-
         ]);
 
         // Sales Chart - Line
@@ -92,17 +85,12 @@ class HomeController extends Controller
                     ->groupBy(\DB::raw("Month(created_at)"))
                     ->pluck('sum');
 
-
         $saleChart = new SaleChart;
-
         $saleChart->labels(['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']);
-
         $saleChart->dataset('Sales', 'line', $sale)->options([
-
             'fill' => 'true',
             'borderColor' => '#111111',
             'backgroundColor' => '#111111'
-
         ]);
 
         // Coupons Chart - Pie
@@ -110,27 +98,23 @@ class HomeController extends Controller
                     ->groupBy(\DB::raw("coupon"))
                     ->pluck('count');
         $l = App\Order::select('coupon')->distinct()->orderBy('coupon')->get();
-
         foreach($l as $item) {
             $list[] = $item->coupon;
         }
 
         $couponChart = new CouponChart;
-
         $couponChart->labels($list);
-
         $couponChart->dataset('Cuopons Used', 'pie', $coupon)->options([
-
             'backgroundColor' => [  
                 '#52D726', '#FFEC00', '#FF7300', '#FF0000', '#ff00ff', '#007ED6', '#7CDDDD',
             ],
             'borderColor' => '#eee'
-
         ]);
                     
         return view('dashboard', compact('orders', 'sales', 'users', 'coupons', 'userChart', 'orderChart', 'saleChart', 'couponChart'));
     }
 
+    // Users trying to access unauthorized pages
     public function unauthorized()
     {
         return view('customer.pages.not_found');

@@ -12,8 +12,8 @@ class SearchController extends Controller
      *
      * Search Input in Front end
      */
-    public function searchProducts(Request $request) {
-    	
+    public function searchProducts(Request $request)
+    {
     	if($request->ajax())
      	{
 			$output = '';
@@ -39,6 +39,5 @@ class SearchController extends Controller
 			);
 			echo json_encode($data);
 		}
-
     }
 }

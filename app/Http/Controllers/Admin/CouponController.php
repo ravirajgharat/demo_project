@@ -75,10 +75,6 @@ class CouponController extends Controller
             return back();
         }
 
-        // $requestData = $request->all();
-        
-        // Coupon::create($requestData);
-
         $coupon_code = $request->coupon_code;
         $discount = $request->discount;
         $format = $request->format;
@@ -100,9 +96,6 @@ class CouponController extends Controller
     public function show($id)
     {   
         $coupon = DB::select( 'call show_coupon(?)', [$id] )[0];
-        //dd($coupon);
-
-        //$coupon = Coupon::findOrFail($id);
 
         return view('admin.coupon.show', compact('coupon'));
     }
@@ -141,7 +134,6 @@ class CouponController extends Controller
             $timestamp = $request->date." ".$request->time;
         }
 
-        //dd($request->coupon_code); 
         $request->validate([
             'coupon_code' => 'bail|required|alpha_num|max:50|min:4|unique:coupons,coupon_code,' . $id,
             'discount' => 'bail|required|integer',
@@ -153,12 +145,6 @@ class CouponController extends Controller
             return back();
         }
 
-        // $requestData = $request->all();
-        
-        // $coupon = Coupon::findOrFail($id);
-        // $coupon->update($requestData);
-
-        //dd($request->coupon_code);
         $coupon_code = $request->coupon_code;
         $discount = $request->discount;
         $format = $request->format;
@@ -179,7 +165,6 @@ class CouponController extends Controller
      */
     public function destroy($id)
     {
-        //dd($id);
         DB::statement( 'call delete_coupon(?)', [$id] );
 
         return redirect('admin/coupon')->with('flash_message', 'Coupon deleted!');

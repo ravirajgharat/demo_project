@@ -4,10 +4,8 @@ namespace App\Http\Controllers\Customer;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests;
-
 use App\Wishlist;
 use Illuminate\Http\Request;
-
 use Illuminate\Support\Facades\Auth;
 
 class WishlistController extends Controller
@@ -35,16 +33,6 @@ class WishlistController extends Controller
         return view('customer.wishlist.index', compact('wishlist'));
     }
 
-    // /**
-    //  * Show the form for creating a new resource.
-    //  *
-    //  * @return \Illuminate\View\View
-    //  */
-    // public function create()
-    // {
-    //     return view('customer.wishlist.create');
-    // }
-
     /**
      * Add product to wishlist
      *
@@ -54,12 +42,9 @@ class WishlistController extends Controller
      */
     public function store($id)
     {
-        
         Wishlist::create([
-
             'user_id' => Auth::User()->id,
             'product_id' => $id,
-
         ]);
 
         return redirect('cust/shop');
@@ -76,39 +61,6 @@ class WishlistController extends Controller
     {
         return redirect('/cust/product/' . $id);
     }
-
-    // /**
-    //  * Show the form for editing the specified resource.
-    //  *
-    //  * @param  int  $id
-    //  *
-    //  * @return \Illuminate\View\View
-    //  */
-    // public function edit($id)
-    // {
-    //     $wishlist = Wishlist::findOrFail($id);
-
-    //     return view('customer.wishlist.edit', compact('wishlist'));
-    // }
-
-    // /**
-    //  * Update the specified resource in storage.
-    //  *
-    //  * @param \Illuminate\Http\Request $request
-    //  * @param  int  $id
-    //  *
-    //  * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
-    //  */
-    // public function update(Request $request, $id)
-    // {
-        
-    //     $requestData = $request->all();
-        
-    //     $wishlist = Wishlist::findOrFail($id);
-    //     $wishlist->update($requestData);
-
-    //     return redirect('cust/wishlist')->with('flash_message', 'Wishlist updated!');
-    // }
 
     /**
      * Remove product from wishlist.

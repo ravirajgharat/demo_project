@@ -9,8 +9,8 @@ use App;
 
 class HomeController extends Controller
 {
-    public function index() {
-
+    public function index()
+    {
         $categories = App\Category::whereNull('category_id')->get();
         $products = App\Product::inRandomOrder()->take(6)->get();
         $rec_act = App\Product::inRandomOrder()->take(3)->get();

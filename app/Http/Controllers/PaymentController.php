@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
 use PayPal\Api\Amount;
 use PayPal\Api\Details;
 use PayPal\Api\Item;
@@ -15,8 +14,6 @@ use PayPal\Api\RedirectUrls;
 use PayPal\Api\Transaction;
 use PayPal\Rest\ApiContext;
 use PayPal\Auth\OAuthTokenCredential;
-
-//use Illuminate\Support\Facades\Input;
 use Input;
 use Redirect;
 use Session;
@@ -30,16 +27,14 @@ use App;
 class PaymentController extends Controller
 {
     public function __construct()
-    {
- 
+    { 
         // PayPal api context
         $paypal_conf = \Config::get('paypal');
         $this->_api_context = new ApiContext(new OAuthTokenCredential(
             $paypal_conf['client_id'],
             $paypal_conf['secret'])
         );
-        $this->_api_context->setConfig($paypal_conf['settings']);
- 
+        $this->_api_context->setConfig($paypal_conf['settings']); 
     }
 
     /* 
@@ -63,14 +58,6 @@ class PaymentController extends Controller
             $coupon = 'Not Applied';
         }
 
-        // $order = App\Order::create([
-
-        //         'user_id' => Auth::user()->id,
-        //         'order_status' => 'Pending',
-        //         'order_price' => $total,
-
-        // ]);
-
         $order = new App\Order;
         $order->user_id = Auth::user()->id;
         $order->address_id = $request->session()->get('address');
@@ -84,23 +71,18 @@ class PaymentController extends Controller
         $request->session()->put('order_id', $order->id);
 
         foreach(Cart::content() as $item) {
-
+            // Store Details of all items in order
             $orderDetail = App\Order_detail::create([
-
                 'order_id' => $order->id,
                 'product' => $item->name,
                 'quantity' => $item->qty,
                 'price' => $item->price,
-
             ]);
-
+            // Reduce Product Quantity Available
             $product = App\Product::find($item->id);
             $product->quantity = $product->quantity - $item->qty;
             $product->save();
-
         }
-
-        // dd($request->session()->get('cartTotal'));
 
         $payer = new Payer();
         $payer->setPaymentMethod('paypal');
@@ -135,7 +117,7 @@ class PaymentController extends Controller
             ->setTransactions(array($transaction));
         /** dd($payment->create($this->_api_context));exit; **/
         try {
- 
+
             $payment->create($this->_api_context);
  
         } catch (\PayPal\Exception\PPConnectionException $ex) {
@@ -249,5 +231,4 @@ class PaymentController extends Controller
     {
         return view('customer.pages.status');
     }
-
 }

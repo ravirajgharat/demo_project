@@ -6,13 +6,11 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App;
 use Illuminate\Support\Facades\Auth;
-//use Gloudemans\Shoppingcart\Cart;
 use Gloudemans\Shoppingcart\Facades\Cart;
 use Carbon\Carbon;
 
 class ShopController extends Controller
 {
-
     // Display products for subcategory
     public function subcategoryProducts($cat, $subcat)
     {
@@ -22,7 +20,6 @@ class ShopController extends Controller
         $brands = App\Product::select('product_brand')->distinct()->get();
         $cat_id = App\Category::where('categoryname', $subcat)->first();
         $products = App\Product::where('category_id', $cat_id->id)->inRandomOrder()->take(6)->get();
-        
         $arr = array();
         $items = Cart::content();
         foreach($items as $item) {
@@ -41,7 +38,6 @@ class ShopController extends Controller
         $banners = App\Banner::where('bannername','!=','qqqwww')->inRandomOrder()->with('category')->get();
         $product = App\Product::find($id);
         $params = App\Product_parameter::where('product_id', $id)->select('product_parameter')->distinct()->get();
-
         $items = Cart::content();
         $exist = 0;
         foreach($items as $item) {
@@ -60,10 +56,7 @@ class ShopController extends Controller
         $brands = App\Product::select('product_brand')->distinct()->get();
         $ban = App\Banner::where('bannername','qqqwww')->with('category')->first();
         $banners = App\Banner::where('bannername','!=','qqqwww')->inRandomOrder()->with('category')->get();
-
-        //$cat_id = App\Category::where('categoryname', $subcat)->first();
         $products = App\Product::where('product_brand', $brand)->inRandomOrder()->take(6)->get();
-
         $arr = array();
         $items = Cart::content();
         foreach($items as $item) {
@@ -76,10 +69,8 @@ class ShopController extends Controller
     // Cart Page
     public function cart()
     {
-        // dd($request->session()->get('cartTotal'));
         $items = Cart::content();
         $float = floatval(preg_replace('/[^\d\.]/', '', Cart::subtotal()));
-        
         $tax = $float*5/100;
         $taxNo = number_format($float*5/100,2);
 
@@ -95,10 +86,9 @@ class ShopController extends Controller
         }
 
         $user_id = Auth::user()->id;
-
         $codes = App\Coupon::where('expires_at', '>', Carbon::now())->get();
-
         $total = number_format($float+$tax+$ship,2);
+
         return view('customer.pages.cart', compact('user_id', 'codes', 'items', 'float', 'taxNo', 'ship', 'total', 'coupon_code', 'discount'));
     }
 
@@ -111,15 +101,12 @@ class ShopController extends Controller
     public function addToCart($id)
     {
         $product = App\Product::find($id);
-
         Cart::add([
-
             'id' => $product->id, 
             'name' => $product->product_name, 
             'qty' => 1, 
             'price' => $product->price,
-            'weight' => 0
-
+            'weight' => 0,
         ])->associate('App\Product');
 
         return $this->displayProduct($id);
@@ -181,10 +168,8 @@ class ShopController extends Controller
         $request->session()->put('coupon', $coupon_code);
         $items = Cart::content();
         $float = floatval(preg_replace('/[^\d\.]/', '', Cart::subtotal()));
-        
         $tax = $float*5/100;
         $taxNo = number_format($float*5/100,2);
-
         $total1 = number_format($float+$tax,2);
 
         if($float > 500) {

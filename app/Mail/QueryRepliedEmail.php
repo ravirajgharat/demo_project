@@ -12,7 +12,6 @@ use App\Template;
 class QueryRepliedEmail extends Mailable
 {
     use Queueable, SerializesModels;
-
     public $query;
 
     /**

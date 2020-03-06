@@ -55,7 +55,6 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        
         $request->validate([
             'product_name' => 'bail|required|string|max:255|min:4',
             'product_description' => 'bail|required|string|min:4',
@@ -66,10 +65,6 @@ class ProductController extends Controller
             'categories' => 'required',
             'quantity' => 'bail|required|integer',
         ]);
-        //dd($request->product_image);
-
-
-        //dd($request->parameter);
 
         $product = new Product;
         $product->product_name = $request->product_name;
@@ -140,7 +135,6 @@ class ProductController extends Controller
      */
     public function edit($id)
     {
-        
         $product = Product::findOrFail($id);
         $categories = App\Category::orderBy('categoryname')->get();
         $parameters = App\Product_parameter::distinct()->get(['product_parameter']);
@@ -158,7 +152,6 @@ class ProductController extends Controller
      */
     public function update(Request $request, $id)
     {
-
         $request->validate([
             'product_name' => 'bail|required|string|max:255|min:4',
             'product_description' => 'bail|required|string|min:4',

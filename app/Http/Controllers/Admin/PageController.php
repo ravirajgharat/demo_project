@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests;
-
 use App\Page;
 use App\Page_point;
 use Illuminate\Http\Request;
@@ -104,10 +103,8 @@ class PageController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-
             'page' => 'bail|required|string|min:4|max:255|unique:pages,page,' . $id,
             'point' => 'bail|required|string|min:4',
-
         ]);
         
         $page = Page::findOrFail($id);
